@@ -9,7 +9,7 @@ import java.util.Arrays;
 
 public class Problem31 {
 
-  public static void exec() {
+  public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 
     System.out.println(numberOfCombinations(200, COIN_VALUES));

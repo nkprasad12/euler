@@ -5,7 +5,7 @@ import utils.numbers.Series;
 
 public class Problem6 {
   
-  public static void exec() {
+  public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 
     System.out.println(sumSquareDifference(100));

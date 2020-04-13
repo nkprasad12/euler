@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class Problem14 {
   
-  public static void exec() {
+  public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 
     HashMap<Long, Long> memo = new HashMap<>();

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Problem34 {
   
-  public static void exec() {
+  public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 
     Factorial factorials = new Factorial(9);

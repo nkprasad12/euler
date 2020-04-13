@@ -8,7 +8,7 @@ import utils.numbers.BigNumber;
 
 public class Problem13 {
   
-  public static void exec() {
+  public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 
     System.out.println(

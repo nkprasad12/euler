@@ -8,7 +8,7 @@ import utils.generators.Generators;
 
 public class Problem49 {
   
-  public static void exec() {
+  public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 
     Generator<List<Integer>> gen = Generators.permutationsOf(Generators.range(1, 3).list()).generator();

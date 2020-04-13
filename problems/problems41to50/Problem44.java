@@ -8,7 +8,7 @@ import utils.generators.Generators;
 
 public class Problem44 {
   
-  public static void exec() {
+  public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 
     int iMax = 5000;

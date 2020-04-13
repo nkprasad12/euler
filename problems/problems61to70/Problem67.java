@@ -6,7 +6,7 @@ import problems.problems11to20.Problem18;
 
 public class Problem67 {
   
-  public static void exec() {
+  public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 
     System.out.println(Problem18.maxTrianglePath("problem67.txt"));

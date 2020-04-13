@@ -5,7 +5,7 @@ import java.lang.invoke.MethodHandles;
 
 public class Problem9 {
   
-  public static void exec() {
+  public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 
     // See comments below

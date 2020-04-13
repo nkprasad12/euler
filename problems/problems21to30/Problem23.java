@@ -9,7 +9,7 @@ import utils.primes.Primes;
 
 public class Problem23 {
   
-  public static void exec() {
+  public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 
     Primes primes = new Primes();

@@ -8,7 +8,7 @@ import utils.dates.Weekday;
 
 public class Problem19 {
   
-  public static void exec() {
+  public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 
     int sundays = 0;

@@ -4,7 +4,7 @@ import java.lang.invoke.MethodHandles;
 
 public class Problem4 {
   
-  public static void exec() {
+  public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
     findMaxPalindrome();
   }

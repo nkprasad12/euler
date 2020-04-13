@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class Problem22 {
   
-  public static void exec() {
+  public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 
     ArrayList<String> names =

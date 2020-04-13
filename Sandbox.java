@@ -6,7 +6,7 @@ import utils.primes.Primes;
 
 class Sandbox {
   
-  public static void exec() {
+  public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 
     System.out.println(Generators.range(2, 99999).filter(Primes::isPrimeStatic).collectInto(new ArrayList<>()));

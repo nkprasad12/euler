@@ -7,7 +7,7 @@ import utils.primes.Primes;
 
 public class Problem3 {
   
-  public static void exec() {
+  public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
     System.out.println(
       PrimeFactorization.of(600851475143l, new Primes()).largestFactor());

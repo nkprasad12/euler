@@ -18,7 +18,7 @@ public class Problem28 {
     // This gives:
     //    S(k) = 1 + 4 * (4 * k * (k + 1) * (2k + 1) / 6 + k * (k + 1) / 2 + k)
     // Answer for this problem is S(500)
-    public static void exec() {
+    public static void main(String[] args) {
         System.out.println(669171001l);
     }
 }

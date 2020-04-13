@@ -9,7 +9,7 @@ import java.util.HashSet;
 
 public class Problem29 {
   
-  public static void exec() {
+  public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 
     int size =

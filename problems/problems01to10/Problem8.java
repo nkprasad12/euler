@@ -5,7 +5,7 @@ import java.lang.invoke.MethodHandles;
 
 public class Problem8 {
   
-  public static void exec() {
+  public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 
     System.out.println(maxWindowProduct(DIGIT_STRING, 13));

@@ -6,7 +6,7 @@ import utils.numbers.BigNumber;
 
 public class Problem25 {
   
-  public static void exec() {
+  public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 
     BigNumber low = BigNumber.fromLong(1l);

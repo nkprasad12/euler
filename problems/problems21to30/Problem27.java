@@ -9,7 +9,7 @@ import java.lang.Math;
 
 public class Problem27 {
   
-  public static void exec() {
+  public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 
     System.out.println("isPrime 41:" + Primes.isPrimeNonStoring(41));

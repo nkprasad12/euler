@@ -7,7 +7,7 @@ import utils.numbers.BigNumber;
 
 public class Problem30 {
   
-  public static void exec() {
+  public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 
     Generators.range(2l, 999999l)
