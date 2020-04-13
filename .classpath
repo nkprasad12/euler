@@ -1,0 +1,5 @@
+<classpathentry kind="src" path="test" output="build/classes/test">
+   <attributes>
+      <attribute name="test" value="true" />
+   </attributes>
+</classpathentry>
