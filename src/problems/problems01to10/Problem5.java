@@ -14,11 +14,11 @@ public class Problem5 {
     Primes primes = new Primes();
     PrimeFactorizations factor = new PrimeFactorizations(primes);
 
-    PrimeFactorization allFactors = factor.of(1);
+    PrimeFactorization allFactors = factor.factorizationOf(1);
     for (long i = 2; i <= 20; i++) {
       allFactors = 
           allFactors.multiplyBy(
-              allFactors.divideBy(factor.of(i)).reduce().denominator());
+              allFactors.divideBy(factor.factorizationOf(i)).reduce().denominator());
     }
     System.out.println(allFactors.toLong());
   }

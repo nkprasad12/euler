@@ -12,12 +12,8 @@ public final class PrimeFactorizations {
     this.primes = primes;
   }
 
-  public PrimeFactorization of(long n) {
+  public PrimeFactorization factorizationOf(long n) {
     return PrimeFactorization.of(n, primes);
-  }
-
-  PrimeFactorization factorizationOf(long n) {
-    return of(n);
   }
 
   public Generator<Long> properDivisorsOf(long n) {

@@ -15,15 +15,15 @@ public class Problem12 {
     PrimeFactorizations factor = new PrimeFactorizations(primes);
 
     long k = 2;
-    PrimeFactorization last = factor.of(k - 1);
-    PrimeFactorization current = factor.of(k);
-    PrimeFactorization next = factor.of(k + 1);
-    PrimeFactorization kthTriangle = factor.of(3);
+    PrimeFactorization last = factor.factorizationOf(k - 1);
+    PrimeFactorization current = factor.factorizationOf(k);
+    PrimeFactorization next = factor.factorizationOf(k + 1);
+    PrimeFactorization kthTriangle = factor.factorizationOf(3);
     while (kthTriangle.numberOfDivisors() <= 500) {
       k++;
       last = current;
       current = next;
-      next = factor.of(k + 1);
+      next = factor.factorizationOf(k + 1);
       kthTriangle = kthTriangle.multiplyBy(next).divideBy(last).reduce().numerator();
     }
 

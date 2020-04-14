@@ -20,7 +20,7 @@ public class Problem47 {
         System.out.println(i);
       }
 
-      if (factor.of(i).factorMap().keySet().size() == 4) {
+      if (factor.factorizationOf(i).factorMap().keySet().size() == 4) {
         numConsecutive++;
       } else {
         numConsecutive = 0;
