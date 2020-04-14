@@ -53,7 +53,7 @@ public final class Primes {
     // TODO: Replace this with a prime sieve
     if (max > maxChecked) {
       for (long n = maxChecked + 1; n <= max; n++) {
-        if (!isDivisibleByKnownPrimesUpTo(n)) {
+        if (!isDivisibleByKnownPrimesUpTo(n, root(n))) {
           primes.add(n);
         }
       }
@@ -87,12 +87,12 @@ public final class Primes {
   public boolean isPrime(long n) {
     long root = root(n);
     computePrimesUpTo(root);
-    return !isDivisibleByKnownPrimesUpTo(root);
+    return !isDivisibleByKnownPrimesUpTo(n, root);
   }
 
-  private boolean isDivisibleByKnownPrimesUpTo(long n) {
+  private boolean isDivisibleByKnownPrimesUpTo(long n, long max) {
     return Generators.from(primes)
-        .filter(prime -> prime <= n)
+        .filter(prime -> prime <= max)
         .reducing(true, (soFar, prime) -> soFar && n % prime == 0)
         .lastValue();
   }

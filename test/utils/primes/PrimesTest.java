@@ -50,6 +50,13 @@ public class PrimesTest {
     }
 
     @Test
+    public void primesUpTo_primeMax_containsPrine() {
+        Primes primes = new Primes();
+
+        assertTrue(primes.primesUpTo(97l).last() == 97l);
+    }
+
+    @Test
     public void primesUpTo_returnsUnModifiableSet() {
         Primes primes = new Primes();
         SortedSet<Long> set = primes.primesUpTo(100l);
