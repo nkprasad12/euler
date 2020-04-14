@@ -11,6 +11,6 @@ class Sandbox {
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 
-    System.out.println(Generators.range(2, 99999).filter(Primes::isPrimeStatic).collectInto(new ArrayList<>()));
+    System.out.println(Generators.range(2l, 999999l).filter(Primes::isPrimeStatic).collectInto(new ArrayList<>()).size());
   }
 }

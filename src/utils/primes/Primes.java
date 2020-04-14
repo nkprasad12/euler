@@ -22,6 +22,13 @@ public final class Primes {
     maxChecked = 2l;
   }
 
+  /**  
+   * Returns whether a number is prime using the Miller test.
+   * 
+   * This is technically conditional on the Riemann Hypothesis, but
+   * we we get an incorrect result using this algorithm this means we've
+   * disproven the Riemann Hypothesis, so this is a worthy trade off.
+   */
   public static boolean isPrimeStatic(long n) {
     if (n == 2) {
       return true;
@@ -37,17 +44,24 @@ public final class Primes {
       r += 1;
     }
     double logN = Math.log((double) n);
-    long max = Math.min(n - 2, (long) Math.floor(2 * logN * logN));
+    long max = Math.min(n - 2, 2 + (long) Math.floor(2 * logN * logN));
     for (long a = 2; a <= max; a++) {
       long x = powerModN(a, d, n);
+      // System.out.println("a = ," + a + " Initial x: " + x);
       if (x == 1 || x == n - 1) {
         continue;
       }
+      boolean shouldContinue = false;
       for (int i = 0; i < r - 1; i++) {
         x = powerModN(x, 2, n);
+        // System.out.println("i = ," + i + "New x: " + x);
         if (x == n - 1) {
-          continue;
+          shouldContinue = true;
+          break;
         }
+      }
+      if (shouldContinue) {
+        continue;
       }
       return false;
     }
