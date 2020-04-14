@@ -23,8 +23,8 @@ public class Problem32 {
                 .reducing(
                     new HashSet<Integer>(), 
                     (soFar, next) -> {
-                    soFar.addAll(next);
-                    return soFar;
+                      soFar.addAll(next);
+                      return soFar;
                     })
                 .lastValue();
         Generators.from(productSet)
