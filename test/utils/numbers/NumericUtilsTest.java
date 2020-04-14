@@ -3,6 +3,7 @@ package test.utils.numbers;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static test.Assertions.assertEqual;
 import static src.utils.numbers.NumericUtils.inverseTriangle;
 import static src.utils.numbers.NumericUtils.isPerfectSquare;
 
@@ -35,9 +36,9 @@ public class NumericUtilsTest {
 
     @Test
     public void inverseTriangle_triangularNumbers_returnsExpected() {
-        assertIntsEqual(inverseTriangle(6), 3);
-        assertIntsEqual(inverseTriangle(5050), 100);
-        assertIntsEqual(inverseTriangle(22791), 213);
+        assertEqual(inverseTriangle(6), 3);
+        assertEqual(inverseTriangle(5050), 100);
+        assertEqual(inverseTriangle(22791), 213);
     }
 
     @Test
@@ -49,12 +50,6 @@ public class NumericUtilsTest {
 
     @Test 
     public void powerModN_returnsExpected() {
-        assertIntsEqual((int) NumericUtils.powerModN(17, 35, 14), 5);
-    }
-
-    private static void assertIntsEqual(int actual, int expected) {
-        assertTrue(
-            String.format("actual: %d does not match expected: %d", actual, expected),
-            actual == expected);
+        assertEqual((int) NumericUtils.powerModN(17, 35, 14), 5);
     }
 }

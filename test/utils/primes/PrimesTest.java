@@ -3,6 +3,7 @@ package test.utils.primes;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThrows;
+import static test.Assertions.assertEqual;
 import static src.utils.primes.Primes.isPrimeStatic;
 
 import java.util.SortedMap;
@@ -68,9 +69,9 @@ public class PrimesTest {
     public void nthPrime_returnsCorrectResults() {
         Primes primes = new Primes();
 
-        assertEqual(primes.nthPrime(5), 11);
-        assertEqual(primes.nthPrime(299), 1979);
-        assertEqual(primes.nthPrime(100), 541);
+        assertEqual(primes.nthPrime(5), 11l);
+        assertEqual(primes.nthPrime(299), 1979l);
+        assertEqual(primes.nthPrime(100), 541l);
     }
 
     @Test
@@ -125,17 +126,5 @@ public class PrimesTest {
         assertEqual(factors.get(5l), 4);
         assertTrue(factors.containsKey(11l));
         assertEqual(factors.get(11l), 1);
-    }
-
-    private static void assertEqual(int actual, int expected) {
-        assertTrue(
-            String.format("actual: %d does not match expected: %d", actual, expected),
-            actual == expected);
-    }
-
-    private static void assertEqual(long actual, long expected) {
-        assertTrue(
-            String.format("actual: %d does not match expected: %d", actual, expected),
-            actual == expected);
     }
 }
