@@ -56,18 +56,6 @@ public final class BigNumber {
     return product;
   }
 
-  public BigNumber copy() {
-    return new BigNumber(digits());
-  }
-
-  public long sumOfDigits() {
-    long sum = 0;
-    for (Integer digit : digits) {
-      sum += digit;
-    }
-    return sum;
-  }
-
   public BigNumber toPower(int exponent) {
     if (exponent == 0) {
       return BigNumber.fromLong(1);
