@@ -45,7 +45,7 @@ public final class Primes {
   /* Returns a set of all the prime numbers <= max. */
   public SortedSet<Long> primesUpTo(long max) {
     computePrimesUpTo(max);
-    return Collections.unmodifiableSortedSet(primes);
+    return Collections.unmodifiableSortedSet(primes.headSet(max + 1));
   }
 
   /* Computes and saves all the prime numbers <= max. */
@@ -113,6 +113,9 @@ public final class Primes {
    * powers to which the prime key is raised in the factorization. 
    */
   public SortedMap<Long, Integer> factor(long n) {
+    if (n <= 0) {
+      throw new RuntimeException("Only positive integers can be factored");
+    }
     long remaining = n;
     SortedMap<Long, Integer> factorMap = new TreeMap<>();
     for (Long prime : primes) {
