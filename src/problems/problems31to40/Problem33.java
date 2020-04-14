@@ -2,11 +2,6 @@ package src.problems.problems31to40;
 
 import java.lang.invoke.MethodHandles;
 
-import java.util.Arrays;
-import java.util.HashSet;
-
-import src.utils.generators.Generators;
-
 public class Problem33 {
 
     public static void main(String[] args) {
