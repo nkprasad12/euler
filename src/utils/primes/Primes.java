@@ -47,14 +47,12 @@ public final class Primes {
     long max = Math.min(n - 2, 2 + (long) Math.floor(2 * logN * logN));
     for (long a = 2; a <= max; a++) {
       long x = powerModN(a, d, n);
-      // System.out.println("a = ," + a + " Initial x: " + x);
       if (x == 1 || x == n - 1) {
         continue;
       }
       boolean shouldContinue = false;
       for (int i = 0; i < r - 1; i++) {
         x = powerModN(x, 2, n);
-        // System.out.println("i = ," + i + "New x: " + x);
         if (x == n - 1) {
           shouldContinue = true;
           break;
