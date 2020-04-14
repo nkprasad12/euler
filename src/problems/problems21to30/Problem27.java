@@ -12,7 +12,6 @@ public class Problem27 {
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 
-    System.out.println("isPrime 41:" + Primes.isPrimeNonStoring(41));
     System.out.println("final answer: " + maxConsecutivePrimes(poly(-79, 1601)));
     System.out.println(brute());
   }
@@ -25,7 +24,6 @@ public class Problem27 {
         Function<Integer, Integer> polyFn = poly(a, b);
         int n = maxConsecutivePrimes(polyFn);
         if (n > maxConsecutivePrimes) {
-          System.out.println(n);
           maxConsecutivePrimes = n;
           maxProduct = a * b;
         }
@@ -38,7 +36,7 @@ public class Problem27 {
     int n = 0;
     while(true) {
       long result = polyFn.apply(n);
-      if (Primes.isPrimeNonStoring(result)) {
+      if (Primes.isPrimeStatic(result)) {
         n++;
       } else {
         return n;

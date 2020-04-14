@@ -28,5 +28,4 @@ public class PrimesTest {
                 .reduce(0, (primesSoFar, next) -> primesSoFar + 1);
         assertTrue(numPrimesLessThan1Million == 78498);
     }
-
 }

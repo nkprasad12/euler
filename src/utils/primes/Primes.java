@@ -8,7 +8,6 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 import src.utils.generators.Generators;
-import src.utils.numbers.NumericUtils;
 
 /* Utility functions relating to prime numbers and primality. */
 public final class Primes {
@@ -23,46 +22,22 @@ public final class Primes {
     maxChecked = 2l;
   }
 
-  /**  
-   * Returns whether a number is prime using the Miller test.
-   * 
-   * This is technically conditional on the Riemann Hypothesis, but
-   * we we get an incorrect result using this algorithm this means we've
-   * disproven the Riemann Hypothesis, so this is a worthy trade off.
-   */
+  /**  Returns when a number is prime. */
   public static boolean isPrimeStatic(long n) {
+    if (n <= 1) {
+      return false;
+    }
     if (n == 2) {
       return true;
     }
     if (n % 2 == 0) {
       return false;
     }
-    // Write n = 2^r * d + 1
-    long d = n - 1;
-    long r = 0;
-    while (d % 2 == 0) {
-      d /= 2;
-      r += 1;
-    }
-    double logN = Math.log((double) n);
-    long max = Math.min(n - 2, 2 + (long) Math.floor(2 * logN * logN));
-    for (long a = 2; a <= max; a++) {
-      long x = NumericUtils.powerModN(a, d, n);
-      if (x == 1 || x == n - 1) {
-        continue;
+    long boundary = (long) Math.floor(Math.sqrt(n));
+    for (int i = 3; i <= boundary; i += 2) {
+      if (n % i == 0) {
+        return false;
       }
-      boolean shouldContinue = false;
-      for (int i = 0; i < r - 1; i++) {
-        x = NumericUtils.powerModN(x, 2, n);
-        if (x == n - 1) {
-          shouldContinue = true;
-          break;
-        }
-      }
-      if (shouldContinue) {
-        continue;
-      }
-      return false;
     }
     return true;
   }
@@ -86,6 +61,7 @@ public final class Primes {
     }
   }
 
+  /* Returns the 1-indexed nth prime number. */
   public long nthPrime(int n) {
     for (int i = primes.size(); i < n; i++) {
       computeNextPrime();
@@ -112,28 +88,6 @@ public final class Primes {
     long root = root(n);
     computePrimesUpTo(root);
     return !isDivisibleByKnownPrimesUpTo(root);
-  }
-
-  public static boolean isPrimeNonStoring(long n) {
-    if (n <= 1) {
-      return false;
-    }
-    if (n == 2) {
-      return true;
-    }
-    if (n % 2 == 0) {
-      return false;
-    }
-
-    long boundary = (long) Math.floor(Math.sqrt(n));
-
-    for (int i = 3; i <= boundary; i += 2) {
-      if (n % i == 0) {
-        return false;
-      }
-    }
-
-    return true;
   }
 
   private boolean isDivisibleByKnownPrimesUpTo(long n) {
