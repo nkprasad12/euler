@@ -8,6 +8,8 @@ import static src.utils.numbers.NumericUtils.isPerfectSquare;
 
 import org.junit.Test;
 
+import src.utils.numbers.NumericUtils;
+
 public class NumericUtilsTest {
 
     @Test
@@ -43,6 +45,11 @@ public class NumericUtilsTest {
         assertNull(inverseTriangle(5));
         assertNull(inverseTriangle(5051));
         assertNull(inverseTriangle(22790));
+    }
+
+    @Test 
+    public void powerModN_returnsExpected() {
+        assertIntsEqual((int) NumericUtils.powerModN(17, 35, 14), 5);
     }
 
     private static void assertIntsEqual(int actual, int expected) {

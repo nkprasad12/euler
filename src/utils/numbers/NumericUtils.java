@@ -4,6 +4,7 @@ import java.lang.Math;
 
 public final class NumericUtils {
 
+  /* Determines whether an input number is a perfect square. */
   public static boolean isPerfectSquare(int k) {
     int root = (int) Math.sqrt(k);
     return k == root * root;
@@ -15,5 +16,17 @@ public final class NumericUtils {
       return null;
     }
     return ((int) Math.sqrt(1 + 8 * k) - 1) / 2;
+  }
+
+  /* Computes the result `base`^`exponent` (mod `mod`) */
+  public static long powerModN(long base, long exponent, long mod) {
+    if (exponent == 0) {
+      return 1l;
+    } else if (exponent % 2 == 0) {
+      long halfPow = powerModN(base, exponent / 2, mod);
+      return (halfPow * halfPow) % mod;
+    } else {
+      return (powerModN(base, exponent - 1, mod) * base) % mod;
+    }
   }
 }

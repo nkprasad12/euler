@@ -8,6 +8,7 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 import src.utils.generators.Generators;
+import src.utils.numbers.NumericUtils;
 
 /* Utility functions relating to prime numbers and primality. */
 public final class Primes {
@@ -46,13 +47,13 @@ public final class Primes {
     double logN = Math.log((double) n);
     long max = Math.min(n - 2, 2 + (long) Math.floor(2 * logN * logN));
     for (long a = 2; a <= max; a++) {
-      long x = powerModN(a, d, n);
+      long x = NumericUtils.powerModN(a, d, n);
       if (x == 1 || x == n - 1) {
         continue;
       }
       boolean shouldContinue = false;
       for (int i = 0; i < r - 1; i++) {
-        x = powerModN(x, 2, n);
+        x = NumericUtils.powerModN(x, 2, n);
         if (x == n - 1) {
           shouldContinue = true;
           break;
@@ -64,17 +65,6 @@ public final class Primes {
       return false;
     }
     return true;
-  }
-
-  public static long powerModN(long base, long exponent, long mod) {
-    if (exponent == 0) {
-      return 1l;
-    } else if (exponent % 2 == 0) {
-      long halfPow = powerModN(base, exponent / 2, mod);
-      return (halfPow * halfPow) % mod;
-    } else {
-      return (powerModN(base, exponent - 1, mod) * base) % mod;
-    }
   }
 
   /* Returns a set of all the prime numbers <= max. */
