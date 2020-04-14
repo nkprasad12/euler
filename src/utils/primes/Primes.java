@@ -2,24 +2,20 @@ package src.utils.primes;
 
 import java.lang.Math;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.TreeMap;
 import java.util.SortedMap;
 import java.util.SortedSet;
 import java.util.TreeSet;
-
-import src.utils.generators.Generators;
 
 /* Utility functions relating to prime numbers and primality. */
 public final class Primes {
 
   private final SortedSet<Long> primes;
 
-  private long maxChecked;
-
   public Primes() {
     primes = new TreeSet<>();
     primes.add(2l);
-    maxChecked = 2l;
   }
 
   /**  Returns when a number is prime. */
@@ -50,60 +46,76 @@ public final class Primes {
 
   /* Computes and saves all the prime numbers <= max. */
   private void computePrimesUpTo(long max) {
-    // TODO: Replace this with a prime sieve
-    if (max > maxChecked) {
-      for (long n = maxChecked + 1; n <= max; n++) {
-        if (!isDivisibleByKnownPrimesUpTo(n, root(n))) {
-          primes.add(n);
-        }
+    if (max > Integer.MAX_VALUE - 1) {
+      throw new RuntimeException("Computing max too high - time to implement segmenting sieving.");
+    }
+    int n = (int) max;
+    boolean[] isCompositeOrOldPrime = new boolean[n + 1];
+    for (Long prime : primes) {
+      if (prime <= n) {
+        isCompositeOrOldPrime[prime.intValue()] = true;
       }
-      maxChecked = max;      
+      long j = prime * prime;
+      while (j <= n) {
+        isCompositeOrOldPrime[(int) j] = true;
+        j += prime;
+      }
+    }
+    for (int i = 2; i <= n; i++) {
+      if (isCompositeOrOldPrime[i]) {
+        continue;
+      }
+      long prime = (long) i;
+      primes.add(prime);
+      long j = prime * prime;
+      while (j <= n) {
+        isCompositeOrOldPrime[(int) j] = true;
+        j += prime;
+      }
     }
   }
 
   /* Returns the 1-indexed nth prime number. */
   public long nthPrime(int n) {
-    for (int i = primes.size(); i < n; i++) {
-      computeNextPrime();
+    if (n <= 0) {
+      throw new RuntimeException("Index n must be 1 indexed");
     }
-    return primes.last();
+    // n (log n + log (log n)) is a known upper bound for the nth prime, n > 6.
+    long max;
+    if (n <= 6) {
+      // 13 is the 6th prime.
+      max = 13;
+    } else {
+      double logN = Math.log((double) n);
+      long logLogN = (long) Math.ceil(Math.log(logN));
+      max = ((long) n) * ((long) Math.ceil(logN) + logLogN);
+    }
+    computePrimesUpTo(max);
+    return getNthElement(primes, n);
   }
 
-  private long computeNextPrime() {
-    long candidate = maxChecked + 1;
-    while (true) {
-      if (isDivisibleByKnownPrimes(candidate)) {
-        candidate++;
-      } else {
-        primes.add(candidate);
-        maxChecked = candidate;
-        break;
-      }
+  // Returns the 1-indexed nth element of the input set.
+  private static long getNthElement(SortedSet<Long> set, int n) {
+    // TODO: Rethink using a TreeSet for this.
+    if (set.size() < n) {
+      throw new RuntimeException("Set does not have enough elements");
     }
-    return candidate;
+    Iterator<Long> iterator = set.iterator();
+    for (int i = 0; i < n - 1; i++) {
+      iterator.next();
+    }
+    return iterator.next();
   }
 
   /* Determines whether the input number is prime. */
   public boolean isPrime(long n) {
-    long root = root(n);
-    computePrimesUpTo(root);
-    return !isDivisibleByKnownPrimesUpTo(n, root);
-  }
-
-  private boolean isDivisibleByKnownPrimesUpTo(long n, long max) {
-    return Generators.from(primes)
-        .filter(prime -> prime <= max)
-        .reducing(true, (soFar, prime) -> soFar && n % prime == 0)
-        .lastValue();
-  }
-
-  private boolean isDivisibleByKnownPrimes(long n) {
-    for (Long prime : primes) {
+    long root = (long) Math.sqrt(n);
+    for (Long prime : primesUpTo(root)) {
       if (n % prime == 0) {
-        return true;
+        return false;
       }
     }
-    return false;
+    return true;
   }
 
   /** 
@@ -128,8 +140,8 @@ public final class Primes {
         factorMap.put(prime, exponent);
       }
     }
-    while (remaining > 1) {
-      long prime = computeNextPrime();
+    computePrimesUpTo(remaining);
+    for (Long prime : primes) {
       int exponent = 0;
       while (remaining % prime == 0) {
         exponent++;
@@ -137,12 +149,11 @@ public final class Primes {
       }
       if (exponent > 0) {
         factorMap.put(prime, exponent);
-      }      
+      }
+    }
+    if (remaining > 1) {
+      throw new RuntimeException("Error in factor method - could not complete factorization.");
     }
     return factorMap;
-  }
-
-  private long root(long n) {
-    return (long) Math.ceil(Math.sqrt(n));
   }
 }

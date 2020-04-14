@@ -68,9 +68,9 @@ public class PrimesTest {
     public void nthPrime_returnsCorrectResults() {
         Primes primes = new Primes();
 
-        assertTrue(primes.nthPrime(5) == 11);
-        assertTrue(primes.nthPrime(299) == 1979);
-        assertTrue(primes.nthPrime(100) == 541);
+        assertEqual(primes.nthPrime(5), 11);
+        assertEqual(primes.nthPrime(299), 1979);
+        assertEqual(primes.nthPrime(100), 541);
     }
 
     @Test
@@ -78,6 +78,7 @@ public class PrimesTest {
         Primes primes = new Primes();
 
         assertTrue(primes.isPrime(26002429l));
+        assertTrue(primes.primesUpTo(10).contains(2l));
     }
 
     @Test
@@ -95,7 +96,7 @@ public class PrimesTest {
             Generators.range(2l, 999999l)
                 .filter(n -> primes.isPrime(n))
                 .reduce(0, (primesSoFar, next) -> primesSoFar + 1);
-        assertTrue(numPrimesLessThan1Million == 78498);
+        assertEqual(numPrimesLessThan1Million, 78498);
     }
 
     @Test
@@ -119,14 +120,20 @@ public class PrimesTest {
 
         SortedMap<Long, Integer> factors = primes.factor(6875l);
         
-        assertIntsEqual(factors.size(), 2);
+        assertEqual(factors.size(), 2);
         assertTrue(factors.containsKey(5l));
-        assertIntsEqual(factors.get(5l), 4);
+        assertEqual(factors.get(5l), 4);
         assertTrue(factors.containsKey(11l));
-        assertIntsEqual(factors.get(11l), 1);
+        assertEqual(factors.get(11l), 1);
     }
 
-    private static void assertIntsEqual(int actual, int expected) {
+    private static void assertEqual(int actual, int expected) {
+        assertTrue(
+            String.format("actual: %d does not match expected: %d", actual, expected),
+            actual == expected);
+    }
+
+    private static void assertEqual(long actual, long expected) {
         assertTrue(
             String.format("actual: %d does not match expected: %d", actual, expected),
             actual == expected);
