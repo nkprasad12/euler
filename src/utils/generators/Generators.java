@@ -11,6 +11,7 @@ import java.util.Scanner;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.function.BiFunction;
+import java.util.function.BiPredicate;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -241,6 +242,23 @@ public final class Generators {
                   Tuples.pair(
                       firstMap.apply(pair.first(), pair.second()),
                       secondMap.apply(pair.first(), pair.second()))));
+    }
+
+    public PairGeneratorConsumer<T, R> filter(BiPredicate<T, R> predicate) {
+      return new PairGeneratorConsumer<>(filter(pair -> predicate.test(pair.first(), pair.second())));
+    }
+
+    public <S, W> PairGeneratorConsumer<S, W> reducing(
+        Tuple<S, W, ?, ?, ?> initial, 
+        BiFunction<S, T, S> firstReduction,
+        BiFunction<W, R, W> secondReduction) {
+      return new PairGeneratorConsumer<>(
+          reducing(
+              initial, 
+              (soFarPair, nextPair) ->
+                  Tuples.pair(
+                      firstReduction.apply(soFarPair.first(), nextPair.first()),
+                      secondReduction.apply(soFarPair.second(), nextPair.second()))));
     }
   }
 

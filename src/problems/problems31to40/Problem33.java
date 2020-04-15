@@ -2,14 +2,13 @@ package src.problems.problems31to40;
 
 import java.lang.invoke.MethodHandles;
 
+import src.utils.generators.Generators;
+import src.utils.generators.Tuples;
+
 public class Problem33 {
 
     public static void main(String[] args) {
         System.out.println(MethodHandles.lookup().lookupClass());
-
-        System.out.println(isCancelling(49, 98));
-        System.out.println(isCancelling(30, 50));
-        System.out.println(isCancelling(16, 64));
 
         int numProduct = 1;
         int denomProduct = 1;
@@ -27,6 +26,12 @@ public class Problem33 {
         System.out.println(numProduct);
         System.out.println("---------");
         System.out.println(denomProduct);
+
+        Generators.range(10, 98)
+            .mapAsPair(i -> Generators.range(i + 1, 99))
+            .filter((a, b) -> isCancelling(a, b) != null)
+            .reducing(Tuples.pair(1, 1), (aProd, aNext) -> aProd * aNext, (bProd, bNext) -> bProd * bNext)
+            .printLast();
     }
 
     public static Integer isCancelling(int a, int b) {
