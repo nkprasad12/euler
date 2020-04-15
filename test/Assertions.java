@@ -4,6 +4,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class Assertions {
 
@@ -20,7 +21,16 @@ public class Assertions {
 	        Assertions.assertEqual(actual.get(i), expected.get(i), "Index " + i);
 	    }
     }
-    
+	
+	public static <K, V> void assertMapsMatch(Map<K, V> expected, Map<K, V> actual) {
+		assertEqual(actual.size(), expected.size(), "Map sizes");
+
+		for (K key : expected.keySet()) {
+			assertTrue(actual.containsKey(key));
+			assertEqual(expected.get(key), actual.get(key), "Value for key " + key);
+		}
+	} 
+
     public static <T> void assertEqual(T actual, T expected) {
         Assertions.assertEqual(actual, expected, "");
     }
@@ -31,13 +41,5 @@ public class Assertions {
 	        actual.equals(expected));
 	}
 
-	// public static void assertEqual(int actual, int expected) {
-	//     Assertions.assertEqual(actual, expected, "");
-	// }
-
-	// public static void assertEqual(int actual, int expected, String tag) {
-	//     assertTrue(
-	//         String.format(tag + " actual: %d does not match expected: %d", actual, expected),
-	//         actual == expected);
-	// }
+	
 }

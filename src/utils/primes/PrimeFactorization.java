@@ -5,6 +5,7 @@ import java.util.Map.Entry;
 import java.util.TreeMap;
 import java.util.SortedMap;
 import java.util.Collections;
+import java.util.Map;
 
 import src.utils.numbers.Rational;
   
@@ -20,19 +21,29 @@ import src.utils.numbers.Rational;
     private final Primes primes;
 
     private PrimeFactorization(SortedMap<Long, Integer> factorMap, Primes primes) {
-      this.factorMap = factorMap;
+      TreeMap<Long, Integer> copyMap = new TreeMap<>();
+      for (Map.Entry<Long, Integer> entry : factorMap.entrySet()) {
+        if (entry.getValue() < 0) {
+          throw new RuntimeException("Factor map contains negative exponent.");
+        }
+        if (entry.getValue() == 0) {
+          continue;
+        }
+        copyMap.put(entry.getKey(), entry.getValue());
+      }
+      this.factorMap = copyMap;
       this.primes = primes;
+    }
+
+    /* Returns a read-only version of the underlying map of factors. */
+    public SortedMap<Long, Integer> factorMap() {
+      return Collections.unmodifiableSortedMap(factorMap);
     }
 
     /* The exponent of `prime` that appears in this prime factorization. */
     public int exponentOf(long prime) {
       Integer candidate = factorMap.get(prime);
       return candidate == null ? 0 : candidate;
-    }
-
-    /* Returns a read-only version of the underlying map of factors. */
-    public SortedMap<Long, Integer> factorMap() {
-      return Collections.unmodifiableSortedMap(factorMap);
     }
 
     /* Returns the largest prime factor in this factorization. */
