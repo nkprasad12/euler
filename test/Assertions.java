@@ -37,7 +37,7 @@ public class Assertions {
 
 	public static <T> void assertEqual(T actual, T expected, String tag) {
 	    assertTrue(
-	        String.format(tag + " actual: %d does not match expected: %d", actual, expected),
+	        String.format(tag + " actual: %s does not match expected: %s", actual, expected),
 	        actual.equals(expected));
 	}
 

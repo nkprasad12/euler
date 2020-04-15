@@ -9,10 +9,14 @@ import java.util.List;
 import java.util.Set;
 import java.util.Scanner;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
+
+import src.utils.generators.Tuples.Tuple;
 
 public final class Generators {
 
@@ -60,7 +64,7 @@ public final class Generators {
   }
 
   /* Convenience class for consuming elements in a generator. */
-  public static final class GeneratorConsumer<T> {
+  public static class GeneratorConsumer<T> {
 
     private final Generator<T> generator;
 
@@ -73,9 +77,22 @@ public final class Generators {
     }
 
     // Other GeneratorConsumers below
-    public <O> GeneratorConsumer<O> map(Function<T, O> mapper) {
+    public <R> GeneratorConsumer<R> map(Function<T, R> mapper) {
       return new GeneratorConsumer<>(
           new MappingGenerator<>(generator, mapper));
+    }
+
+    public <R> GeneratorConsumer<R> flatMap(Function<T, GeneratorConsumer<R>> mapper) {
+      return new GeneratorConsumer<>(new FlatMappingGenerator<>(generator, mapper));
+    }
+
+    public <R> PairGeneratorConsumer<T, R> mapAsPair(Function<T, GeneratorConsumer<R>> mapper) {
+      return new PairGeneratorConsumer<>(
+          flatMap(t -> mapper.apply(t).map(r -> Tuples.pair(t, r))));
+    }
+
+    public <R> PairGeneratorConsumer<T, R> pairEachWith(Supplier<GeneratorConsumer<R>> supplier) {
+      return mapAsPair(t -> supplier.get());
     }
 
     public GeneratorConsumer<T> filter(Predicate<T> predicate) {
@@ -173,6 +190,10 @@ public final class Generators {
       return collection;
     }  
 
+    public <C extends Collection<T>> GeneratorConsumer<C> collectingInto(C collection) {
+      return reducing(collection, GeneratorConsumer::chainingAdd);
+    }
+
     public <C extends Collection<T>> C collectInto(C collection) {
       return reduce(collection, GeneratorConsumer::chainingAdd);
     }
@@ -185,6 +206,42 @@ public final class Generators {
       return collectInto(new HashSet<T>());      
     }
 
+  }
+
+  public static class PairGeneratorConsumer<T, R> extends GeneratorConsumer<Tuple<T, R, ?, ? , ?>> {
+
+    private PairGeneratorConsumer(Generator<Tuple<T, R, ?, ?, ?>> generator) {
+      super(generator);
+    }
+
+    private PairGeneratorConsumer(GeneratorConsumer<Tuple<T, R, ?, ?, ?>> pairGeneratorConsumer) {
+      this(pairGeneratorConsumer.generator);
+    }
+
+    public <S> GeneratorConsumer<S> mapPair(BiFunction<T, R, S> mapper) {
+      return map(pair -> mapper.apply(pair.first(), pair.second()));
+    }
+
+    public <S, W> PairGeneratorConsumer<S, W> mapPair(Function<T, S> firstMap, Function<R, W> secondMap) {
+      return mapPair((t, r) -> firstMap.apply(t), (t, r) -> secondMap.apply(r));
+    }
+                    
+    public <S, W> PairGeneratorConsumer<S, W> mapPair(Function<T, S> firstMap, BiFunction<T, R, W> secondMap) {
+      return mapPair((t, r) -> firstMap.apply(t), secondMap);
+    }
+
+    public <S, W> PairGeneratorConsumer<S, W> mapPair(BiFunction<T, R, S> firstMap, Function<R, W> secondMap) {
+      return mapPair(firstMap, (t, r) -> secondMap.apply(r));
+    }
+
+    public <S, W> PairGeneratorConsumer<S, W> mapPair(BiFunction<T, R, S> firstMap, BiFunction<T, R, W> secondMap) {
+      return new PairGeneratorConsumer<>(
+          map(
+              pair -> 
+                  Tuples.pair(
+                      firstMap.apply(pair.first(), pair.second()),
+                      secondMap.apply(pair.first(), pair.second()))));
+    }
   }
 
   public static final class IndexAndValue<T> {
@@ -230,6 +287,49 @@ public final class Generators {
     @Override
     public boolean hasNext() {
       return generator.hasNext();
+    }
+  }
+
+  static final class FlatMappingGenerator<I, O> implements Generator<O> {
+
+    private final Generator<I> generator;
+    private final Function<I, GeneratorConsumer<O>> mapper;
+
+    private Optional<Generator<O>> currentGenerator = Optional.empty();
+    private Optional<O> next;
+
+    private FlatMappingGenerator(Generator<I> generator, Function<I, GeneratorConsumer<O>> mapper) {
+      this.generator = generator;
+      this.mapper = mapper;
+      findNextO();
+    }
+
+    @Override
+    public O getNext() {
+      O result = next.get();
+      findNextO();
+      return result;
+    }
+
+    @Override
+    public boolean hasNext() {
+      return next.isPresent();
+    }
+
+    private void findNextO() {
+      next = Optional.empty();
+      while (!next.isPresent()) {
+        if (!currentGenerator.isPresent() || !currentGenerator.get().hasNext()) {
+          if (!generator.hasNext()) {
+            return;
+          }
+          currentGenerator = Optional.of(mapper.apply(generator.getNext()).generator);
+        }
+        if (!currentGenerator.get().hasNext()) {
+          continue;
+        }
+        next = Optional.of(currentGenerator.get().getNext());
+      }
     }
   }
 
