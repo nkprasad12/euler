@@ -1,13 +1,10 @@
 package test.utils.generators.base;
 
-import static org.junit.Assert.assertFalse;
 import static test.Assertions.assertGenerates;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.LinkOption;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
