@@ -1,10 +1,10 @@
 package src.problems.problems21to30;
 
 import java.lang.invoke.MethodHandles;
+import java.util.Collections;
 
 import src.utils.generators.Generators;
 
-import java.util.Collections;
 import java.util.ArrayList;
 
 public class Problem22 {

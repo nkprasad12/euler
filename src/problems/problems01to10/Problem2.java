@@ -1,23 +1,21 @@
 package src.problems.problems01to10;
 
+import static src.utils.generators.base.tuples.Tuples.pair;
+
 import java.lang.invoke.MethodHandles;
+
+import src.utils.generators.Generators;
 
 public class Problem2 {
 
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
- 
-    long low = 1;
-    long high = 2;
-    long sum = 0;
 
-    while (high < 4000000) {
-      sum += high % 2 == 0 ? high : 0;
-      long tmp = low + high;
-      low = high;
-      high = tmp;
-    }
-    System.out.println(sum);
+    Generators.fromRecursion(
+          pair(1, 2), (i, j) -> pair(j, i + j), (i, j) -> (j < 4000000))
+        .filter((i, j) -> ((j % 2) == 0))
+        .reducing(0, (sum, nextPair) -> (sum + nextPair.second()))
+        .printLast();
   }
 
 }

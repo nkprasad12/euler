@@ -1,9 +1,10 @@
 package src.problems.problems11to20;
 
 import java.lang.invoke.MethodHandles;
-import java.lang.Math;
 
 import src.utils.generators.Generators;
+
+import java.lang.Math;
 
 public class Problem11 {
   

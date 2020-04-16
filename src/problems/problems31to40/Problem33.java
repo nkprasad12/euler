@@ -3,7 +3,7 @@ package src.problems.problems31to40;
 import java.lang.invoke.MethodHandles;
 
 import src.utils.generators.Generators;
-import src.utils.generators.Tuples;
+import src.utils.generators.base.tuples.Tuples;
 
 public class Problem33 {
 

@@ -1,4 +1,4 @@
-package src.utils.generators;
+package src.utils.generators.base.tuples;
 
 public final class Tuples {
 

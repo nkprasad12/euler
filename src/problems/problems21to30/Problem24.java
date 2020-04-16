@@ -11,7 +11,7 @@ public class Problem24 {
     
     Generators.permutationsOf(Generators.range(0, 9).list())
         .addIndices()
-        .until(indexAndValue -> indexAndValue.index() == 999999)
+        .whileTrue(indexAndValue -> indexAndValue.index() < 1000000)
         .map(indexAndValue -> Generators.from(indexAndValue.value()))
         .lastValue()
         .reducing("", (a, b) -> a + b)

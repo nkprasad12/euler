@@ -4,7 +4,7 @@ import java.lang.invoke.MethodHandles;
 import java.util.HashMap;
 
 import src.utils.generators.Generators;
-import src.utils.generators.Tuples;
+import src.utils.generators.base.tuples.Tuples;
 
 public class Problem26 {
   

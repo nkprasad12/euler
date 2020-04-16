@@ -2,17 +2,16 @@ package src.problems.problems01to10;
 
 import java.lang.invoke.MethodHandles;
 
+import src.utils.generators.Generators;
+
 public class Problem1 {
   
-  static void exec() {
+  public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 
-    int sum = 0;
-    for (int i = 1; i < 1000; i++) {
-      if (i % 3 == 0 || i % 5 == 0) {
-        sum += i;
-      }
-    }
-    System.out.println(sum);
+    Generators.range(1, 999)
+        .filter(i -> i % 3 == 0 || i % 5 == 0)
+        .reducing(0, (sumSoFar, next) -> sumSoFar + next)
+        .printLast();
   }
 }
