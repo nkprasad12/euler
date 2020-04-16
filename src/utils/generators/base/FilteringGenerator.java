@@ -4,6 +4,7 @@ import java.util.function.Predicate;
 
 import src.utils.generators.Generator;
 
+/* Generator that removes values that do not match the filter. */
 public final class FilteringGenerator<T> implements Generator<T> {
 
     private final Generator<T> generator;
