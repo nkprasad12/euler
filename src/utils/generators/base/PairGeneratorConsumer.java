@@ -15,7 +15,7 @@ public class PairGeneratorConsumer<T, R> extends GeneratorConsumer<Tuple<T, R, ?
     }
 
     public PairGeneratorConsumer(GeneratorConsumer<Tuple<T, R, ?, ?, ?>> pairGeneratorConsumer) {
-      this(pairGeneratorConsumer.generator);
+      this(pairGeneratorConsumer.generator());
     }
 
     public <S> GeneratorConsumer<S> mapPair(BiFunction<T, R, S> mapper) {
@@ -45,6 +45,10 @@ public class PairGeneratorConsumer<T, R> extends GeneratorConsumer<Tuple<T, R, ?
 
     public PairGeneratorConsumer<T, R> filter(BiPredicate<T, R> predicate) {
       return new PairGeneratorConsumer<>(filter(pair -> predicate.test(pair.first(), pair.second())));
+    }
+
+    public PairGeneratorConsumer<T, R> whileTrue(BiPredicate<T, R> predicate) {
+      return new PairGeneratorConsumer<>(whileTrue(pair -> predicate.test(pair.first(), pair.second())));
     }
 
     public <S, W> PairGeneratorConsumer<S, W> reducing(

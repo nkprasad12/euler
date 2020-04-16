@@ -1,5 +1,7 @@
 package src.problems.problems21to30;
 
+import static src.utils.generators.Generators.range;
+
 import java.lang.invoke.MethodHandles;
 
 import src.utils.generators.Generators;
@@ -13,21 +15,10 @@ public class Problem29 {
     System.out.println(MethodHandles.lookup().lookupClass());
 
     int size =
-        Generators.range(2l, 100l)
-        .map(a -> BigNumber.fromLong(a))
-        .map(
-            a -> 
-                Generators.range(2, 100)
-                    .map(b -> a.toPower(b))
-                    .collectInto(new HashSet<BigNumber>()))
-        .reducing(
-              new HashSet<BigNumber>(),
-              (soFar, newElements) -> {
-                soFar.addAll(newElements);
-                return soFar;
-              })
-        .lastValue()
-        .size();
+        Generators.fromCartesianProductOf(range(2l, 100l), () -> range(2, 100))
+            .mapPair((a, b) -> BigNumber.fromLong(a).toPower(b))
+            .collectInto(new HashSet<>())
+            .size();
     System.out.println(size);
   }
 }

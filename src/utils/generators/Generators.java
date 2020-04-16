@@ -12,7 +12,6 @@ import src.utils.generators.base.FileReadingGenerator;
 import src.utils.generators.base.GeneratorConsumer;
 import src.utils.generators.base.IteratorWrappingGenerator;
 import src.utils.generators.base.PairGeneratorConsumer;
-import src.utils.generators.base.RecursiveGenerator;
 import src.utils.generators.base.tuples.Tuples.Tuple;
 
 /* Factory class for creating GeneratorConsumers for fluent chaining. */
@@ -20,7 +19,7 @@ public final class Generators {
 
   /* Creates a GeneratorConsumer wrapping the input Generator. */
   public static <T> GeneratorConsumer<T> from(Generator<T> generator) {
-    return new GeneratorConsumer<>(generator);
+    return GeneratorConsumer.from(generator);
   }
 
   /* Creates a GeneratorConsumer wrapping the input iterable, as a generator. */
@@ -31,8 +30,7 @@ public final class Generators {
 
   public static <T> GeneratorConsumer<T> fromRecursion(
       T initial, Function<T, T> recursion, Predicate<T> generateWhile) {
-    return from(new RecursiveGenerator<T>(initial, recursion))
-        .whileTrue(generateWhile);
+    return GeneratorConsumer.fromRecursion(initial, recursion, generateWhile);
   }
 
   public static <T, R> PairGeneratorConsumer<T, R> fromRecursion(
@@ -47,8 +45,8 @@ public final class Generators {
   }
 
   public static <T, R> PairGeneratorConsumer<T, R> fromCartesianProductOf(
-      Generator<T> first, Supplier<GeneratorConsumer<R>> second) {
-    return from(first).pairEachWith(second);
+      GeneratorConsumer<T> first, Supplier<GeneratorConsumer<R>> second) {
+    return first.pairEachWith(second);
   }
 
   public static GeneratorConsumer<String> fromTextFile(String fileName) {

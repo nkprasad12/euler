@@ -48,10 +48,9 @@ public final class PermutationGenerator<T extends Comparable<T>> implements Gene
       int ceilIndex =
           Generators.range(rightmostSmaller + 1, size - 1)
               .filter(i -> objects.get(i).compareTo(objects.get(rightmostSmaller)) > 0)
-              .reducing(
+              .reduce(
                    rightmostSmaller + 1,
-                   (a, b) -> objects.get(a).compareTo(objects.get(b)) < 0 ? a : b)
-              .lastValue();
+                   (a, b) -> objects.get(a).compareTo(objects.get(b)) < 0 ? a : b);
       swap(ceilIndex, rightmostSmaller);
       Generators.range(rightmostSmaller + 1, (size + rightmostSmaller) / 2)
           .forEach(i -> swap(i, size + rightmostSmaller - i));

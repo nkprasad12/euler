@@ -12,25 +12,15 @@ public class Problem32 {
     public static void main(String[] args) {
         System.out.println(MethodHandles.lookup().lookupClass());
 
-        HashSet<Integer> productSet = 
+        HashSet<Integer> products =
             Generators.range(100, 9999)
-                .map(
-                    a -> 
-                        Generators.range(1, a)
-                            .filter(b -> isPandigital("" + a + "" + b + "" + a * b))
-                            .map(b -> a * b)
-                            .collectInto(new HashSet<>()))
-                .reducing(
-                    new HashSet<Integer>(), 
-                    (soFar, next) -> {
-                      soFar.addAll(next);
-                      return soFar;
-                    })
-                .lastValue();
-        Generators.from(productSet)
-            .reducing(0, (sum, next) -> sum + next)
-            .printLast();
-        
+                .mapAsPair(a -> Generators.range(1, a))
+                .filter((a, b) -> isPandigital(a + "" + b + "" + a * b))
+                .mapPair((a, b) -> a * b)
+                .collectInto(new HashSet<>());
+        Generators.from(products)
+            .reduceAndPrint(0, (sum, next) -> sum + next);
+    
         HashSet<Integer> set = new HashSet<Integer>();
         for (int a = 100; a < 9999; a++) {
             for (int b = 0; b < a; b++ ) {
@@ -45,7 +35,7 @@ public class Problem32 {
         for (Integer i : set) {
             sum += i;
         }
-        System.out.println(sum);
+        System.out.println(sum);   
     }
 
     public static boolean isPandigital(String input) {

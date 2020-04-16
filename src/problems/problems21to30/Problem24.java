@@ -11,10 +11,9 @@ public class Problem24 {
     
     Generators.permutationsOf(Generators.range(0, 9).list())
         .addIndices()
-        .whileTrue(indexAndValue -> indexAndValue.index() < 1000000)
-        .map(indexAndValue -> Generators.from(indexAndValue.value()))
-        .lastValue()
-        .reducing("", (a, b) -> a + b)
-        .printLast();
+        .whileTrue((i, permutation) -> i < 1000000)
+        .mapPair((i, permutation) -> Generators.from(permutation))
+        .lastValue().get()
+        .reduceAndPrint("", (a, b) -> a + b);
   }
 }

@@ -38,7 +38,7 @@ public final class FlatMappingGenerator<I, O> implements Generator<O> {
           if (!generator.hasNext()) {
             return;
           }
-          currentGenerator = Optional.of(mapper.apply(generator.getNext()).generator);
+          currentGenerator = Optional.of(mapper.apply(generator.getNext()).generator());
         }
         if (!currentGenerator.get().hasNext()) {
           continue;
