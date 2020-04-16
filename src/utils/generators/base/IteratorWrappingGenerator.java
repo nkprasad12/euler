@@ -4,6 +4,7 @@ import java.util.Iterator;
 
 import src.utils.generators.Generator;
 
+/* Generates the contents of an iterator. */
 public final class IteratorWrappingGenerator<T> implements Generator<T> {
 
     private final Iterator<T> iterator;

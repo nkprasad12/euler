@@ -1,24 +1,40 @@
 package test;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import src.utils.generators.Generator;
+
 public class Assertions {
 
     @SafeVarargs
+    public static <T> void assertGenerates(Generator<T> generator, T ... expected) {
+	    assertGenerates(generator, Arrays.asList(expected));
+	}
+
+	public static <T> void assertGenerates(Generator<T> generator, List<T> expected) {
+	    for (T t : expected) {
+			assertTrue(generator.hasNext());
+			assertEqual(generator.getNext(), t);
+		}
+		assertFalse(generator.hasNext());
+    }	
+
+    @SafeVarargs
     public static <T> void assertListMatches(List<T> list, T ... expected) {
-	    Assertions.assertListsMatch(list, Arrays.asList(expected));
+	    assertListsMatch(list, Arrays.asList(expected));
 	}
 
 	public static <T> void assertListsMatch(List<T> actual, List<T> expected) {
 	    int n = expected.size();
-	    Assertions.assertEqual(actual.size(), n);
+	    assertEqual(actual.size(), n);
 	
 	    for (int i = 0; i < n; i++) {
-	        Assertions.assertEqual(actual.get(i), expected.get(i), "Index " + i);
+	        assertEqual(actual.get(i), expected.get(i), "Index " + i);
 	    }
     }
 	
@@ -32,7 +48,7 @@ public class Assertions {
 	} 
 
     public static <T> void assertEqual(T actual, T expected) {
-        Assertions.assertEqual(actual, expected, "");
+        assertEqual(actual, expected, "");
     }
 
 	public static <T> void assertEqual(T actual, T expected, String tag) {
@@ -40,6 +56,4 @@ public class Assertions {
 	        String.format(tag + " actual: %s does not match expected: %s", actual, expected),
 	        actual.equals(expected));
 	}
-
-	
 }
