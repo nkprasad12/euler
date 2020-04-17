@@ -53,7 +53,7 @@ import src.utils.generators.base.tuples.Tuples.Tuple;
     }
 
     public <R> GeneratorConsumer<R> flatMap(Function<T, GeneratorConsumer<R>> mapper) {
-      return new GeneratorConsumer<>(new FlatMappingGenerator<>(generator, mapper));
+      return new GeneratorConsumer<>(FlatMappingGenerator.from(generator, mapper));
     }
 
     public <R, S> PairGeneratorConsumer<R, S> mapPair(Function<T, Tuple<R, S, ?, ?, ?>> mapper) {
