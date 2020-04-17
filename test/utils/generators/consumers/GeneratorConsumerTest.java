@@ -81,13 +81,18 @@ public class GeneratorConsumerTest {
         "Hi");
   }
 
-  // TODO: Fix the implementation and make this pass!
+  @Test 
+  public void combineWith_hasExpectedResult() {
+    assertGenerates(
+      from(LIST).combineWith(sequentialStringGenerator(8)),
+      pair(2, "0"), pair(1, "1"), pair(3, "2"));
+  }
+
   @Test
   public void addIndices_emptyList_producesEmptyResult() {
     assertGeneratesNone(from(EMPTY).addIndices());
   }
 
-  // TODO: Fix the implementation and make this pass!
   @Test
   public void addIndices_oneElement_addsExpectedIndices() {
     assertGenerates(
@@ -95,7 +100,6 @@ public class GeneratorConsumerTest {
         pair(0, 7));
   }
 
-  // TODO: Fix the implementation and make this pass!
   @Test
   public void addIndices_nonEmpty_addsExpectedIndices() {
     assertGenerates(
@@ -116,7 +120,7 @@ public class GeneratorConsumerTest {
     return GeneratorConsumer.from(new IteratorWrappingGenerator<>(list.iterator()));
   }
 
-  // Maps i to the generator "i" "i" ... "i" (repeated i times).
+  // Maps i to the generator "0" "1" ... "i - 1".
   private GeneratorConsumer<String> sequentialStringGenerator(int i) {
       ArrayList<String> list = new ArrayList<>();
       for (int k = 0; k < i; k++) {

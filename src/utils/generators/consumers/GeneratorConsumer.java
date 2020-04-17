@@ -13,6 +13,7 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 import src.utils.generators.Generator;
+import src.utils.generators.base.CombiningGenerator;
 import src.utils.generators.base.FilteringGenerator;
 import src.utils.generators.base.FlatMappingGenerator;
 import src.utils.generators.base.MappingGenerator;
@@ -126,6 +127,19 @@ public class GeneratorConsumer<T> {
     System.out.println(reduce(initial, function));
   }
 
+  /** 
+   * Creates a generator of pairs from pairwise matching generated
+   * elements of this generator with the second generator.
+   */
+  public <U> PairGeneratorConsumer<T, U> combineWith(Generator<U> second) {
+    return new PairGeneratorConsumer<>(new CombiningGenerator<>(generator, second));
+  }
+
+  /** Convenience overload of combineWith(Generator) */
+  public <U> PairGeneratorConsumer<T, U> combineWith(GeneratorConsumer<U> second) {
+    return combineWith(second.generator());
+  }
+
   /**
    * Returns a PairGeneratorConsumer of each element of the underlying
    * generator paired with its 0-indexed index.
@@ -134,11 +148,7 @@ public class GeneratorConsumer<T> {
    * returned produces (0, t_0),  (1, t_1), and so on. 
    */
   public PairGeneratorConsumer<Integer, T> addIndices() {
-    return new PairGeneratorConsumer<>(
-        fromRecursion(
-            Tuples.pair(0, generator.getNext()),
-            pair -> Tuples.pair(pair.first() + 1, generator.getNext()),
-            unused -> generator.hasNext()));
+    return from(new RecursiveGenerator<>(0, i -> i + 1)).combineWith(generator);
   }
 
   /** 
