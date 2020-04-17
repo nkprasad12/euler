@@ -9,10 +9,10 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 import src.utils.generators.base.FileReadingGenerator;
-import src.utils.generators.base.GeneratorConsumer;
 import src.utils.generators.base.IteratorWrappingGenerator;
-import src.utils.generators.base.PairGeneratorConsumer;
 import src.utils.generators.base.tuples.Tuples.Tuple;
+import src.utils.generators.consumers.GeneratorConsumer;
+import src.utils.generators.consumers.PairGeneratorConsumer;
 
 /* Factory class for creating GeneratorConsumers for fluent chaining. */
 public final class Generators {

@@ -1,4 +1,4 @@
-package src.utils.generators.base;
+package src.utils.generators.consumers;
 
 import java.util.function.BiFunction;
 import java.util.function.BiPredicate;

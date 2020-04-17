@@ -1,4 +1,4 @@
-package src.utils.generators.base;
+package src.utils.generators.consumers;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,6 +14,13 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 import src.utils.generators.Generator;
+import src.utils.generators.base.FilteringGenerator;
+import src.utils.generators.base.FlatMappingGenerator;
+import src.utils.generators.base.IteratorWrappingGenerator;
+import src.utils.generators.base.MappingGenerator;
+import src.utils.generators.base.RecursiveGenerator;
+import src.utils.generators.base.ReducingGenerator;
+import src.utils.generators.base.TerminatingGenerator;
 import src.utils.generators.base.tuples.Tuples;
 import src.utils.generators.base.tuples.Tuples.Tuple;
 
