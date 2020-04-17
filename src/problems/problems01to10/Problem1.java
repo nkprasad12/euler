@@ -12,6 +12,7 @@ public class Problem1 {
     Generators.range(1, 999)
         .filter(i -> i % 3 == 0 || i % 5 == 0)
         .reducing(0, (sumSoFar, next) -> sumSoFar + next)
-        .printLast();
+        .lastValue()
+        .print();
   }
 }

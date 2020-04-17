@@ -18,6 +18,7 @@ public class Problem30 {
                          .map(d -> d * d * d * d * d)
                          .reduce(0, (a, b) -> a + b))
         .reducing(0l, (sum, next) -> sum + next)
-        .printLast();
+        .lastValue()
+        .print();
   }
 }

@@ -2,7 +2,7 @@ package src.problems.problems11to20;
 
 import java.lang.invoke.MethodHandles;
 import java.lang.Math;
-import java.util.ArrayList;
+import java.util.List;
 
 import src.utils.generators.Generators;
 import src.utils.numbers.NumericUtils;
@@ -17,10 +17,10 @@ public class Problem18 {
   }
 
   public static int maxTrianglePath(String fileName) {
-    ArrayList<Integer> triangle =
+    List<Integer> triangle =
         Generators.fromTextFile(fileName)
             .map(Integer::parseInt)
-            .collectInto(new ArrayList<>());
+            .list();
     int n = NumericUtils.inverseTriangle(triangle.size());
     for (int row = n - 2; row >= 0; row--) {
       for (int col = 0; col <= row; col++) {

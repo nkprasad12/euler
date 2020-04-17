@@ -1,9 +1,13 @@
 package test.utils.generators.consumers;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static src.utils.generators.base.tuples.Tuples.pair;
 import static test.Assertions.assertEqual;
 import static test.Assertions.assertGenerates;
 import static test.Assertions.assertGeneratesNone;
+import static test.Assertions.assertListMatches;
+import static test.Assertions.assertListsMatch;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,6 +16,7 @@ import java.util.List;
 
 import org.junit.Test;
 
+import src.utils.generators.Generator;
 import src.utils.generators.base.IteratorWrappingGenerator;
 import src.utils.generators.consumers.GeneratorConsumer;
 
@@ -105,6 +110,82 @@ public class GeneratorConsumerTest {
     assertGenerates(
         from(LIST).addIndices(),
         pair(0, 2), pair(1, 1), pair(2, 3));
+  }
+
+  @Test
+  public void forEach_largerGenerator_runsMany() {
+    List<Integer> tally = new ArrayList<>();
+    from(LIST).forEach(t -> tally.add(t));
+    assertListsMatch(tally, LIST);
+  }
+
+  @Test
+  public void forEach_emptyGenerator_isNoOp() {
+    List<Integer> tally = new ArrayList<>();
+    from(EMPTY).forEach(t -> tally.add(t));
+    assertListsMatch(tally, EMPTY);
+  }
+
+  @Test
+  public void forEach_singletonGenerator_runsOnce() {
+    List<Integer> tally = new ArrayList<>();
+    from(Collections.singletonList(5)).forEach(t -> tally.add(t));
+    assertListsMatch(tally, Collections.singletonList(5));
+  }
+
+  @Test
+  public void lastValue_emptyGenerator_givesEmpty() {
+    assertTrue(from(EMPTY).lastValue().isEmpty());
+  }
+
+  @Test
+  public void lastValue_largeGenerator_givesLast() {
+    assertEqual(from(LIST).lastValue().get(), 3);
+  }
+
+  @Test
+  public void lastValue_singleton_givesLast() {
+    assertEqual(from(Collections.singletonList(6)).lastValue().get(), 6);
+  }
+
+  @Test 
+  public void anyMatch_empty_returnsFalse() {
+    assertFalse(from(EMPTY).anyMatch(t -> true));
+  }
+
+  @Test 
+  public void anyMatch_trueCondition_returnsTrue() {
+    assertTrue(from(Collections.singletonList(6)).anyMatch(t -> t == 6));
+  }
+
+  @Test 
+  public void anyMatch_falseCondition_returnsTrue() {
+    assertFalse(from(Collections.singletonList(6)).anyMatch(t -> t == 7));
+  }
+  
+  @Test 
+  public void anyMatch_trueInMiddle_shortCircuits() {
+    GeneratorConsumer<Integer> consumer = from(LIST);
+    Generator<Integer> generator = consumer.generator();
+
+    assertTrue(consumer.anyMatch(t -> t == 1));
+    assertTrue(generator.hasNext());
+  }
+
+  @Test 
+  public void collectInto_emptyReturnsEmpty() {
+    assertListsMatch(from(EMPTY).collectInto(new ArrayList<>()), EMPTY);
+  }
+
+  @Test 
+  public void collectInto_singleton_returnsSingleton() {
+    assertListMatches(
+        from(Collections.singletonList(3)).collectInto(new ArrayList<>()), 3);
+  }
+
+  @Test 
+  public void collectInto_large_returnsElements() {
+    assertListMatches(from(LIST).collectInto(new ArrayList<>()), 2, 1, 3);
   }
 
   private static <T> GeneratorConsumer<T> from(List<T> list) {

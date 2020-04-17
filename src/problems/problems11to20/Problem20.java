@@ -12,6 +12,6 @@ public class Problem20 {
 
     Generators.from(BigNumber.factorialOf(100).digits())
         .reducing(0, (sum, next) -> sum + next)
-        .printLast();
-  }
+        .lastValue()
+        .print();  }
 }

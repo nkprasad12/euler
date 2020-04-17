@@ -17,7 +17,8 @@ public class Problem26 {
             Tuples.pair(-1, -1),
             (maxSoFar, next) -> next.second() > maxSoFar.second() ? next : maxSoFar)
         .map(pair -> pair.first())
-        .printLast();
+        .lastValue()
+        .print();
   }
 
   static String repeatingPart(int numerator, int denominator) {

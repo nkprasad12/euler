@@ -1,7 +1,6 @@
 package src;
 
 import java.lang.invoke.MethodHandles;
-import java.util.ArrayList;
 
 import src.utils.generators.Generators;
 
@@ -13,7 +12,7 @@ class Sandbox {
     Generators.range(1, 3)
         .pairEachWith(() -> Generators.range(4, 5))
         .mapPair(i -> i * i, j -> j * j)
-        .collectingInto(new ArrayList<>())
-        .printLast();
+        .lastValue()
+        .print();
   }
 }

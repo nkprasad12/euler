@@ -27,7 +27,8 @@ public class Problem21 {
     Generators.range(1l, 9999l)
         .filter(n -> isAmicable(sumOfDivisors, n))
         .reducing(0l, (a, b) -> a + b)
-        .printLast();
+        .lastValue()
+        .print();
   }
 
   static boolean isAmicable(ArrayList<Long> sumOfDivisors, long n) {

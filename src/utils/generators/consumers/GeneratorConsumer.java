@@ -16,6 +16,7 @@ import src.utils.generators.Generator;
 import src.utils.generators.base.CombiningGenerator;
 import src.utils.generators.base.FilteringGenerator;
 import src.utils.generators.base.FlatMappingGenerator;
+import src.utils.generators.base.IteratorWrappingGenerator;
 import src.utils.generators.base.MappingGenerator;
 import src.utils.generators.base.RecursiveGenerator;
 import src.utils.generators.base.ReducingGenerator;
@@ -164,9 +165,9 @@ public class GeneratorConsumer<T> {
     processAll(consumer);
   }
 
-  /** Returns an Optional of the last generated element, or empty if none exist. */
-  public Optional<T> lastValue() {
-    return processAll(t -> {});
+  /** Returns a representation of the last generated value, if any. */
+  public LastValue<T> lastValue() {
+    return new LastValue<>(processAll(t -> {}));
   }
 
   /** Prints all generated elements. */
@@ -174,22 +175,13 @@ public class GeneratorConsumer<T> {
     forEach(t -> System.out.println(t));
   }
 
-  /** Generates all elements and prints the last value. */
-  public void printLast() {
-    System.out.println(lastValue());
-  }
-
-  /** Returns whether any elements match the predicate. */
+  /** 
+   * Returns whether any elements match the predicate. 
+   * 
+   * Returns false if there are no generated elements.
+   */
   public boolean anyMatch(Predicate<T> predicate) {
     return filter(predicate).generator().hasNext();
-  }
-
-  /** 
-   * Returns a Generator of Collection, where each generated element of the
-   * returned Generator is a Collection of all generated elements so far.
-   */
-  public <C extends Collection<T>> GeneratorConsumer<C> collectingInto(C collection) {
-    return reducing(collection, GeneratorConsumer::chainingAdd);
   }
 
   /** Collects all the generated elements into the specified collection. */
@@ -227,5 +219,42 @@ public class GeneratorConsumer<T> {
       consumer.accept(t);
       return t;
     };
+  }
+
+  public static final class LastValue<T> {
+
+    private final Optional<T> lastValue;
+
+    private LastValue(Optional<T> lastValue) {
+      this.lastValue = lastValue;
+    }
+
+    public T get() {
+      return lastValue.get();
+    }
+
+    public boolean isPresent() {
+      return lastValue.isPresent();
+    }
+
+    public boolean isEmpty() {
+      return lastValue.isEmpty();
+    }
+
+    public T orElse(T other) {
+      return lastValue.orElse(other);
+    }
+
+    public GeneratorConsumer<T> asGenerator() {
+      List<T> list = new ArrayList<T>();
+      if (lastValue.isPresent()) {
+        list.add(lastValue.get());
+      }
+      return from(new IteratorWrappingGenerator<>(list.iterator()));
+    }
+
+    public void print() {
+      System.out.println(lastValue.isPresent() ? lastValue.get() : "No values generated.");
+    }
   }
 }

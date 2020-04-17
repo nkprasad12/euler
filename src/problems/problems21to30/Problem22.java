@@ -20,7 +20,8 @@ public class Problem22 {
     Generators.range(0, names.size() - 1)
         .map(i -> ((long) i + 1l) * GetAlphabeticalValue(names.get(i)))
         .reducing(0l, (a, b) -> a + b)
-        .printLast();
+        .lastValue()
+        .print();
   }
 
   static long GetAlphabeticalValue(String name) {
