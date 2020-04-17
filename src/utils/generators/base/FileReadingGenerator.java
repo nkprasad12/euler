@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 import src.utils.generators.Generator;
 
-/* Generator that generators tokens from a file. */
+/**  Generator that generators tokens from a file. */
 public final class FileReadingGenerator implements Generator<String> {
 
     private final Scanner scanner;

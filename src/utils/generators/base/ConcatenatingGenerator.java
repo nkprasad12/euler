@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import src.utils.generators.Generator;
 
-/* Generator that conbines two generators in sequence into a single generator. */
+/** Generator that conbines two generators in sequence into a single generator. */
 public final class ConcatenatingGenerator<T> implements Generator<T> {
 
     private final Generator<T> first;
