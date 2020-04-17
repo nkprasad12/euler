@@ -4,15 +4,21 @@ import java.util.Objects;
 
 public final class Tuples {
 
-  public static <T, U, A, B, C> Tuple<T, U, A, B, C> pair(T t, U u) {
-    return new Tuple<T, U, A, B, C>(t, u, null, null, null, 2);
+  public static <T, U> Pair<T, U> pair(T t, U u) {
+    return new Pair<T, U>(t, u);
   }
 
   public static <T, U, V, A, B> Tuple<T, U, V, A, B> triplet(T t, U u, V v) {
     return new Tuple<T, U, V, A, B>(t, u, v, null, null, 3);
   }
 
-  public static final class Tuple<T, U, V, W, X> {
+  public static final class Pair<T, U> extends Tuple<T, U, T, T, T> {
+    private Pair(T first, U second) {
+      super(first, second, null, null, null, 2);
+    }
+  }
+
+  public static class Tuple<T, U, V, W, X> {
 
     private final T first;
     private final U second;
