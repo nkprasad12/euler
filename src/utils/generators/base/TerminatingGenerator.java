@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import src.utils.generators.Generator;
 
+/** Generator that gives elements of an input generator until a termination condition is met. */
 public final class TerminatingGenerator<T> implements Generator<T> {
 
     private final Generator<T> generator;
@@ -34,6 +35,8 @@ public final class TerminatingGenerator<T> implements Generator<T> {
       if (generator.hasNext()) {
         T candidate = generator.getNext();
         next = terminateOn.test(candidate) ? Optional.empty() : Optional.of(candidate);
+      } else {
+        next = Optional.empty();
       }
     }
   }
