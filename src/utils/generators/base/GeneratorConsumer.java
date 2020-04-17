@@ -53,7 +53,7 @@ public class GeneratorConsumer<T> {
   }
 
   public <R> GeneratorConsumer<R> flatMap(Function<T, GeneratorConsumer<R>> mapper) {
-    return new GeneratorConsumer<>(FlatMappingGenerator.from(generator, mapper));
+    return new GeneratorConsumer<>(flatMappingGenerator(generator, mapper));
   }
 
   public <R, S> PairGeneratorConsumer<R, S> mapPair(Function<T, Tuple<R, S, ?, ?, ?>> mapper) {
@@ -171,4 +171,8 @@ public class GeneratorConsumer<T> {
     return collectInto(new HashSet<T>());      
   }
 
+  public static <I, O> FlatMappingGenerator<I, O> flatMappingGenerator(
+        Generator<I> generator, Function<I, GeneratorConsumer<O>> mapper) {
+      return new FlatMappingGenerator<>(generator, i -> mapper.apply(i).generator());
+  }
 }

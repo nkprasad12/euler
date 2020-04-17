@@ -8,11 +8,6 @@ import src.utils.generators.Generator;
 /** Generator that flattens a Generator of Generators into a single Generator.*/
 public final class FlatMappingGenerator<I, O> implements Generator<O> {
 
-    public static <I, O> FlatMappingGenerator<I, O> from(
-          Generator<I> generator, Function<I, GeneratorConsumer<O>> mapper) {
-        return new FlatMappingGenerator<>(generator, i -> mapper.apply(i).generator());
-    }
-
     private final Generator<I> generator;
     private final Function<I, Generator<O>> mapper;
 
