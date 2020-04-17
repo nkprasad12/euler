@@ -14,7 +14,7 @@ public class Problem32 {
 
         HashSet<Integer> products =
             Generators.range(100, 9999)
-                .mapAsPair(a -> Generators.range(1, a))
+                .mapAndPair(a -> Generators.range(1, a))
                 .filter((a, b) -> isPandigital(a + "" + b + "" + a * b))
                 .mapPair((a, b) -> a * b)
                 .collectInto(new HashSet<>());

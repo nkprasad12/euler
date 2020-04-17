@@ -66,7 +66,6 @@ public class PairGeneratorConsumer<T, R> extends GeneratorConsumer<Tuple<T, R, ?
   
     @Override
     public PairGeneratorConsumer<T, R> print(String tag) {
-      return new PairGeneratorConsumer<>(
-        map(sideEffect(t -> System.out.println(String.format("%s: %s", tag, t)))));
+      return new PairGeneratorConsumer<>(print(tag));
     }
   }

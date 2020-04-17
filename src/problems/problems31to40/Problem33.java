@@ -28,7 +28,7 @@ public class Problem33 {
         System.out.println(denomProduct);
 
         Generators.range(10, 98)
-            .mapAsPair(i -> Generators.range(i + 1, 99))
+            .mapAndPair(i -> Generators.range(i + 1, 99))
             .filter((a, b) -> isCancelling(a, b) != null)
             .reducing(Tuples.pair(1, 1), (aProd, aNext) -> aProd * aNext, (bProd, bNext) -> bProd * bNext)
             .printLast();

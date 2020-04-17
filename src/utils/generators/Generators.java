@@ -1,6 +1,7 @@
 package src.utils.generators;
 
 import java.lang.Iterable;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.BiFunction;
 import java.util.function.BiPredicate;
@@ -14,18 +15,24 @@ import src.utils.generators.base.tuples.Tuples.Tuple;
 import src.utils.generators.consumers.GeneratorConsumer;
 import src.utils.generators.consumers.PairGeneratorConsumer;
 
-/* Factory class for creating GeneratorConsumers for fluent chaining. */
+/** Factory class for creating GeneratorConsumers for fluent chaining. */
 public final class Generators {
 
-  /* Creates a GeneratorConsumer wrapping the input Generator. */
+  /** Creates a GeneratorConsumer wrapping the input Generator. */
   public static <T> GeneratorConsumer<T> from(Generator<T> generator) {
     return GeneratorConsumer.from(generator);
   }
 
-  /* Creates a GeneratorConsumer wrapping the input iterable, as a generator. */
+  /** Creates a GeneratorConsumer wrapping the input iterable as a generator. */
   public static <T> GeneratorConsumer<T> from(Iterable<T> iterable) {
     return new GeneratorConsumer<>(
          new IteratorWrappingGenerator<>(iterable.iterator()));
+  }
+
+  /** Creates a GeneratorConsumer of the input elements. */
+  @SafeVarargs
+  public static <T> GeneratorConsumer<T> from(T ... inputs) {
+    return from(new IteratorWrappingGenerator<>(Arrays.asList(inputs).iterator()));
   }
 
   public static <T> GeneratorConsumer<T> fromRecursion(
@@ -82,5 +89,4 @@ public final class Generators {
   public static <T extends Comparable<T>> GeneratorConsumer<List<T>> permutationsOf(List<T> list) {
     return from(new PermutationGenerator<>(list));
   }
-
 }
