@@ -4,6 +4,7 @@ import java.util.function.Function;
 
 import src.utils.generators.Generator;
 
+/** Generator that transforms each element of an input generator. */
 public final class MappingGenerator<I, O> implements Generator<O> {
 
     private final Generator<I> generator;
