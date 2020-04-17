@@ -15,38 +15,52 @@ import src.utils.generators.base.IteratorWrappingGenerator;
 
 public class FilteringGeneratorTest {
 
-    private static final List<Integer> EMPTY =
-        Collections.unmodifiableList(Collections.emptyList());
-    private static final List<Integer> LIST =
-        Collections.unmodifiableList(Arrays.asList(1, 2, 3));
+  private static final String ALPHA = "alpha";
 
-    @Test
-    public void filter_emptyGenerator_givesEmptyGenerator() {
-        Generator<Integer> original = new IteratorWrappingGenerator<>(EMPTY.iterator());
+  private static final List<Integer> EMPTY =
+      Collections.unmodifiableList(Collections.emptyList());
+  private static final List<Integer> LIST =
+      Collections.unmodifiableList(Arrays.asList(1, 2, 3));
+  private static final List<String> JUST_ALPHA =
+      Collections.unmodifiableList(Collections.singletonList(ALPHA));    
 
-        Generator<Integer> generator =
-            new FilteringGenerator<>(original, i -> true);
+  @Test
+  public void filter_emptyGenerator_givesEmptyGenerator() {
+    Generator<Integer> original = new IteratorWrappingGenerator<>(EMPTY.iterator());
 
-        assertFalse(generator.hasNext());
-    }
+    Generator<Integer> generator =
+        new FilteringGenerator<>(original, i -> true);
 
-    @Test
-    public void filter_nonEmptyGenerator_filterAll_givesEmptyGenerator() {
-        Generator<Integer> original = new IteratorWrappingGenerator<>(LIST.iterator());
+    assertFalse(generator.hasNext());
+  }
 
-        Generator<Integer> generator =
-            new FilteringGenerator<>(original, i -> false);
+  @Test
+  public void filter_nonEmptyGenerator_filterAll_givesEmptyGenerator() {
+    Generator<Integer> original = new IteratorWrappingGenerator<>(LIST.iterator());
 
-        assertFalse(generator.hasNext());
-    }
+    Generator<Integer> generator =
+        new FilteringGenerator<>(original, i -> false);
 
-    @Test
-    public void filter_nonEmptyGenerator_givesExpected() {
-        Generator<Integer> original = new IteratorWrappingGenerator<>(LIST.iterator());
+    assertFalse(generator.hasNext());
+  }
 
-        Generator<Integer> generator =
-            new FilteringGenerator<>(original, i -> i % 2 != 0);
+  @Test
+  public void filter_nonEmptyGenerator_givesExpected() {
+    Generator<Integer> original = new IteratorWrappingGenerator<>(LIST.iterator());
 
-        assertGenerates(generator, 1, 3);
-    }
+    Generator<Integer> generator =
+        new FilteringGenerator<>(original, i -> i % 2 != 0);
+
+    assertGenerates(generator, 1, 3);
+  }
+
+  @Test
+  public void filter_singleElementGenerator_givesExpected() {
+    Generator<String> original = new IteratorWrappingGenerator<>(JUST_ALPHA.iterator());
+
+    Generator<String> generator =
+        new FilteringGenerator<>(original, str -> str.length() > 1);
+
+    assertGenerates(generator, ALPHA);
+  }
 }

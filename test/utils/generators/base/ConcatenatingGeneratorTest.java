@@ -20,6 +20,7 @@ public class ConcatenatingGeneratorTest {
     private static final String THIRD = "third";
     private static final String FOURTH = "fourth";
     private static final String FIFTH = "fifth";
+    private static final String ALPHA = "alpha";
 
     private static final List<String> EMPTY =
         Collections.unmodifiableList(Collections.emptyList());
@@ -27,6 +28,8 @@ public class ConcatenatingGeneratorTest {
         Collections.unmodifiableList(Arrays.asList(FIRST, SECOND, THIRD));
     private static final List<String> LAST_TWO =
         Collections.unmodifiableList(Arrays.asList(FOURTH, FIFTH));
+    private static final List<String> JUST_ALPHA =
+        Collections.unmodifiableList(Collections.singletonList(ALPHA));    
 
     @Test
     public void concateningGenerator_emptyGenerators_hasEmptyGenerator() {
@@ -66,5 +69,25 @@ public class ConcatenatingGeneratorTest {
         Generator<String> generator = new ConcatenatingGenerator<>(first, second);
 
         assertGenerates(generator, FIRST, SECOND, THIRD, FOURTH, FIFTH);
+    }
+
+    @Test
+    public void concateningGenerator_singletonThenLarge_generatesExpected() {
+        Generator<String> first = new IteratorWrappingGenerator<>(JUST_ALPHA.iterator());
+        Generator<String> second = new IteratorWrappingGenerator<>(LAST_TWO.iterator());
+
+        Generator<String> generator = new ConcatenatingGenerator<>(first, second);
+
+        assertGenerates(generator, ALPHA, FOURTH, FIFTH);
+    }
+
+    @Test
+    public void concateningGenerator_largeThenSingleton_generatesExpected() {
+        Generator<String> first = new IteratorWrappingGenerator<>(FIRST_THREE.iterator());
+        Generator<String> second = new IteratorWrappingGenerator<>(JUST_ALPHA.iterator());
+
+        Generator<String> generator = new ConcatenatingGenerator<>(first, second);
+
+        assertGenerates(generator, FIRST, SECOND, THIRD, ALPHA);
     }
 }

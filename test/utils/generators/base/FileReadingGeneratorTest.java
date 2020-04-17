@@ -16,26 +16,26 @@ import src.utils.generators.base.FileReadingGenerator;
 
 public class FileReadingGeneratorTest {
 
-    private String TEST_FILE = "tmp_FileReadingGeneatorTest.txt";
+  private String TEST_FILE = "tmp_FileReadingGeneatorTest.txt";
 
-    @Test
-    public void fileReadingGenerator_givesAllContents() throws IOException {
-        writeToFile(TEST_FILE, Arrays.asList("first", "second third"));
+  @Test
+  public void fileReadingGenerator_givesAllContents() throws IOException {
+    writeToFile(TEST_FILE, Arrays.asList("first", "second third"));
 
-        Generator<String> generator = new FileReadingGenerator(TEST_FILE, null);
-        assertGenerates(generator, "first", "second", "third");
-    }
+    Generator<String> generator = new FileReadingGenerator(TEST_FILE, null);
+    assertGenerates(generator, "first", "second", "third");
+  }
 
-    @Test
-    public void fileReadingGenerator_withDelimiter_givesAllContents() throws IOException {
-        writeToFile(TEST_FILE, Arrays.asList("first,second,third"));
+  @Test
+  public void fileReadingGenerator_withDelimiter_givesAllContents() throws IOException {
+    writeToFile(TEST_FILE, Arrays.asList("first,second,third"));
 
-        Generator<String> generator = new FileReadingGenerator(TEST_FILE, ",|\\p{javaWhitespace}+");
-        assertGenerates(generator, "first", "second", "third");
-    }
+    Generator<String> generator = new FileReadingGenerator(TEST_FILE, ",|\\p{javaWhitespace}+");
+    assertGenerates(generator, "first", "second", "third");
+  }
 
-    static void writeToFile(String path, List<String> contents) throws IOException {
-        Path file = Paths.get(path);
-        Files.write(file, contents);
-    }
+  static void writeToFile(String path, List<String> contents) throws IOException {
+    Path file = Paths.get(path);
+    Files.write(file, contents);
+  }
 }

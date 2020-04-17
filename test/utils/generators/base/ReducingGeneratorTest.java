@@ -15,28 +15,28 @@ import src.utils.generators.base.ReducingGenerator;
 
 public class ReducingGeneratorTest {
 
-    private static final List<Integer> EMPTY =
-        Collections.unmodifiableList(Collections.emptyList());
-    private static final List<Integer> LIST =
-        Collections.unmodifiableList(Arrays.asList(1, 2, 3));
+  private static final List<Integer> EMPTY =
+      Collections.unmodifiableList(Collections.emptyList());
+  private static final List<Integer> LIST =
+      Collections.unmodifiableList(Arrays.asList(1, 2, 3));
 
-    @Test
-    public void reducing_emptyGenerator_givesEmptyGenerator() {
-        Generator<Integer> original = new IteratorWrappingGenerator<>(EMPTY.iterator());
+  @Test
+  public void reducing_emptyGenerator_givesEmptyGenerator() {
+    Generator<Integer> original = new IteratorWrappingGenerator<>(EMPTY.iterator());
 
-        Generator<String> generator =
-            new ReducingGenerator<>(original, "", (str, i) -> str + i);
+    Generator<String> generator =
+        new ReducingGenerator<>(original, "", (str, i) -> str + i);
 
-        assertFalse(generator.hasNext());
-    }
+    assertFalse(generator.hasNext());
+  }
 
-    @Test
-    public void reducing_inputGenerator_performsReduction() {
-        Generator<Integer> original = new IteratorWrappingGenerator<>(LIST.iterator());
+  @Test
+  public void reducing_inputGenerator_performsReduction() {
+    Generator<Integer> original = new IteratorWrappingGenerator<>(LIST.iterator());
 
-        Generator<String> generator =
-            new ReducingGenerator<>(original, "", (str, i) -> str + i);
+    Generator<String> generator =
+        new ReducingGenerator<>(original, "", (str, i) -> str + i);
 
-        assertGenerates(generator, "1", "12", "123");
-    }
+    assertGenerates(generator, "1", "12", "123");
+  }
 }
