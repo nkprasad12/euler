@@ -11,7 +11,7 @@ import java.util.function.Supplier;
 
 import src.utils.generators.base.FileReadingGenerator;
 import src.utils.generators.base.IteratorWrappingGenerator;
-import src.utils.generators.base.tuples.Tuples.Tuple;
+import src.utils.generators.base.tuples.Tuples.Pair;
 import src.utils.generators.consumers.GeneratorConsumer;
 import src.utils.generators.consumers.PairGeneratorConsumer;
 
@@ -41,8 +41,8 @@ public final class Generators {
   }
 
   public static <T, R> PairGeneratorConsumer<T, R> fromRecursion(
-      Tuple<T, R, ?, ?, ?> initial,
-      BiFunction<T, R, Tuple<T, R, ?, ?, ?>> map,
+      Pair<T, R> initial,
+      BiFunction<T, R, Pair<T, R>> map,
       BiPredicate<T, R> generateWhile) {
     return new PairGeneratorConsumer<T, R>(
         fromRecursion(

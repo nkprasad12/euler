@@ -18,7 +18,7 @@ public final class Tuples {
     }
   }
 
-  public static class Tuple<T, U, V, W, X> {
+  private static class Tuple<T, U, V, W, X> {
 
     private final T first;
     private final U second;

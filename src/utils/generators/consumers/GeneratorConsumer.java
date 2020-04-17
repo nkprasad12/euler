@@ -20,7 +20,7 @@ import src.utils.generators.base.RecursiveGenerator;
 import src.utils.generators.base.ReducingGenerator;
 import src.utils.generators.base.TerminatingGenerator;
 import src.utils.generators.base.tuples.Tuples;
-import src.utils.generators.base.tuples.Tuples.Tuple;
+import src.utils.generators.base.tuples.Tuples.Pair;
 
 /** Convenience wrapper class for fluent computations with generators. */
 public class GeneratorConsumer<T> {
@@ -68,7 +68,7 @@ public class GeneratorConsumer<T> {
   }
 
   /** Convenience method returning a PairGeneratorConsumer from a generator of pairs. */
-  public <R, S> PairGeneratorConsumer<R, S> mapToPair(Function<T, Tuple<R, S, ?, ?, ?>> mapper) {
+  public <R, S> PairGeneratorConsumer<R, S> mapToPair(Function<T, Pair<R, S>> mapper) {
     return new PairGeneratorConsumer<>(map(mapper));
   }
 

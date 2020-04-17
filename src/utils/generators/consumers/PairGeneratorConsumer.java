@@ -6,15 +6,15 @@ import java.util.function.Function;
 
 import src.utils.generators.Generator;
 import src.utils.generators.base.tuples.Tuples;
-import src.utils.generators.base.tuples.Tuples.Tuple;
+import src.utils.generators.base.tuples.Tuples.Pair;
 
-public class PairGeneratorConsumer<T, R> extends GeneratorConsumer<Tuple<T, R, ?, ? , ?>> {
+public class PairGeneratorConsumer<T, R> extends GeneratorConsumer<Pair<T, R>> {
 
-    private PairGeneratorConsumer(Generator<Tuple<T, R, ?, ?, ?>> generator) {
+    public PairGeneratorConsumer(Generator<Pair<T, R>> generator) {
       super(generator);
     }
 
-    public PairGeneratorConsumer(GeneratorConsumer<Tuple<T, R, ?, ?, ?>> pairGeneratorConsumer) {
+    public PairGeneratorConsumer(GeneratorConsumer<Pair<T, R>> pairGeneratorConsumer) {
       this(pairGeneratorConsumer.generator());
     }
 
@@ -52,7 +52,7 @@ public class PairGeneratorConsumer<T, R> extends GeneratorConsumer<Tuple<T, R, ?
     }
 
     public <S, W> PairGeneratorConsumer<S, W> reducing(
-        Tuple<S, W, ?, ?, ?> initial, 
+        Pair<S, W> initial, 
         BiFunction<S, T, S> firstReduction,
         BiFunction<W, R, W> secondReduction) {
       return new PairGeneratorConsumer<>(
