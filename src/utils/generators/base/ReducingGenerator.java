@@ -4,6 +4,7 @@ import java.util.function.BiFunction;
 
 import src.utils.generators.Generator;
 
+/** Generator that maps and accumulates each element of an input generator. */
 public final class ReducingGenerator<R, T> implements Generator<R> {
 
     private final Generator<T> generator;
