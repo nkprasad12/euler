@@ -4,6 +4,7 @@ import java.util.function.Function;
 
 import src.utils.generators.Generator;
 
+/** An infinite generator that maps future values in terms of previous values. */
 public final class RecursiveGenerator<T> implements Generator<T> {
 
     private final Function<T, T> recursion;
