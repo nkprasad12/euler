@@ -67,10 +67,7 @@ public class GeneratorConsumer<T> {
     return new GeneratorConsumer<>(flatMappingGenerator(generator, mapper));
   }
 
-  /** 
-   * Maps the elements of the underlying Generator to a pair of elements, returning a
-   * PairGeneratorConsumer of the pair for fluent chaining.
-   */
+  /** Convenience method returning a PairGeneratorConsumer from a generator of pairs. */
   public <R, S> PairGeneratorConsumer<R, S> mapToPair(Function<T, Tuple<R, S, ?, ?, ?>> mapper) {
     return new PairGeneratorConsumer<>(map(mapper));
   }
@@ -137,7 +134,6 @@ public class GeneratorConsumer<T> {
    * returned produces (0, t_0),  (1, t_1), and so on. 
    */
   public PairGeneratorConsumer<Integer, T> addIndices() {
-    // return from(new IndexingGenerator<T>(generator));
     return new PairGeneratorConsumer<>(
         fromRecursion(
             Tuples.pair(0, generator.getNext()),

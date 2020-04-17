@@ -1,5 +1,7 @@
 package src.utils.generators.base.tuples;
 
+import java.util.Objects;
+
 public final class Tuples {
 
   public static <T, U, A, B, C> Tuple<T, U, A, B, C> pair(T t, U u) {
@@ -68,6 +70,51 @@ public final class Tuples {
         str += glue + fifth;
       }
       return str + ")";
+    }
+
+    @Override 
+    public boolean equals(Object o) {
+      if (this == o) {
+        return true;
+      }
+      if (o == null || this.getClass() != o.getClass()) {
+        return false;
+      }
+      if (!(o instanceof Tuple<?, ?, ?, ?, ?>)) {
+        return false;
+      }
+      Tuple<?, ?, ?, ?, ?> other = (Tuple<?, ?, ?, ?, ?>) o;
+      if (num > 0 && !first.equals(other.first())) {
+        return false;
+      }
+      if (num > 1 && !second.equals(other.second())) {
+        return false;
+      }
+      if (num > 2 && !third.equals(other.third())) {
+        return false;
+      }
+      if (num > 3 && !fourth.equals(other.fourth())) {
+        return false;
+      }
+      if (num > 4 && !fifth.equals(other.fifth())) {
+        return false;
+      }
+      return true;
+    }
+
+    @Override
+    public int hashCode() {
+      if (num == 1) {
+        return Objects.hash(first);
+      } else if (num == 2) {
+        return Objects.hash(first, second);
+      } else if (num == 3) {
+        return Objects.hash(first, second, third);
+      } else if (num == 4) {
+        return Objects.hash(first, second, third, fourth);
+      } else {
+        return Objects.hash(first, second, third, fourth, fifth);
+      }
     }
   }
 }

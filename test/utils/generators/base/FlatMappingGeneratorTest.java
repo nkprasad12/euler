@@ -50,6 +50,16 @@ public class FlatMappingGeneratorTest {
     }
 
     @Test 
+    public void normalGenerator_flatMapsToEmpty_generatesNone() {
+        Generator<Integer> initial = new IteratorWrappingGenerator<>(LIST.iterator());
+
+        Generator<Integer> generator = 
+            new FlatMappingGenerator<>(initial, i -> new IteratorWrappingGenerator<>(EMPTY.iterator()));
+
+        assertFalse(generator.hasNext());
+    }
+
+    @Test 
     public void initialEmptyMappedGenerator_flatMapsToExpected() {
         Generator<Integer> initial = new IteratorWrappingGenerator<>(INITIAL_ZERO.iterator());
 

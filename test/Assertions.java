@@ -8,21 +8,43 @@ import java.util.List;
 import java.util.Map;
 
 import src.utils.generators.Generator;
+import src.utils.generators.consumers.GeneratorConsumer;
 
 public class Assertions {
 
-    @SafeVarargs
-    public static <T> void assertGenerates(Generator<T> generator, T ... expected) {
-	    assertGenerates(generator, Arrays.asList(expected));
+  @SafeVarargs
+  public static <T> void assertGenerates(Generator<T> generator, T ... expected) {
+	  assertGenerates(generator, Arrays.asList(expected));
 	}
 
 	public static <T> void assertGenerates(Generator<T> generator, List<T> expected) {
-	    for (T t : expected) {
-			assertTrue(generator.hasNext());
+	  for (T t : expected) {
+			assertTrue(
+          "Generator needs next to match " + t,
+          generator.hasNext());
 			assertEqual(generator.getNext(), t);
 		}
 		assertFalse(generator.hasNext());
-    }	
+	}
+	
+	@SafeVarargs
+    public static <T> void assertGenerates(GeneratorConsumer<T> generatorConsumer, T ... expected) {
+	    assertGenerates(generatorConsumer, Arrays.asList(expected));
+	}
+
+	public static <T> void assertGenerates(GeneratorConsumer<T> generatorConsumer, List<T> expected) {
+	    assertGenerates(generatorConsumer.generator(), expected);
+	}
+
+	public static <T> void assertGeneratesNone(Generator<T> generator) {
+		assertFalse(
+			"Generator expected to generate no elements, but hasNext() returns true",
+			generator.hasNext());
+	}
+
+	public static <T> void assertGeneratesNone(GeneratorConsumer<T> generatorConsumer) {
+		assertGeneratesNone(generatorConsumer.generator());
+	}
 
     @SafeVarargs
     public static <T> void assertListMatches(List<T> list, T ... expected) {
