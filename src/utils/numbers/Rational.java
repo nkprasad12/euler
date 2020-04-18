@@ -38,11 +38,7 @@ public class Rational {
 
   /** Returns a new rational equivalent to this reduced to lowest terms. */
   public Rational reduce() {
-    // TODO: Possible performance improvement: do this directly without separately computing GCD.
-    PrimeFactorization gcd = numerator.gcd(denominator);
-    return new Rational(
-      numerator.divideBy(gcd).numerator(),
-      denominator.divideBy(gcd).numerator());
+    return numerator.divideBy(denominator);
   }
 
   @Override 

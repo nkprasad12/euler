@@ -283,7 +283,4 @@ public class PrimeFactorizationTest {
     assertEqual(b.toLong(), 81l);
     assertEqual(a.multiplyBy(b).toLong(), 72l * 81l);
   }
-
-    // TODO: Add unit tests for divideBy
-
 }
