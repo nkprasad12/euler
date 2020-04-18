@@ -153,4 +153,32 @@ import src.utils.numbers.Rational;
       }
       return str;
     }
+
+    @Override
+    public boolean equals(Object o) {
+      if (this == o) {
+        return true;
+      }
+      if (this.getClass() != o.getClass()) {
+        return false;
+      }
+      PrimeFactorization p = (PrimeFactorization) o;
+      if (this.factorMap().size() != p.factorMap().size()) {
+        return false;
+      }
+      for (Map.Entry<Long, Integer> entry : this.factorMap().entrySet()) {
+        if (!p.factorMap().containsKey(entry.getKey())) {
+          return false;
+        }
+        if (!entry.getValue().equals(p.factorMap().get(entry.getKey()))) {
+          return false;
+        }
+      }
+      return true;
+    }
+
+    @Override 
+    public int hashCode() {
+      return toString().hashCode();
+    }
   }
