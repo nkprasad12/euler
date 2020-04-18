@@ -43,6 +43,6 @@ public enum Weekday {
     if (n == 6) {
       return SUNDAY;
     }
-    throw new RuntimeException("Invalid value for Weekday");
+    throw new RuntimeException("Invalid value " + n + " for Weekday");
   }
 }  

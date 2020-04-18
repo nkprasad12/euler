@@ -15,6 +15,7 @@ public final class Dates {
       Collections.unmodifiableList(
           new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)));
 
+  /** Returns which day of the week a date fell on. */
   public static Weekday weekdayOf(Date date) {
     int daysFromReference = daysBetween(REFERENCE_DATE, date);
     return Weekday.forValue((daysFromReference + REFERENCE_WEEKDAY.value()) % 7);
@@ -37,6 +38,7 @@ public final class Dates {
     return daysBetweenYears + dayOfYear(second) - dayOfYear(first);
   }
 
+  /** Returns the 1-indexed day of the year that a particular date was. */
   public static int dayOfYear(Date date) {
     int days = 0;
     for (Integer month : MONTH_LIST) {
