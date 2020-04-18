@@ -11,11 +11,20 @@ import java.util.Collections;
 public final class BigNumber {
 
   private final ArrayList<Integer> digits;
+  private final int base;
 
   public BigNumber(List<Integer> digits) {
+    this(digits, 10);
+  }
+
+  public BigNumber(List<Integer> digits, int base) {
+    this.base = base;
     this.digits = new ArrayList<>();
     int lastNonZero = 0;
     for (int i = 0; i < digits.size(); i++) {
+      if (digits.get(i) >= base) {
+        throw new RuntimeException("Invalid digit");
+      }
       if (digits.get(i) != 0) {
         lastNonZero = i;
       }
@@ -30,11 +39,15 @@ public final class BigNumber {
   }
 
   public static BigNumber fromLong(long m) {
+      return fromLong(m, 10);
+  }
+
+  public static BigNumber fromLong(long m, int base) {
     long n = m;
     ArrayList<Integer> digits = new ArrayList<>();
     while (n > 0) {
-      digits.add((int) n % 10);
-      n /= 10;
+      digits.add((int) n % base);
+      n /= base;
     }
     return new BigNumber(digits);
   }
@@ -93,8 +106,8 @@ public final class BigNumber {
     for (int i = 0; i <= Math.max(thisSize, otherSize); i++) {
       int value = carry + result.get(i);
       carry = 0;
-      while (value > 9) {
-        value -= 10;
+      while (value >= base) {
+        value -= base;
         carry += 1;
       }
       result.set(i, value);
@@ -124,9 +137,9 @@ public final class BigNumber {
     for (int i = 0; i < result.size() - 1; i++) {
       int value = result.get(i);
       int carried = 0;
-      while (value > 9) {
+      while (value > base - 1) {
         carried++;
-        value = value - 10;
+        value = value - base;
       }
       result.set(i + 1, result.get(i + 1) + carried);
       result.set(i, value);

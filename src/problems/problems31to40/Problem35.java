@@ -1,7 +1,6 @@
 package src.problems.problems31to40;
 
 import static src.utils.generators.Generators.range;
-import static src.utils.generators.Generators.permutationsOf;
 import static src.utils.generators.Generators.from;
 
 import java.lang.invoke.MethodHandles;

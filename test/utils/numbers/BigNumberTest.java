@@ -23,6 +23,13 @@ public class BigNumberTest {
     }
 
     @Test
+    public void fromLong_baseTwo_hasExpectedDigits() {
+        BigNumber number = BigNumber.fromLong(104l, 2);
+
+        Assertions.assertListMatches(number.digits(), 0, 0, 0, 1, 0, 1, 1);
+    }
+
+    @Test
     public void fromString_hasExpectedDigits() {
         BigNumber number = BigNumber.fromString("104");
 
@@ -68,13 +75,19 @@ public class BigNumberTest {
             () -> digits.add(5));
     }
 
-
-
     @Test
     public void addTo_returnsExpectedResult() {
         BigNumber number = BigNumber.fromLong(104l).addTo(BigNumber.fromString("99"));
 
         Assertions.assertListMatches(number.digits(), 3, 0, 2);
+    }
+
+    // TODO: Fix this later
+    @Test
+    public void addTo_baseTwo_returnsExpectedResult() {
+        BigNumber number = BigNumber.fromLong(104l, 2).addTo(BigNumber.fromLong(99l, 2));
+
+        Assertions.assertListMatches(number.digits(), 1, 1, 0, 1, 0, 0, 1, 1);
     }
 
     @Test
