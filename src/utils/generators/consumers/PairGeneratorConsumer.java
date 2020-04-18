@@ -18,23 +18,52 @@ public class PairGeneratorConsumer<T, R> extends GeneratorConsumer<Pair<T, R>> {
       this(pairGeneratorConsumer.generator());
     }
 
+    /** Maps a generator of pairs back to a generator of single values using the mapper. */
     public <S> GeneratorConsumer<S> mapPair(BiFunction<T, R, S> mapper) {
       return map(pair -> mapper.apply(pair.first(), pair.second()));
     }
 
-    public <S, W> PairGeneratorConsumer<S, W> mapPair(Function<T, S> firstMap, Function<R, W> secondMap) {
+    /** 
+     * Maps a generator of pairs to a generator of pairs. 
+     * 
+     * The first in the each generator pair is the first in the original pair mapped
+     * using the first map function, and similarly for the second.
+     */
+    public <S, W> PairGeneratorConsumer<S, W> mapPair(
+        Function<T, S> firstMap, Function<R, W> secondMap) {
       return mapPair((t, r) -> firstMap.apply(t), (t, r) -> secondMap.apply(r));
     }
-                    
-    public <S, W> PairGeneratorConsumer<S, W> mapPair(Function<T, S> firstMap, BiFunction<T, R, W> secondMap) {
+           
+    /** 
+     * Maps a generator of pairs to a generator of pairs. 
+     * 
+     * The first in the each generator pair is the first in the original pair mapped
+     * using the first map function, and the second is the result of the pair
+     * mapped with the second map function.
+     */
+    public <S, W> PairGeneratorConsumer<S, W> mapPair(
+        Function<T, S> firstMap, BiFunction<T, R, W> secondMap) {
       return mapPair((t, r) -> firstMap.apply(t), secondMap);
     }
 
-    public <S, W> PairGeneratorConsumer<S, W> mapPair(BiFunction<T, R, S> firstMap, Function<R, W> secondMap) {
+    /** 
+     * Maps a generator of pairs to a generator of pairs. 
+     * 
+     * See mapPair(Function, BiFunction).
+     */
+    public <S, W> PairGeneratorConsumer<S, W> mapPair(
+        BiFunction<T, R, S> firstMap, Function<R, W> secondMap) {
       return mapPair(firstMap, (t, r) -> secondMap.apply(r));
     }
 
-    public <S, W> PairGeneratorConsumer<S, W> mapPair(BiFunction<T, R, S> firstMap, BiFunction<T, R, W> secondMap) {
+    /** 
+     * Maps a generator of pairs to a generator of pairs. 
+     * 
+     * The first of the generator pair is the result of the first BiFunction, and 
+     * similarly for the second.
+     */
+    public <S, W> PairGeneratorConsumer<S, W> mapPair(
+        BiFunction<T, R, S> firstMap, BiFunction<T, R, W> secondMap) {
       return new PairGeneratorConsumer<>(
           map(
               pair -> 
@@ -43,14 +72,36 @@ public class PairGeneratorConsumer<T, R> extends GeneratorConsumer<Pair<T, R>> {
                       secondMap.apply(pair.first(), pair.second()))));
     }
 
+    /** 
+     * Filters the generator using a BiPredicate, where the first in each pair
+     * is the first input to the predicate and the second in the pair is the second.
+     * 
+     * See GeneratorConsumer::filter
+     */
     public PairGeneratorConsumer<T, R> filter(BiPredicate<T, R> predicate) {
-      return new PairGeneratorConsumer<>(filter(pair -> predicate.test(pair.first(), pair.second())));
+      return new PairGeneratorConsumer<>(
+          filter(pair -> predicate.test(pair.first(), pair.second())));
     }
 
+    /** 
+     * Stops the generator at a certain point using a BiPredicate, where the first in
+     * each pair is the first input to the predicate and the second in the pair is 
+     * the second.
+     * 
+     * See GeneratorConsumer::whileTrue
+     */
     public PairGeneratorConsumer<T, R> whileTrue(BiPredicate<T, R> predicate) {
-      return new PairGeneratorConsumer<>(whileTrue(pair -> predicate.test(pair.first(), pair.second())));
+      return new PairGeneratorConsumer<>(
+          whileTrue(pair -> predicate.test(pair.first(), pair.second())));
     }
 
+    /** 
+     * Reduces the generator of pairs starting from an inital pair.
+     * The firstReduction is appled to the first of the pair, and the
+     * secondReduction is applied to the second.
+     * 
+     * See GeneratorConsumer::reducing
+     */
     public <S, W> PairGeneratorConsumer<S, W> reducing(
         Pair<S, W> initial, 
         BiFunction<S, T, S> firstReduction,
