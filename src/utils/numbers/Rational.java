@@ -1,8 +1,24 @@
 package src.utils.numbers;
 
 import src.utils.primes.PrimeFactorization;
+import src.utils.primes.Primes;
 
+/** Class that represents a rational number as the division of two integers. */
 public class Rational {
+
+  public static Rational reduced(PrimeFactorization numerator, PrimeFactorization denominator) {
+    return new Rational(numerator, denominator).reduce();
+  }
+
+  public static Rational fromLongs(long numerator, long denominator) {
+    return fromLongs(numerator, denominator, new Primes());
+  }
+
+  public static Rational fromLongs(long numerator, long denominator, Primes primes) {
+    return new Rational(
+        PrimeFactorization.of(numerator, primes),
+        PrimeFactorization.of(denominator, primes));
+  }
 
   private final PrimeFactorization numerator;
   private final PrimeFactorization denominator;
@@ -20,12 +36,17 @@ public class Rational {
     return this.denominator;
   }
 
-  /* Returns a new rational equivalent to this reduced to lowest terms. */
+  /** Returns a new rational equivalent to this reduced to lowest terms. */
   public Rational reduce() {
     // TODO: Possible performance improvement: do this directly without separately computing GCD.
     PrimeFactorization gcd = numerator.gcd(denominator);
     return new Rational(
       numerator.divideBy(gcd).numerator(),
       denominator.divideBy(gcd).numerator());
+  }
+
+  @Override 
+  public String toString() {
+    return numerator.toString() + " / " + denominator.toString();
   }
 }
