@@ -15,7 +15,7 @@ public class Problem44 {
 
     HashMap<String, Long> pentagonalDifferences = new HashMap<String, Long>();
 
-    List<Long> pentagonals = Generators.naturalsUpTo(iMax).map(i -> pentagonalNumber(i)).list();
+    List<Long> pentagonals = Generators.range(1, iMax).map(i -> pentagonalNumber(i)).list();
     
 
     for (int i = 0; i<pentagonals.size(); i++) {

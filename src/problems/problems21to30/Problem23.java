@@ -16,9 +16,10 @@ public class Problem23 {
     PrimeFactorizations factor = new PrimeFactorizations(primes);  
 
     long upperBound = 28123;
-    Set<Long> abundants = Generators.naturalsUpTo(upperBound).filter(factor::isAbundant).set();
+    Set<Long> abundants = 
+        Generators.range(1, upperBound).filter(factor::isAbundant).set();
     Long result =
-        Generators.naturalsUpTo(upperBound)
+        Generators.range(1, upperBound)
             .filter(
                 i -> 
                     !Generators.from(abundants)

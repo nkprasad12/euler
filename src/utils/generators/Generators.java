@@ -94,30 +94,15 @@ public final class Generators {
   public static GeneratorConsumer<String> fromTextFile(String fileName, String delimiter) {
     return from(new FileReadingGenerator("src/textfiles/" + fileName, delimiter));
   }
-
-  /** Generates all long natural numbers starting with 1. */
-  public static GeneratorConsumer<Long> naturals() {
-    return from(NaturalNumberGenerator.withMin(1l, i -> i + 1l));
-  }
-
-  /** Generates the long range [1, max] */
-  public static GeneratorConsumer<Long> naturalsUpTo(long max) {
-    return naturals().whileTrue(i -> i <= max);
-  }
-
-  /** Generates the int range [1, max] */
-  public static GeneratorConsumer<Integer> naturalsUpTo(int max) {
-    return range(1, max);
-  }
   
   /** Generates the int range [min, max] */
   public static GeneratorConsumer<Integer> range(int min, int max) {
-    return from(NaturalNumberGenerator.withMin(min, i -> i + 1)).whileTrue(i -> i <= max);
+    return fromRecursion(min, i -> i + 1, i -> i <= max);
   }
 
   /** Generates the long range [min, max] */
   public static GeneratorConsumer<Long> range(long min, long max) {
-    return from(NaturalNumberGenerator.withMin(min, i -> i + 1l)).whileTrue(i -> i <= max);
+    return fromRecursion(min, i -> i + 1l, i -> i <= max);  
   }
 
   /** Generates all permutations of the input list. */

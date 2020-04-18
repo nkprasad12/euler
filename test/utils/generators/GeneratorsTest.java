@@ -87,4 +87,12 @@ public class GeneratorsTest {
         pair(1, "1"), pair(1, "2"), pair(2, "1"), 
         pair(2, "2"), pair(3, "1"), pair(3, "2"));
   }
+
+  @Test 
+  public void range_generatesExpected() {
+    assertGeneratesNone(Generators.range(1, 0));
+    assertGenerates(Generators.range(1, 1), 1);
+    assertGenerates(Generators.range(1, 3), 1, 2, 3);
+    assertGenerates(Generators.range(-1, 2), -1, 0, 1, 2);
+  }
 }
