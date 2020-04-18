@@ -38,6 +38,32 @@ public class Assertions {
 	  assertGenerates(generatorConsumer.generator(), expected);
 	}
 
+  @SafeVarargs
+  public static <T> void assertGeneratesLists(Generator<List<T>> generator, List<T> ... expected) {
+	  assertGeneratesLists(generator, Arrays.asList(expected));
+	}
+
+	public static <T> void assertGeneratesLists(Generator<List<T>> generator, List<List<T>> expected) {
+	  for (List<T> t : expected) {
+			assertTrue(
+          "Generator does not have next, but expected element " + t,
+          generator.hasNext());
+			assertEqual(generator.getNext(), t);
+		}
+		assertFalse(generator.hasNext());
+	}
+	
+	@SafeVarargs
+  public static <T> void assertGeneratesLists(
+      GeneratorConsumer<List<T>> generatorConsumer, List<T> ... expected) {
+    assertGeneratesLists(generatorConsumer, Arrays.asList(expected));
+	}
+
+	public static <T> void assertGeneratesLists(
+      GeneratorConsumer<List<T>> generatorConsumer, List<List<T>> expected) {
+	  assertGeneratesLists(generatorConsumer.generator(), expected);
+	}
+
 	public static <T> void assertGeneratesNone(Generator<T> generator) {
 		assertFalse(
 			  "Generator expected to generate no elements, but hasNext() returns true",
