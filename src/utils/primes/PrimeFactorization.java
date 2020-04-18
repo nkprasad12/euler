@@ -122,17 +122,6 @@ import src.utils.numbers.Rational;
       return new PrimeFactorization(factors, this.primes);      
     }
 
-    public PrimeFactorization toPower(int exponent) {
-      if (exponent == 0) {
-        return PrimeFactorization.of(1, this.primes);
-      } else if (exponent % 2 == 0) {
-        PrimeFactorization halfPower = toPower(exponent / 2);
-        return halfPower.multiplyBy(halfPower);
-      } else {
-        return this.multiplyBy(this.toPower(exponent - 1));
-      }
-    }
-
     public long toLong() {
       long product = 1;
       for (Entry<Long, Integer> entry : factorMap().entrySet()) {
