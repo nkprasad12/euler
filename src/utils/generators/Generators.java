@@ -2,6 +2,7 @@ package src.utils.generators;
 
 import java.lang.Iterable;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.BiFunction;
 import java.util.function.BiPredicate;
@@ -23,6 +24,12 @@ public final class Generators {
     return GeneratorConsumer.from(generator);
   }
 
+  /** Creates a generator of pairs from the two input generators. */
+  public static <T, U> PairGeneratorConsumer<T, U> from(
+      Generator<T> first, Generator<U> second) {
+    return from(first).combineWith(second);
+  }
+
   /** Creates a GeneratorConsumer wrapping the input iterable as a generator. */
   public static <T> GeneratorConsumer<T> from(Iterable<T> iterable) {
     return new GeneratorConsumer<>(
@@ -35,11 +42,23 @@ public final class Generators {
     return from(new IteratorWrappingGenerator<>(Arrays.asList(inputs).iterator()));
   }
 
+  /** 
+   * Creates a generator with semantics similar to a for loop.
+   * 
+   * The initial value is the first possible generated value, the recursion
+   * function describes how to get new values from previous values, and 
+   * the predicate describes the condition that all generated elements should
+   * satisfy. 
+   * 
+   * Element generation stops as soon as a single element not satisfying the
+   * predicate would have been generated.
+   */
   public static <T> GeneratorConsumer<T> fromRecursion(
       T initial, Function<T, T> recursion, Predicate<T> generateWhile) {
     return GeneratorConsumer.fromRecursion(initial, recursion, generateWhile);
   }
 
+  /** Convenience method identical to fromRecursion, but for generators of pairs. */
   public static <T, R> PairGeneratorConsumer<T, R> fromRecursion(
       Pair<T, R> initial,
       BiFunction<T, R, Pair<T, R>> map,
@@ -51,42 +70,63 @@ public final class Generators {
             pair -> generateWhile.test(pair.first(), pair.second())));
   }
 
+  /** 
+   * Returns a generator generating all pairs in the Cartesian product
+   * of the first generator and the generator supplied by the second.
+   */
   public static <T, R> PairGeneratorConsumer<T, R> fromCartesianProductOf(
       GeneratorConsumer<T> first, Supplier<GeneratorConsumer<R>> second) {
     return first.pairEachWith(second);
   }
 
+
+  /** Identical to fromTextFile(String, String), delimiting by whitespace. */
   public static GeneratorConsumer<String> fromTextFile(String fileName) {
     return fromTextFile(fileName, null);
   }
 
+  /**
+   * Returns a generator that generates tokens read from the input text file.
+   * 
+   * Tokens are delimited by the input pattern for the delimiter. 
+   * File must be in the src/textfiles/ directory.
+   */
   public static GeneratorConsumer<String> fromTextFile(String fileName, String delimiter) {
     return from(new FileReadingGenerator("src/textfiles/" + fileName, delimiter));
   }
 
-  // Number ranges
+  /** Generates all long natural numbers starting with 1. */
   public static GeneratorConsumer<Long> naturals() {
     return from(NaturalNumberGenerator.withMin(1l, i -> i + 1l));
   }
 
+  /** Generates the long range [1, max] */
   public static GeneratorConsumer<Long> naturalsUpTo(long max) {
     return naturals().whileTrue(i -> i <= max);
   }
 
+  /** Generates the int range [1, max] */
   public static GeneratorConsumer<Integer> naturalsUpTo(int max) {
     return range(1, max);
   }
   
+  /** Generates the int range [min, max] */
   public static GeneratorConsumer<Integer> range(int min, int max) {
     return from(NaturalNumberGenerator.withMin(min, i -> i + 1)).whileTrue(i -> i <= max);
   }
 
+  /** Generates the long range [min, max] */
   public static GeneratorConsumer<Long> range(long min, long max) {
     return from(NaturalNumberGenerator.withMin(min, i -> i + 1l)).whileTrue(i -> i <= max);
   }
 
-  // Permutations
+  /** Generates all permutations of the input list. */
   public static <T extends Comparable<T>> GeneratorConsumer<List<T>> permutationsOf(List<T> list) {
     return from(new PermutationGenerator<>(list));
+  }
+
+  /** Generates no elements. */
+  public static <T> GeneratorConsumer<T> empty() {
+    return from(Collections.emptySet());
   }
 }

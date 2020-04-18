@@ -1,8 +1,8 @@
 package test.utils.generators;
 
-import static test.Assertions.assertListMatches;
-
-import java.util.List;
+import static src.utils.generators.base.tuples.Tuples.pair;
+import static test.Assertions.assertGenerates;
+import static test.Assertions.assertGeneratesNone;
 
 import org.junit.Test;
 
@@ -10,15 +10,81 @@ import src.utils.generators.Generators;
 
 public class GeneratorsTest {
 
-    // TODO: Add many more test cases, especially for Pair functions.
+  @Test
+  public void fromRecursion_hasExpectedValues() {
+    assertGeneratesNone(Generators.fromRecursion(0, i -> i + 1, i -> i < 0));
 
-    @Test
-    public void flatMap_flattensGeneratorOfGenerators() {
-        List<String> list = 
-            Generators.range(0, 1)
-                .flatMap(i -> Generators.range(0, 1).map(j -> String.format("%d %d", i, j)))
-                .list();
-        
-        assertListMatches(list, "0 0", "0 1", "1 0", "1 1");
-    }
+    assertGenerates(Generators.fromRecursion(0, i -> i + 1, i -> i <= 0), 0); 
+
+    assertGenerates(
+        Generators.fromRecursion(0, i -> i + 1, i -> i <= 3), 
+        0, 1, 2, 3);
+  }
+
+  @Test
+  public void fromRecursion_ofPairs_hasExpectedValues() {
+    assertGeneratesNone(
+        Generators.fromRecursion(
+            pair(1, 1),
+            (i, j) -> pair(j, i + j),
+            (i, j) -> j < 1));
+
+    assertGenerates(
+        Generators.fromRecursion(
+            pair(1, 1),
+            (i, j) -> pair(j, i + j),
+            (i, j) -> j <= 1),
+        pair(1, 1)); 
+
+    assertGenerates(
+        Generators.fromRecursion(
+            pair(1, 1),
+            (i, j) -> pair(j, i + j),
+            (i, j) -> j <= 5),
+        pair(1, 1), pair(1, 2), pair(2, 3), pair(3, 5)); 
+  }
+
+  @Test 
+  public void empty_generatesNone() {
+    assertGeneratesNone(Generators.empty());
+  }
+
+  @Test 
+  public void fromCartesianProductOf_emptySets_returnsExpected() {
+    assertGeneratesNone(
+        Generators.fromCartesianProductOf(
+            Generators.empty(), () -> Generators.empty()));
+
+    assertGeneratesNone(
+        Generators.fromCartesianProductOf(
+            Generators.empty(), () -> Generators.from(1)));
+
+    assertGeneratesNone(
+        Generators.fromCartesianProductOf(
+            Generators.from(1), () -> Generators.empty()));
+  } 
+
+  @Test 
+  public void fromCartesianProductOf_nonEmptySets_returnsExpected() {
+    assertGenerates(
+        Generators.fromCartesianProductOf(
+            Generators.from(1), () -> Generators.from("1")),
+        pair(1, "1"));
+
+    assertGenerates(
+        Generators.fromCartesianProductOf(
+            Generators.from(1, 2), () -> Generators.from("1")),
+        pair(1, "1"), pair(2, "1"));
+
+    assertGenerates(
+        Generators.fromCartesianProductOf(
+            Generators.from(1), () -> Generators.from("1", "2")),
+        pair(1, "1"), pair(1, "2"));
+
+    assertGenerates(
+        Generators.fromCartesianProductOf(
+            Generators.from(1, 2, 3), () -> Generators.from("1", "2")),
+        pair(1, "1"), pair(1, "2"), pair(2, "1"), 
+        pair(2, "2"), pair(3, "1"), pair(3, "2"));
+  }
 }
