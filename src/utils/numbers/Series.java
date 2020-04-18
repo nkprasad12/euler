@@ -1,5 +1,6 @@
 package src.utils.numbers;
 
+/** Functions to calculate sums of common series. */
 public final class Series {
 
   /* Returns the sum 1 + 2 + ... + n. */
