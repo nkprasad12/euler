@@ -1,10 +1,13 @@
-package src.utils.generators;
+package src.utils.generators.specialized;
 
 import java.util.List;
+
+import src.utils.generators.Generator;
+import src.utils.generators.Generators;
+
 import java.util.Collections;
 
-// TODO: Generate multiset permutations using the Takaoka algorithm.
-//       currently, this will retern repeats if the list is not distinct.
+/** Generates all permutations of a list of comparable elements. */
 public final class PermutationGenerator<T extends Comparable<T>> implements Generator<List<T>>{
 
   private final int size;
@@ -12,13 +15,14 @@ public final class PermutationGenerator<T extends Comparable<T>> implements Gene
   private List<T> objects;
   boolean isFinished;
 
-  PermutationGenerator(List<T> objects) {
+  public PermutationGenerator(List<T> objects) {
     this.objects = Generators.from(objects).list();
     Collections.sort(this.objects);
     this.size = this.objects.size();
     isFinished = size == 0;
   }
-
+  // TODO: Possibly generate multiset permutations using the Takaoka algorithm.
+  //       currently, this will retern repeats if the list is not distinct.
   @Override
   public List<T> getNext() {
     List<T> result = Generators.from(objects).list();

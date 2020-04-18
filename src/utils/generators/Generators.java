@@ -15,6 +15,9 @@ import src.utils.generators.base.IteratorWrappingGenerator;
 import src.utils.generators.base.tuples.Tuples.Pair;
 import src.utils.generators.consumers.GeneratorConsumer;
 import src.utils.generators.consumers.PairGeneratorConsumer;
+import src.utils.generators.specialized.DivisorGenerator;
+import src.utils.generators.specialized.PermutationGenerator;
+import src.utils.primes.PrimeFactorizations;
 
 /** Factory class for creating GeneratorConsumers for fluent chaining. */
 public final class Generators {
@@ -108,6 +111,16 @@ public final class Generators {
   /** Generates all permutations of the input list. */
   public static <T extends Comparable<T>> GeneratorConsumer<List<T>> permutationsOf(List<T> list) {
     return from(new PermutationGenerator<>(list));
+  }
+
+  /** Generates all proper divisors of a given integer. */
+  public static GeneratorConsumer<Long> properDivisorsOf(long n, PrimeFactorizations p) {
+    return from(new DivisorGenerator(p.factorizationOf(n), true, false));
+  }
+
+  /** Generates all divisors of a given integer, including the integer itself. */
+  public static GeneratorConsumer<Long> divisorsOf(long n, PrimeFactorizations p) {
+    return from(new DivisorGenerator(p.factorizationOf(n), true, true));
   }
 
   /** Generates no elements. */

@@ -1,10 +1,12 @@
-package src.utils.generators;
+package src.utils.generators.specialized;
 
 import java.util.SortedMap;
 import java.util.Map.Entry;
 
+import src.utils.generators.Generator;
 import src.utils.primes.PrimeFactorization;
 
+/** Generates all integer divisors of a given integer. */
 public class DivisorGenerator implements Generator<Long> {
 
   private final int primeFactors;
