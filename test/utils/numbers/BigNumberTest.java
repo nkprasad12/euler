@@ -23,6 +23,14 @@ public class BigNumberTest {
     }
 
     @Test
+    public void fromLong_baseTwo_hasExpectedDigitsAndBase() {
+        BigNumber number = BigNumber.fromLong(104l, 2);
+
+        Assertions.assertListMatches(number.digits(), 0, 0, 0, 1, 0, 1, 1);
+        Assertions.assertEqual(number.base(), 2);
+    }
+
+    @Test
     public void fromString_hasExpectedDigits() {
         BigNumber number = BigNumber.fromString("104");
 
@@ -68,8 +76,6 @@ public class BigNumberTest {
             () -> digits.add(5));
     }
 
-
-
     @Test
     public void addTo_returnsExpectedResult() {
         BigNumber number = BigNumber.fromLong(104l).addTo(BigNumber.fromString("99"));
@@ -78,10 +84,25 @@ public class BigNumberTest {
     }
 
     @Test
+    public void addTo_baseTwo_returnsExpectedResult() {
+        BigNumber number = BigNumber.fromLong(104l, 2).addTo(BigNumber.fromLong(99l, 2));
+
+        Assertions.assertListMatches(number.digits(), 1, 1, 0, 1, 0, 0, 1, 1);
+    }
+
+    @Test
     public void multiplyBy_returnsExpectedResult() {
         BigNumber number = BigNumber.fromLong(104l).multiplyBy(BigNumber.fromString("19"));
         
         Assertions.assertListMatches(number.digits(), 6, 7, 9, 1);
+    }
+
+    @Test
+    public void addTo_baseThree_returnsExpectedResult() {
+        BigNumber number = BigNumber.fromLong(64l, 3).multiplyBy(BigNumber.fromLong(17l, 3));
+
+        Assertions.assertListMatches(number.digits(), 2, 2, 0, 1, 1, 1, 1);
+        Assertions.assertEqual(number.base(), 3);
     }
 
     @Test

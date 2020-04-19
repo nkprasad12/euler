@@ -25,7 +25,12 @@ public class DivisorGenerator implements Generator<Long> {
     primeFactors = factorMap.keySet().size();
     primes = new long[primeFactors];
     exponents = new int[primeFactors];
-    state = new int[primeFactors];
+    // Handle special case of 1.
+    if (primeFactors == 0 && includeOne && includeNumber) {
+      state = new int[1];
+    } else {
+      state = new int[primeFactors];
+    }
 
     int i = 0;
     for (Entry<Long, Integer> entry : factorMap.entrySet()) {
@@ -33,8 +38,13 @@ public class DivisorGenerator implements Generator<Long> {
       exponents[i] = entry.getValue();
       i++;
     }
-    if (!includeOne) {
+    if (!includeOne && state.length > 0) {
       state[0] = 1;
+    }
+    // Do not generate any elements if we need to exclude both the number and one,
+    // and if the number if prime.
+    if (!includeOne && !includeNumber && exponents.length == 1 && exponents[0] == 1) {
+      state[0] = -1;
     }
   }
 
