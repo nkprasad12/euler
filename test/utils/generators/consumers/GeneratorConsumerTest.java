@@ -188,6 +188,28 @@ public class GeneratorConsumerTest {
     assertListMatches(from(LIST).collectInto(new ArrayList<>()), 2, 1, 3);
   }
 
+  @Test
+  public void max_emptyGenerator_givesEmptyValue() {
+    assertTrue(from(EMPTY).max(i -> (long) i).isEmpty());
+  }
+
+  @Test 
+  public void max_singleElement_givesElement() {
+    assertEqual(
+        from(Collections.singletonList(3)).max(i -> Long.MIN_VALUE).get(), 3);
+  }
+
+  @Test
+  public void max_manyElements_givesExpected() {
+    assertEqual(
+        from(Arrays.asList("A", "BBBB", "CC"))
+            .max(s -> (long) s.length())
+            .get(),
+        "BBBB");
+  }
+
+
+
   private static <T> GeneratorConsumer<T> from(List<T> list) {
     return GeneratorConsumer.from(new IteratorWrappingGenerator<>(list.iterator()));
   }
