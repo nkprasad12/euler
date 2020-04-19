@@ -81,7 +81,7 @@ public class Assertions {
 
 	public static <T> void assertListsMatch(List<T> actual, List<T> expected) {
     int n = expected.size();
-    assertEqual(actual.size(), n);
+    assertEqual(actual.size(), n, "List size");
 
     for (int i = 0; i < n; i++) {
       assertEqual(actual.get(i), expected.get(i), "Index " + i);

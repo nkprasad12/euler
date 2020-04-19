@@ -38,6 +38,10 @@ public final class BigNumber {
     return Collections.unmodifiableList(digits);
   }
 
+  public int base() {
+    return base;
+  }
+
   public static BigNumber fromLong(long m) {
       return fromLong(m, 10);
   }
@@ -49,7 +53,7 @@ public final class BigNumber {
       digits.add((int) n % base);
       n /= base;
     }
-    return new BigNumber(digits);
+    return new BigNumber(digits, base);
   }
 
   public static BigNumber fromString(String num) {
@@ -81,6 +85,13 @@ public final class BigNumber {
   }
 
   public BigNumber addTo(BigNumber other) {
+    if (this.base() != other.base()) {
+      throw new RuntimeException(
+          String.format(
+              "addTo requires same base: this %d != other %d",
+              base,
+              other.base()));
+    }
     // Initialize
     ArrayList<Integer> result = new ArrayList<Integer>();
     List<Integer> thisDigits = this.digits();
@@ -116,6 +127,13 @@ public final class BigNumber {
   }
 
   public BigNumber multiplyBy(BigNumber other) {
+    if (this.base() != other.base()) {
+      throw new RuntimeException(
+          String.format(
+              "addTo requires same base: this %d != other %d",
+              base,
+              other.base()));
+    }
     // Initialize
     ArrayList<Integer> result = new ArrayList<Integer>();
     List<Integer> thisDigits = this.digits();
@@ -144,11 +162,11 @@ public final class BigNumber {
       result.set(i + 1, result.get(i + 1) + carried);
       result.set(i, value);
     }
-    return new BigNumber(result);
+    return new BigNumber(result, base);
   }
 
   BigNumber multiplyBy(long other) {
-    return this.multiplyBy(BigNumber.fromLong(other));
+    return this.multiplyBy(BigNumber.fromLong(other, base));
   }
 
   @Override
