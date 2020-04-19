@@ -1,5 +1,7 @@
 package src.utils.generators.consumers;
 
+import static src.utils.generators.base.tuples.Tuples.pair;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -197,6 +199,23 @@ public class GeneratorConsumer<T> {
   /** Convenience method that collects all elements into a set. */
   public Set<T> set() {
     return collectInto(new HashSet<T>());      
+  }
+
+  /** 
+   * Returns the maximun value of the generated elements, as
+   * determined by the given metric.
+   */
+  public LastValue<T> max(Function<T, Long> metric) {
+    Pair<T, Long> initial = pair(null, Long.MIN_VALUE);
+    Pair<T, Long> maxPair =
+        reduce(
+           initial,
+            (max, next) -> {
+              long score = metric.apply(next);
+              return score >= max.second() ? pair(next, score) : max;
+            });
+    return new LastValue<>(
+        maxPair == initial ? Optional.empty() : Optional.of(maxPair.first()));
   }
 
   // Fundamental terminal operation.
