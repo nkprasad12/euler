@@ -109,6 +109,9 @@ public final class Primes {
 
   /* Determines whether the input number is prime. */
   public boolean isPrime(long n) {
+    if (n <= primes.last()) {
+      return primes.contains(n);
+    }
     long root = (long) Math.sqrt(n);
     for (Long prime : primesUpTo(root)) {
       if (n % prime == 0) {

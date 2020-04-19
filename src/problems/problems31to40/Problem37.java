@@ -6,6 +6,7 @@ import src.utils.primes.Primes;
 public class Problem37 {
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
+    long start = System.nanoTime();
     int numTruncatable = 0;
     int sum = 0;
     long currentMax = 10;
@@ -17,13 +18,12 @@ public class Problem37 {
         if (isTruncatablePrime(k, primes)) {
           numTruncatable++;
           sum += k;  
-          System.out.println("Truncatable: " + k);
         }
       }
       currentMax += batchSize;
-      System.out.println("Current Max: " + currentMax);
     }
-    System.out.println(sum);
+    String elapsed = ((System.nanoTime() - start) / 1000000) + " ms: ";
+    System.out.println(elapsed + sum);
   }
 
   public static boolean isTruncatablePrime(Long num, Primes p) {
@@ -31,7 +31,7 @@ public class Problem37 {
     for (int i = 0; i < numStr.length(); i++) {
       String subPrime = numStr.substring(i);
       String otherPrime = numStr.substring(0, i + 1);
-      if (!Primes.isPrimeStatic(Long.parseLong(subPrime)) || !Primes.isPrimeStatic(Long.parseLong(otherPrime))) {
+      if (!p.isPrime(Long.parseLong(subPrime)) || !p.isPrime(Long.parseLong(otherPrime))) {
         return false;
       }
     }
