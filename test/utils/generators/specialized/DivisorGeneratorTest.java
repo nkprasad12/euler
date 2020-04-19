@@ -17,8 +17,6 @@ import src.utils.primes.Primes;
 
 public class DivisorGeneratorTest {
 
-  // TODO: Fix failing unit tests in this class
-
   @Test 
   public void divisors_ofOne_areOne() {
     assertGenerates(divisors(1, true, true), 1l);
