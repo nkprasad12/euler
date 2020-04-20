@@ -112,6 +112,12 @@ public class Assertions {
 		}
 	} 
 
+  public static <T> void assertNotEqual(T first, T second) {
+    assertFalse(
+        String.format("first: %s unexpectedly matches second: %s", first, second),
+        first.equals(second));
+  }
+
   public static <T> void assertEqual(T actual, T expected) {
     assertEqual(actual, expected, "");
   }
