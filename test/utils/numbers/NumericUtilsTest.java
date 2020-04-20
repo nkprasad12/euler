@@ -5,6 +5,8 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static test.Assertions.assertEqual;
 import static src.utils.numbers.NumericUtils.inverseTriangle;
+import static src.utils.numbers.NumericUtils.inverseHexagon;
+import static src.utils.numbers.NumericUtils.inversePentagon;
 import static src.utils.numbers.NumericUtils.isPerfectSquare;
 
 import org.junit.Test;
@@ -42,10 +44,38 @@ public class NumericUtilsTest {
     }
 
     @Test
-    public void inverseTriangle_triangularNumbers_returnsNull() {
+    public void inverseTriangle_notTriangularNumbers_returnsNull() {
         assertNull(inverseTriangle(5));
         assertNull(inverseTriangle(5051));
         assertNull(inverseTriangle(22790));
+    }
+
+    @Test
+    public void inversePentagon_pentagonalNumbers_returnsExpected() {
+        assertEqual(inversePentagon(5), 2);
+        assertEqual(inversePentagon(35), 5);
+        assertEqual(inversePentagon(40755), 165);
+    }
+
+    @Test
+    public void inversePentagon_notPentagonalNumbers_returnsNull() {
+        assertNull(inversePentagon(6));
+        assertNull(inversePentagon(34));
+        assertNull(inversePentagon(40756));
+    }
+
+    @Test
+    public void inverseHexagon_hexagonalNumbers_returnExpected() {
+        assertEqual(inverseHexagon(6), 2);
+        assertEqual(inverseHexagon(45), 5);
+        assertEqual(inverseHexagon(19900), 100);
+    }
+
+    @Test
+    public void inverseHexagonal_notHexagonalNumbers_returnNull() {
+        assertNull(inverseHexagon(5));
+        assertNull(inverseHexagon(16));
+        assertNull(inverseHexagon(40754));
     }
 
     @Test 
