@@ -72,6 +72,7 @@ public final class NumericUtils {
       return 1l;
     } else if (exponent % 2 == 0) {
       long halfPow = powerModN(base, exponent / 2, mod);
+      // TODO make this work for long
       return (halfPow * halfPow) % mod;
     } else {
       return (powerModN(base, exponent - 1, mod) * base) % mod;
