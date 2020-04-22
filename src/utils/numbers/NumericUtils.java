@@ -76,6 +76,6 @@ public final class NumericUtils {
       return (halfPow * halfPow) % mod;
     } else {
       return (powerModN(base, exponent - 1, mod) * base) % mod;
-    }
+    } 
   }
 }

@@ -2,11 +2,9 @@ package src.problems.problems041to050;
 
 import static src.utils.generators.Generators.from;
 import static src.utils.generators.Generators.range;
-// import static src.utils.generators.Generators.fromCartesianProductOf;
 
 import java.lang.invoke.MethodHandles;
 import java.util.List;
-import java.util.Set;
 import java.util.SortedSet;
 
 import src.utils.generators.base.tuples.Tuples;
