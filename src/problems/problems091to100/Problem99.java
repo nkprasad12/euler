@@ -18,7 +18,7 @@ public class Problem99 {
         .mapPair(i -> i + 1, str -> str.split(","))
         .mapPair(i -> i, arr -> parseDouble(arr[1]) * log(parseDouble(arr[0])))
         .max((i, exp) -> exp)
-        .print();;
+        .print();
 
     System.out.println(((System.nanoTime() - startTime) / 1000000) + " ms");
   }
