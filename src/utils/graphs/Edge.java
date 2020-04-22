@@ -25,6 +25,9 @@ public final class Edge<T> {
   private final boolean isDirected;
 
   private Edge(T first, T second, long weight, boolean isDirected) {
+    if (first == null || second == null) {
+      throw new RuntimeException("Edge from / to cannot be null");
+    }
     this.first = first;
     this.second = second;
     this.weight = weight;

@@ -2,6 +2,7 @@ package src.utils.graphs;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import src.utils.generators.Generator;
 import src.utils.generators.Generators;
@@ -24,7 +25,20 @@ public interface Graph<T> {
     }
   }
 
-  Generator<T> neighborsOf(T vertex);
+  Generator<Edge<T>> edgesFrom(T vertex);
+
+  default List<Edge<T>> getEdgesFrom(T vertex) {
+    return Generators.from(edgesFrom(vertex)).list();
+  }
+
+  default Generator<T> neighborsOf(T vertex) {
+    return Generators.from(edgesFrom(vertex))
+        .map(
+            edge ->
+                edge.first().equals(vertex) 
+                    ? edge.second() : edge.first())
+        .generator();
+  }
 
   default List<T> getNeighborsOf(T vertex) {
     return Generators.from(neighborsOf(vertex)).list();
@@ -36,9 +50,9 @@ public interface Graph<T> {
     return Generators.from(vertices()).list();
   }
 
-  Generator<Edge<T>> edges();
-
-  default List<Edge<T>> getEdges() {
-    return Generators.from(edges()).list();
+  default Set<Edge<T>> getEdges() {
+    return Generators.from(vertices())
+        .flatMap(v -> Generators.from(edgesFrom(v)))
+        .set();
   }
 }

@@ -8,8 +8,10 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import src.utils.generators.Generator;
+import src.utils.generators.Generators;
 import src.utils.generators.consumers.GeneratorConsumer;
 
 public class Assertions {
@@ -36,6 +38,35 @@ public class Assertions {
 
 	public static <T> void assertGenerates(GeneratorConsumer<T> generatorConsumer, List<T> expected) {
 	  assertGenerates(generatorConsumer.generator(), expected);
+	}
+
+  @SafeVarargs
+	public static <T> void assertGeneratesUnordered(
+      Generator<T> generator, T ... expected) {
+    assertGeneratesUnordered(generator, Arrays.asList(expected));
+  }
+
+	public static <T> void assertGeneratesUnordered(
+      Generator<T> generator, List<T> expected) {
+    assertGeneratesUnordered(Generators.from(generator), expected);
+  }
+
+  @SafeVarargs
+	public static <T> void assertGeneratesUnordered(
+      GeneratorConsumer<T> generatorConsumer, T ... expected) {
+    assertGeneratesUnordered(generatorConsumer, Arrays.asList(expected));
+  }
+
+	public static <T> void assertGeneratesUnordered(
+      GeneratorConsumer<T> generatorConsumer, List<T> expected) {
+    Set<T> actual = generatorConsumer.set();
+    assertEqual(
+        actual.size(), 
+        expected.size(), 
+        "Generates number of elements is not equal to expected number.");
+    for (T t : expected) {
+      assertTrue("Expected element " + t + " is not generated.", actual.contains(t));
+    }
 	}
 
   @SafeVarargs
