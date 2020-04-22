@@ -190,7 +190,7 @@ public class GeneratorConsumerTest {
 
   @Test
   public void max_emptyGenerator_givesEmptyValue() {
-    assertTrue(from(EMPTY).max(i -> (long) i).isEmpty());
+    assertTrue(from(EMPTY).max(i -> i).isEmpty());
   }
 
   @Test 
@@ -203,7 +203,7 @@ public class GeneratorConsumerTest {
   public void max_manyElements_givesExpected() {
     assertEqual(
         from(Arrays.asList("A", "BBBB", "CC"))
-            .max(s -> (long) s.length())
+            .max(s -> s.length())
             .get(),
         "BBBB");
   }

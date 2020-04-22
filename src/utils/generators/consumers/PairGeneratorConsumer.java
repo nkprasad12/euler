@@ -115,6 +115,16 @@ public class PairGeneratorConsumer<T, R> extends GeneratorConsumer<Pair<T, R>> {
                     secondReduction.apply(soFarPair.second(), nextPair.second()))));
   }
   
+  /** 
+   * Returns the maximun value of the generated elements, as
+   * determined by the given metric.
+   *
+   * This is a convenience function unwrapping the underlying generator of pairs.
+   */
+  public <S extends Comparable<S>> LastValue<Pair<T, R>> max(BiFunction<T, R, S> metric) {
+    return max(pair -> metric.apply(pair.first(), pair.second()));
+  }
+
   @Override
   public PairGeneratorConsumer<T, R> print(String tag) {
     return new PairGeneratorConsumer<>(print(tag));

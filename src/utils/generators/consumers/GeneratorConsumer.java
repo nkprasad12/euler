@@ -202,17 +202,18 @@ public class GeneratorConsumer<T> {
   }
 
   /** 
-   * Returns the maximun value of the generated elements, as
-   * determined by the given metric.
+   * Returns the maximun value of the generated elements, as determined by the 
+   * given metric.
    */
-  public LastValue<T> max(Function<T, Long> metric) {
-    Pair<T, Long> initial = pair(null, Long.MIN_VALUE);
-    Pair<T, Long> maxPair =
+  public <R extends Comparable<R>> LastValue<T> max(Function<T, R> metric) {
+    Pair<T, R> initial = pair(null, null);
+    Pair<T, R> maxPair =
         reduce(
            initial,
             (max, next) -> {
-              long score = metric.apply(next);
-              return score >= max.second() ? pair(next, score) : max;
+              R score = metric.apply(next);
+              boolean nextGreater = max.second() == null || score.compareTo(max.second()) > 0;
+              return nextGreater ? pair(next, score) : max;
             });
     return new LastValue<>(
         maxPair == initial ? Optional.empty() : Optional.of(maxPair.first()));
