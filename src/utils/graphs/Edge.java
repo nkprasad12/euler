@@ -49,4 +49,12 @@ public final class Edge<T> {
   public boolean isDirected() {
     return isDirected;
   }
+
+  @Override
+  public String toString() {
+    String result = "";
+    result += isDirected ? "d" : "u";
+    result += "(" + first + ", " + second + ", w=" + weight + ")";
+    return result;
+  }
 }
