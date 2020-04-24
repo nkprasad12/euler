@@ -11,12 +11,6 @@ jobs:
     steps:
     - uses: actions/checkout@master
 
-    - name: Mount Bazel Cache
-      uses: actions/cache@v1
-      with:
-        path: "/home/runner/.cache/bazel"
-        key: bazel
-
     - name: Install Bazelisk
       run: |
         curl -LO "https://github.com/bazelbuild/bazelisk/releases/download/v1.1.0/bazelisk-linux-amd64"
@@ -35,10 +29,3 @@ jobs:
     - name: Run Unit Tests
       run: |
         "${GITHUB_WORKSPACE}/bin/bazel" test --test_output=errors //test:all
-
-    - name: Upload Failure Logs
-      if: failure()
-      uses: actions/upload-artifact@v1
-      with:
-        name: FailureLogs
-        path: /home/runner/.cache/bazel/_bazel_runner/c36920e0bc38ec2a04fa856b5d80f9f7/execroot/__main__/bazel-out/k8-fastbuild/testlogs
