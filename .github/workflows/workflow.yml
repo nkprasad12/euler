@@ -10,8 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-
-    - name: run
+    - name: build_utils
       uses: ngalaiko/bazel-action/1.2.1@master
       with:
-        args: build //...
+        args: build //src/utils:utils
+    - name: build_problems
+      uses: ngalaiko/bazel-action/1.2.1@master
+      with:
+        args: build //src/problems:problem_solutions
