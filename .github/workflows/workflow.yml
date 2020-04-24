@@ -33,16 +33,3 @@ jobs:
     - name: Run Unit Tests
       run: |
         "${GITHUB_WORKSPACE}/bin/bazel" test //test:all
-
-    - name: build_utils
-      uses: ngalaiko/bazel-action/1.2.1@master
-      with:
-        args: build //src/utils:utils
-    - name: build_problems
-      uses: ngalaiko/bazel-action/1.2.1@master
-      with:
-        args: build //src/problems:problem_solutions
-    - name: run_tests
-      uses: ngalaiko/bazel-action/1.2.1@master
-      with:
-        args: test //test:all
