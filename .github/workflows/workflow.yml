@@ -29,3 +29,22 @@ jobs:
     - name: Run Unit Tests
       run: |
         "${GITHUB_WORKSPACE}/bin/bazel" test --test_output=errors //test:all
+
+    - name: Commit to repository
+      env:
+        GITHUB_TOKEN: ${{ secrets.github_token }}
+        COMMIT_MSG: |
+          "Automated Java format to Google style"
+          skip-checks: true
+      run: |
+        # Hard-code user configuration
+        git config user.email ""
+        git config user.name "Automated Java Formatter"
+        # Update origin with token
+        git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/nkprasad12/euler.git
+        # Checkout the branch so we can push back to it
+        touch "${GITHUB_WORKSPACE}/.github/test.txt"
+        echo "Testing Commit Action" > "${GITHUB_WORKSPACE}/.github/test.txt"
+        git add .
+        # Only commit and push if we have changes
+        git diff --quiet && git diff --staged --quiet || (git commit -m "${COMMIT_MSG}"; git push origin master)
