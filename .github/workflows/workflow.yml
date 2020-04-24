@@ -30,7 +30,7 @@ jobs:
       run: |
         "${GITHUB_WORKSPACE}/bin/bazel" test --test_output=errors //test:all
 
-    - name: Commit to repository
+    - name: Format Code
       env:
         GITHUB_TOKEN: ${{ secrets.github_token }}
         COMMIT_MSG: |
@@ -42,5 +42,5 @@ jobs:
         git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/nkprasad12/euler.git
         java -jar "${GITHUB_WORKSPACE}/lib/google-java-format-1.7-all-deps.jar" -i $(git ls-files)
         chmod +x "${GITHUB_WORKSPACE}/lib/buildifier"
-        "${GITHUB_WORKSPACE}/lib/buildifier" -i $(git ls-files)
+        "${GITHUB_WORKSPACE}/lib/buildifier" -r "${GITHUB_WORKSPACE}"
         git diff --quiet && git diff --staged --quiet || (git commit -a -m "${COMMIT_MSG}"; git push origin master)
