@@ -34,14 +34,13 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.github_token }}
         COMMIT_MSG: |
-          Automated: Format Java to Google style
+          Automated: Format Code
           skip-checks: true
       run: |
-        # Hard-code user configuration
         git config user.email ""
-        git config user.name "Automated Java Formatter"
-        # Update origin with token
+        git config user.name "Automated Code Formatter"
         git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/nkprasad12/euler.git
         java -jar "${GITHUB_WORKSPACE}/lib/google-java-format-1.7-all-deps.jar" -i $(git ls-files)
-        # Only commit and push if we have changes
+        chmod +x "${GITHUB_WORKSPACE}/lib/buildifier"
+        "${GITHUB_WORKSPACE}/lib/buildifier" -i $(git ls-files)
         git diff --quiet && git diff --staged --quiet || (git commit -a -m "${COMMIT_MSG}"; git push origin master)
