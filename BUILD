@@ -1,6 +1,6 @@
-load("@rules_java//java:defs.bzl", "java_binary")
+load("@rules_java//java:defs.bzl", "java_library")
 
-java_binary(
-    name = "ProjectRunner",
-    srcs = glob(["src/problems/problems01to10/Problem9.java"]),
+java_library(
+    name = "problems",
+    srcs = ["src/ProblemN.java"],
 )
