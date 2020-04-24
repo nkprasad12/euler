@@ -18,7 +18,7 @@ public class PrimesTest {
 
     @Test
     public void isPrimeStatic_correctlyDeterminesLargePrime() {
-        assertTrue(isPrimeStatic(2600242l));
+        assertTrue(isPrimeStatic(26002429l));
     }
 
     @Test
