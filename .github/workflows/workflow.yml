@@ -27,9 +27,17 @@ jobs:
     - name: Build Utils
       run: |
         "${GITHUB_WORKSPACE}/bin/bazel" build //src/utils:utils
+
     - name: Build Problem Solutions
       run: |
         "${GITHUB_WORKSPACE}/bin/bazel" build //src/problems:problem_solutions
+
     - name: Run Unit Tests
       run: |
         "${GITHUB_WORKSPACE}/bin/bazel" test //test:all
+
+    - name: Upload Test Logs
+      uses: actions/upload-artifact@v1
+      with:
+        name: TestLogs
+        path: /home/runner/.cache/bazel/_bazel_runner/c36920e0bc38ec2a04fa856b5d80f9f7/execroot/__main__/bazel-out/k8-fastbuild/testlogs
