@@ -2,8 +2,8 @@ package src.problems.problems041to050;
 
 import static src.utils.generators.Generators.range;
 
-import java.util.ArrayList;
 import java.lang.invoke.MethodHandles;
+import java.util.ArrayList;
 import java.util.List;
 import src.utils.generators.Generators;
 import src.utils.generators.consumers.GeneratorConsumer;
