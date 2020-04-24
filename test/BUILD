@@ -1,4 +1,4 @@
-load("@rules_java//java:defs.bzl", "java_test", "java_library")
+load("@rules_java//java:defs.bzl", "java_library", "java_test")
 load("//test:generate_tests.bzl", "generate_targets_for_tests_in_subdirectories")
 
 generate_targets_for_tests_in_subdirectories()
@@ -8,6 +8,6 @@ java_library(
     srcs = ["Assertions.java"],
     deps = [
         "//lib:junit_jars",
-        "//src/utils:utils"
-    ]
+        "//src/utils",
+    ],
 )
