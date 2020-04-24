@@ -11,13 +11,13 @@ java_test(
 )
 
 java_library(
-    name = "assertions"
-    srcs = ["Assertions.java"]
+    name = "assertions",
+    srcs = ["Assertions.java"],
     deps = [":junit_jars"]
 )
 
 java_import(
-    name = "junit_jars"
+    name = "junit_jars",
     jars = [
       "lib/hamcrest-core-1.3.jar",
       "lib/junit-4.13.jar"
