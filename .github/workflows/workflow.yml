@@ -25,7 +25,7 @@ jobs:
       uses: ngalaiko/bazel-action/1.2.1@master
       with:
         args: test //test:all
-    - uses: actions/upload-artifact@v1
+    - uses: actions/upload-artifact@master
       with:
         name: euler_artifacts
         path: euler/artifacts
