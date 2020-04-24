@@ -2,13 +2,12 @@ package src.utils.graphs;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import src.utils.generators.Generator;
 import src.utils.generators.Generators;
 
 public class AdjacencyListGraph<T> implements Graph<T> {
 
-  private final HashMap<T, ArrayList<Edge<T>>> graph = new HashMap<>(); 
+  private final HashMap<T, ArrayList<Edge<T>>> graph = new HashMap<>();
 
   @Override
   public void addVertex(T vertex) {

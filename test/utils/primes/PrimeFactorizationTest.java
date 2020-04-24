@@ -2,14 +2,12 @@ package test.utils.primes;
 
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
-import static test.Assertions.assertMapsMatch;
 import static test.Assertions.assertEqual;
+import static test.Assertions.assertMapsMatch;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import org.junit.Test;
-
 import src.utils.primes.PrimeFactorization;
 import src.utils.primes.Primes;
 
@@ -23,7 +21,7 @@ public class PrimeFactorizationTest {
     assertTrue(number.factorMap().isEmpty());
   }
 
-  @Test 
+  @Test
   public void fromLong_prime_hasOneFactor() {
     Primes primes = new Primes();
     PrimeFactorization number = PrimeFactorization.of(37l, primes);
@@ -33,7 +31,7 @@ public class PrimeFactorizationTest {
     assertMapsMatch(number.factorMap(), expected);
   }
 
-  @Test 
+  @Test
   public void fromLong_primeSquare_hasOneFactorWithPower() {
     Primes primes = new Primes();
     PrimeFactorization number = PrimeFactorization.of(49l, primes);
@@ -43,7 +41,7 @@ public class PrimeFactorizationTest {
     assertMapsMatch(number.factorMap(), expected);
   }
 
-  @Test 
+  @Test
   public void fromLong_primeProduct_hasTwoFactors() {
     Primes primes = new Primes();
     PrimeFactorization number = PrimeFactorization.of(143l, primes);
@@ -54,7 +52,7 @@ public class PrimeFactorizationTest {
     assertMapsMatch(number.factorMap(), expected);
   }
 
-  @Test 
+  @Test
   public void fromLong_largeComposite_hasExpectedFactors() {
     Primes primes = new Primes();
     PrimeFactorization number = PrimeFactorization.of(3118500l, primes);
@@ -73,12 +71,10 @@ public class PrimeFactorizationTest {
     Primes primes = new Primes();
     PrimeFactorization number = PrimeFactorization.of(3118500l, primes);
 
-    assertThrows(
-        UnsupportedOperationException.class, 
-        () -> number.factorMap().put(5l, 2));
+    assertThrows(UnsupportedOperationException.class, () -> number.factorMap().put(5l, 2));
   }
 
-  @Test 
+  @Test
   public void exponentOf_forFactors_returnsCorrectPower() {
     Primes primes = new Primes();
     PrimeFactorization number = PrimeFactorization.of(3118500l, primes);
@@ -90,7 +86,7 @@ public class PrimeFactorizationTest {
     assertEqual(number.exponentOf(11l), 1);
   }
 
-  @Test 
+  @Test
   public void exponentOf_forNonFactors_returnsZero() {
     Primes primes = new Primes();
     PrimeFactorization number = PrimeFactorization.of(7l, primes);
@@ -101,7 +97,7 @@ public class PrimeFactorizationTest {
     assertEqual(number.exponentOf(11l), 0);
   }
 
-  @Test 
+  @Test
   public void largestFactor_prime_returnsPrime() {
     Primes primes = new Primes();
     PrimeFactorization number = PrimeFactorization.of(97l, primes);
@@ -109,7 +105,7 @@ public class PrimeFactorizationTest {
     assertEqual(number.largestFactor(), 97l);
   }
 
-  @Test 
+  @Test
   public void largestFactor_composite_returnsLargestFactor() {
     Primes primes = new Primes();
     PrimeFactorization number = PrimeFactorization.of(3118500l, primes);
@@ -117,7 +113,7 @@ public class PrimeFactorizationTest {
     assertEqual(number.largestFactor(), 11l);
   }
 
-  @Test 
+  @Test
   public void numberOfDivisors_prime_returnsTwo() {
     Primes primes = new Primes();
     PrimeFactorization number = PrimeFactorization.of(97l, primes);
@@ -125,7 +121,7 @@ public class PrimeFactorizationTest {
     assertEqual(number.numberOfDivisors(), 2l);
   }
 
-  @Test 
+  @Test
   public void numberOfDivisors_primeSquare_returnsThree() {
     Primes primes = new Primes();
     PrimeFactorization number = PrimeFactorization.of(25l, primes);
@@ -133,7 +129,7 @@ public class PrimeFactorizationTest {
     assertEqual(number.numberOfDivisors(), 3l);
   }
 
-  @Test 
+  @Test
   public void numberOfDivisors_composite_returnsExpected() {
     Primes primes = new Primes();
     PrimeFactorization number = PrimeFactorization.of(3118500l, primes);
@@ -202,8 +198,7 @@ public class PrimeFactorizationTest {
   public void multiplyBy_one_returnsEqual() {
     Primes primes = new Primes();
     PrimeFactorization product =
-        PrimeFactorization.of(72l, primes)
-            .multiplyBy(PrimeFactorization.of(1l, primes));
+        PrimeFactorization.of(72l, primes).multiplyBy(PrimeFactorization.of(1l, primes));
 
     Map<Long, Integer> expected = new HashMap<>();
     expected.put(2l, 3);
@@ -216,8 +211,7 @@ public class PrimeFactorizationTest {
   public void multiplyBy_coprime_returnsJoinedFactorMap() {
     Primes primes = new Primes();
     PrimeFactorization product =
-        PrimeFactorization.of(25l, primes)
-            .multiplyBy(PrimeFactorization.of(1331l, primes));
+        PrimeFactorization.of(25l, primes).multiplyBy(PrimeFactorization.of(1331l, primes));
 
     Map<Long, Integer> expected = new HashMap<>();
     expected.put(5l, 2);
@@ -230,8 +224,7 @@ public class PrimeFactorizationTest {
   public void multiplyBy_oneDividesOther_changesOnlyExponents() {
     Primes primes = new Primes();
     PrimeFactorization product =
-        PrimeFactorization.of(216l, primes)
-            .multiplyBy(PrimeFactorization.of(6l, primes));
+        PrimeFactorization.of(216l, primes).multiplyBy(PrimeFactorization.of(6l, primes));
 
     Map<Long, Integer> expected = new HashMap<>();
     expected.put(2l, 4);
@@ -244,8 +237,7 @@ public class PrimeFactorizationTest {
   public void multiplyBy_hasExpectedResult() {
     Primes primes = new Primes();
     PrimeFactorization product =
-        PrimeFactorization.of(12l, primes)
-            .multiplyBy(PrimeFactorization.of(370, primes));
+        PrimeFactorization.of(12l, primes).multiplyBy(PrimeFactorization.of(370, primes));
 
     Map<Long, Integer> expected = new HashMap<>();
     expected.put(2l, 3);

@@ -1,13 +1,11 @@
 package src.problems.problems031to040;
 
 import java.lang.invoke.MethodHandles;
-
+import java.util.ArrayList;
 import src.utils.numbers.BigNumber;
 
-import java.util.ArrayList;
-
 public class Problem34 {
-  
+
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 
@@ -15,8 +13,7 @@ public class Problem34 {
 
     // There can't be curious numbers above 10 million since 9! * 8 is less than this.
     System.out.println(
-        curiousNumbersUpTo(10000000l, factorials)
-            .stream()
+        curiousNumbersUpTo(10000000l, factorials).stream()
             .reduce(0l, (subtotal, next) -> subtotal + next));
   }
 
@@ -31,7 +28,7 @@ public class Problem34 {
   }
 
   static boolean isCurious(long n, Factorial factorials) {
-      return n == digitFactorialSum(n, factorials);
+    return n == digitFactorialSum(n, factorials);
   }
 
   static long digitFactorialSum(long n, Factorial factorials) {
@@ -56,4 +53,4 @@ public class Problem34 {
       return facs[num];
     }
   }
-} 
+}

@@ -1,17 +1,16 @@
 package src.problems.problems041to050;
 
 import java.lang.invoke.MethodHandles;
-
 import src.utils.numbers.NumericUtils;
 
 public class Problem45 {
-  
+
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
     long startTime = System.nanoTime();
 
     long n = 286;
-    while(true) {
+    while (true) {
       long t_n = (n * (n + 1)) / 2;
       Long t = NumericUtils.inverseTriangle(t_n);
       Long p = NumericUtils.inversePentagon(t_n);

@@ -4,7 +4,7 @@ import java.lang.invoke.MethodHandles;
 import java.util.HashMap;
 
 public class Problem14 {
-  
+
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 
@@ -40,5 +40,4 @@ public class Problem14 {
     }
     return dict.get(n);
   }
-
 }

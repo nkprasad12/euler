@@ -4,7 +4,7 @@ import java.lang.invoke.MethodHandles;
 import src.utils.numbers.Series;
 
 public class Problem6 {
-  
+
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 

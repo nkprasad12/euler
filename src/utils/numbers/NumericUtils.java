@@ -1,6 +1,5 @@
 package src.utils.numbers;
 
-import java.lang.Math;
 
 public final class NumericUtils {
 
@@ -26,19 +25,19 @@ public final class NumericUtils {
 
   public static final Long inverseTriangle(long k) {
     if (!isPerfectSquare(1 + 8 * k)) {
-        return null;
-      }
+      return null;
+    }
     return ((long) Math.sqrt(1 + 8 * k) - 1) / 2;
   }
 
   public static final Long inversePentagon(long k) {
     if (!isPerfectSquare(1 + 24 * k)) {
-        return null;
-      }
-      long numerator = (long) Math.sqrt(1 + 24 * k) + 1;
-      if (numerator % 6 != 0) {
-        return null;
-      }
+      return null;
+    }
+    long numerator = (long) Math.sqrt(1 + 24 * k) + 1;
+    if (numerator % 6 != 0) {
+      return null;
+    }
     return numerator / 6;
   }
 
@@ -48,24 +47,24 @@ public final class NumericUtils {
   }
 
   public static final Integer inverseHexagon(int k) {
-      Long result = inverseHexagon((long) k);
-      return result != null ? result.intValue() : null;
-   }
+    Long result = inverseHexagon((long) k);
+    return result != null ? result.intValue() : null;
+  }
 
   public static final Long inverseHexagon(long k) {
-      if (!isPerfectSquare(1 + 8 * k)) {
-          return null;
-      }
+    if (!isPerfectSquare(1 + 8 * k)) {
+      return null;
+    }
 
-      long numerator = ((long) Math.sqrt(1 + 8 * k) + 1);
+    long numerator = ((long) Math.sqrt(1 + 8 * k) + 1);
 
-      if (numerator % 4 != 0) {
-          return null;
-      }
+    if (numerator % 4 != 0) {
+      return null;
+    }
 
-      return numerator / 4;
+    return numerator / 4;
   }
-  
+
   /* Computes the result `base`^`exponent` (mod `mod`) */
   public static long powerModN(long base, long exponent, long mod) {
     if (exponent == 0) {
@@ -76,6 +75,6 @@ public final class NumericUtils {
       return (halfPow * halfPow) % mod;
     } else {
       return (powerModN(base, exponent - 1, mod) * base) % mod;
-    } 
+    }
   }
 }

@@ -2,13 +2,10 @@ package src.problems.problems021to030;
 
 import java.lang.invoke.MethodHandles;
 import java.util.function.Function;
-
 import src.utils.primes.Primes;
 
-import java.lang.Math;
-
 public class Problem27 {
-  
+
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 
@@ -34,14 +31,14 @@ public class Problem27 {
 
   static int maxConsecutivePrimes(Function<Integer, Integer> polyFn, Primes primes) {
     int n = 0;
-    while(true) {
+    while (true) {
       long result = polyFn.apply(n);
       if (primes.isPrime(result)) {
         n++;
       } else {
         return n;
       }
-    }  
+    }
   }
 
   static Function<Integer, Integer> poly(int a, int b) {

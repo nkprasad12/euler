@@ -4,12 +4,12 @@ import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
 
 public class Problem145 {
-  
+
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
     long startTime = System.nanoTime();
 
-    int count = 0; 
+    int count = 0;
     for (int i = 1; i < 1000000000; i++) {
       if (isReversible(i)) {
         count++;

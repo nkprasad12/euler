@@ -2,7 +2,6 @@ package src.problems.problems101to110;
 
 import java.lang.invoke.MethodHandles;
 import java.util.Arrays;
-
 import src.utils.generators.Generators;
 import src.utils.graphs.AdjacencyListGraph;
 import src.utils.graphs.Edge;
@@ -10,7 +9,7 @@ import src.utils.graphs.Graph;
 import src.utils.graphs.Graphs;
 
 public class Problem107 {
-  
+
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
     long startTime = System.nanoTime();
@@ -21,7 +20,7 @@ public class Problem107 {
         .addIndices()
         .mapPair(u -> u, line -> Arrays.asList(line.split(",")))
         .mapPair(
-            (u, list) -> 
+            (u, list) ->
                 Generators.from(list)
                     .addIndices()
                     .filter((v, str) -> v > u)
@@ -30,11 +29,9 @@ public class Problem107 {
         .flatMap(gen -> gen)
         .forEach(edge -> graph.addEdge(edge));
     long totalWeight =
-        Generators.from(graph.getEdges())
-            .reduce(0l, (sum, edge) -> sum + edge.weight());
+        Generators.from(graph.getEdges()).reduce(0l, (sum, edge) -> sum + edge.weight());
     long minWeight =
-        Generators.from(Graphs.kruskal(graph))
-            .reduce(0l, (sum, edge) -> sum + edge.weight());
+        Generators.from(Graphs.kruskal(graph)).reduce(0l, (sum, edge) -> sum + edge.weight());
     System.out.println("Savings: " + (totalWeight - minWeight));
 
     System.out.println(((System.nanoTime() - startTime) / 1000000) + " ms");

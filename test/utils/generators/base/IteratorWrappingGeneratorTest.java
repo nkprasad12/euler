@@ -4,9 +4,7 @@ import static org.junit.Assert.assertFalse;
 import static test.Assertions.assertGenerates;
 
 import java.util.ArrayList;
-
 import org.junit.Test;
-
 import src.utils.generators.Generator;
 import src.utils.generators.base.IteratorWrappingGenerator;
 

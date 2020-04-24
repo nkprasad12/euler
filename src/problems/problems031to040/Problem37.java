@@ -1,8 +1,8 @@
 package src.problems.problems031to040;
 
 import java.lang.invoke.MethodHandles;
-
 import src.utils.primes.Primes;
+
 public class Problem37 {
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
@@ -17,7 +17,7 @@ public class Problem37 {
       for (long k = currentMax; k < currentMax + batchSize; k++) {
         if (isTruncatablePrime(k, primes)) {
           numTruncatable++;
-          sum += k;  
+          sum += k;
         }
       }
       currentMax += batchSize;

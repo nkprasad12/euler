@@ -4,11 +4,10 @@ import static java.lang.Double.parseDouble;
 import static java.lang.Math.log;
 
 import java.lang.invoke.MethodHandles;
-
 import src.utils.generators.Generators;
 
 public class Problem99 {
-  
+
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
     long startTime = System.nanoTime();

@@ -3,17 +3,16 @@ package src.utils.graphs;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
-
 import src.utils.generators.Generator;
 import src.utils.generators.Generators;
 
 /** Basic representation of a graph. */
 public interface Graph<T> {
 
-  /** 
-   * Adds the given vertex to the graph. 
-   * 
-   * Must not be null. A vertex is added in a state unconnected to any other vertices.
+  /**
+   * Adds the given vertex to the graph.
+   *
+   * <p>Must not be null. A vertex is added in a state unconnected to any other vertices.
    */
   void addVertex(T vertex);
 
@@ -25,10 +24,10 @@ public interface Graph<T> {
   }
 
   /**
-   * Adds the given edge to the graph. 
+   * Adds the given edge to the graph.
    *
-   * @param edge, must not be null. The vertices of the edge must have been added
-   *        previously to the graph.
+   * @param edge, must not be null. The vertices of the edge must have been added previously to the
+   *     graph.
    */
   void addEdge(Edge<T> edge);
 
@@ -39,10 +38,10 @@ public interface Graph<T> {
     }
   }
 
-  /** 
-   * Generates all the edges that start from the given vertex. 
+  /**
+   * Generates all the edges that start from the given vertex.
    *
-   * Throws if the vertex is not in the graph.
+   * <p>Throws if the vertex is not in the graph.
    */
   Generator<Edge<T>> edgesFrom(T vertex);
 
@@ -51,20 +50,17 @@ public interface Graph<T> {
     return Generators.from(edgesFrom(vertex)).list();
   }
 
-  /** 
-   * Generates all the neighbors of a given vertex. 
+  /**
+   * Generates all the neighbors of a given vertex.
    *
-   * If there is a directed edge (u, v) in the graph, neighborsOf(u)
-   * will generate v, but not vice versa.
+   * <p>If there is a directed edge (u, v) in the graph, neighborsOf(u) will generate v, but not
+   * vice versa.
    *
-   * Throws if the given vertex is not in the Graph.
+   * <p>Throws if the given vertex is not in the Graph.
    */
   default Generator<T> neighborsOf(T vertex) {
     return Generators.from(edgesFrom(vertex))
-        .map(
-            edge ->
-                edge.first().equals(vertex) 
-                    ? edge.second() : edge.first())
+        .map(edge -> edge.first().equals(vertex) ? edge.second() : edge.first())
         .generator();
   }
 
@@ -83,8 +79,6 @@ public interface Graph<T> {
 
   /** A set of all the edges in the graph. */
   default Set<Edge<T>> getEdges() {
-    return Generators.from(vertices())
-        .flatMap(v -> Generators.from(edgesFrom(v)))
-        .set();
+    return Generators.from(vertices()).flatMap(v -> Generators.from(edgesFrom(v))).set();
   }
 }

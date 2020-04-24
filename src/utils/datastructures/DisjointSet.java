@@ -6,9 +6,9 @@ import java.util.HashMap;
 
 /**
  * Implementation of a Disjoint Set data structure.
- * 
- * Uses path compression and union by rank to provide near constant time
- * amortizaed cost for operations.
+ *
+ * <p>Uses path compression and union by rank to provide near constant time amortizaed cost for
+ * operations.
  */
 public final class DisjointSet<T> {
 
@@ -27,7 +27,7 @@ public final class DisjointSet<T> {
 
   /** Adds all the given elements to the disjoint set. */
   @SafeVarargs
-  public final void addAll(T ... elements) {
+  public final void addAll(T... elements) {
     addAll(Arrays.asList(elements));
   }
 
@@ -78,7 +78,7 @@ public final class DisjointSet<T> {
   }
 
   private static final class Node<T> {
-  
+
     private final T value;
     private Node<T> parent;
     private int rank;

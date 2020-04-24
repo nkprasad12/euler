@@ -1,12 +1,9 @@
 package src.utils.numbers;
 
-import java.lang.Math;
 import java.util.ArrayList;
-import java.util.List;
-
-import src.utils.generators.Generators;
-
 import java.util.Collections;
+import java.util.List;
+import src.utils.generators.Generators;
 
 public final class BigNumber {
 
@@ -43,7 +40,7 @@ public final class BigNumber {
   }
 
   public static BigNumber fromLong(long m) {
-      return fromLong(m, 10);
+    return fromLong(m, 10);
   }
 
   public static BigNumber fromLong(long m, int base) {
@@ -87,10 +84,7 @@ public final class BigNumber {
   public BigNumber addTo(BigNumber other) {
     if (this.base() != other.base()) {
       throw new RuntimeException(
-          String.format(
-              "addTo requires same base: this %d != other %d",
-              base,
-              other.base()));
+          String.format("addTo requires same base: this %d != other %d", base, other.base()));
     }
     // Initialize
     ArrayList<Integer> result = new ArrayList<Integer>();
@@ -100,7 +94,7 @@ public final class BigNumber {
     int otherSize = otherDigits.size();
     for (int i = 0; i < Math.max(thisSize, otherSize) + 1; i++) {
       result.add(0);
-    }    
+    }
     // Perform addition
     for (int i = 0; i < Math.max(thisSize, otherSize); i++) {
       int sum = 0;
@@ -129,10 +123,7 @@ public final class BigNumber {
   public BigNumber multiplyBy(BigNumber other) {
     if (this.base() != other.base()) {
       throw new RuntimeException(
-          String.format(
-              "addTo requires same base: this %d != other %d",
-              base,
-              other.base()));
+          String.format("multiplyBy requires same base: this %d != other %d", base, other.base()));
     }
     // Initialize
     ArrayList<Integer> result = new ArrayList<Integer>();
@@ -178,7 +169,7 @@ public final class BigNumber {
     return str;
   }
 
-  @Override 
+  @Override
   public boolean equals(Object o) {
     if (this == o) {
       return true;
@@ -202,5 +193,4 @@ public final class BigNumber {
   public int hashCode() {
     return this.toString().hashCode();
   }
-
 }

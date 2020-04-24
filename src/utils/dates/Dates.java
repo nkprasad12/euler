@@ -1,17 +1,16 @@
 package src.utils.dates;
 
-import java.util.Collections;
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.lang.RuntimeException;
+import java.util.Collections;
+import java.util.List;
 
 public final class Dates {
 
   public static final Date REFERENCE_DATE = new Date(1, 1, 1900);
   public static final Weekday REFERENCE_WEEKDAY = Weekday.MONDAY;
 
-  public static final List<Integer> MONTH_LIST = 
+  public static final List<Integer> MONTH_LIST =
       Collections.unmodifiableList(
           new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)));
 
@@ -22,10 +21,10 @@ public final class Dates {
   }
 
   /**
-   * Returns the number of days between one date and another. 
-   * 
-   * The number of days between a date and itself is 0, while the number
-   * of days between a date and the following day is 1.
+   * Returns the number of days between one date and another.
+   *
+   * <p>The number of days between a date and itself is 0, while the number of days between a date
+   * and the following day is 1.
    */
   public static int daysBetween(Date first, Date second) {
     if (first.compareTo(second) == 1) {
@@ -83,7 +82,7 @@ public final class Dates {
       return 30;
     } else if (month == 2) {
       return isLeapYear(year) ? 29 : 28;
-    } else { 
+    } else {
       return 31;
     }
   }

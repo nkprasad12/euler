@@ -1,11 +1,10 @@
 package src.utils.primes;
 
-import java.lang.Math;
 import java.util.Collections;
 import java.util.Iterator;
-import java.util.TreeMap;
 import java.util.SortedMap;
 import java.util.SortedSet;
+import java.util.TreeMap;
 import java.util.TreeSet;
 
 /* Utility functions relating to prime numbers and primality. */
@@ -18,7 +17,7 @@ public final class Primes {
     primes.add(2l);
   }
 
-  /**  Returns when a number is prime. */
+  /** Returns when a number is prime. */
   public static boolean isPrimeStatic(long n) {
     if (n <= 1) {
       return false;
@@ -121,11 +120,11 @@ public final class Primes {
     return true;
   }
 
-  /** 
+  /**
    * Returns a map representing the prime factorization of the input.
    *
-   * The keys of the map are the prime factors, and the values are the
-   * powers to which the prime key is raised in the factorization. 
+   * <p>The keys of the map are the prime factors, and the values are the powers to which the prime
+   * key is raised in the factorization.
    */
   public SortedMap<Long, Integer> factor(long n) {
     if (n <= 0) {

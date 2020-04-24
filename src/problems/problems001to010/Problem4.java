@@ -3,7 +3,7 @@ package src.problems.problems001to010;
 import java.lang.invoke.MethodHandles;
 
 public class Problem4 {
-  
+
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
     findMaxPalindrome();
@@ -32,5 +32,4 @@ public class Problem4 {
     }
     return true;
   }
-
 }

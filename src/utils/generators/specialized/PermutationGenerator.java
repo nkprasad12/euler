@@ -1,14 +1,12 @@
 package src.utils.generators.specialized;
 
+import java.util.Collections;
 import java.util.List;
-
 import src.utils.generators.Generator;
 import src.utils.generators.Generators;
 
-import java.util.Collections;
-
 /** Generates all permutations of a list of comparable elements. */
-public final class PermutationGenerator<T extends Comparable<T>> implements Generator<List<T>>{
+public final class PermutationGenerator<T extends Comparable<T>> implements Generator<List<T>> {
 
   private final int size;
 
@@ -27,8 +25,8 @@ public final class PermutationGenerator<T extends Comparable<T>> implements Gene
   public List<T> getNext() {
     List<T> result = Generators.from(objects).list();
     int j = -1;
-    for (int z = result.size()-2; z >= 0; z--) {
-      int compareResult = result.get(z).compareTo(result.get(z+1));
+    for (int z = result.size() - 2; z >= 0; z--) {
+      int compareResult = result.get(z).compareTo(result.get(z + 1));
       if (compareResult < 0) {
         j = z;
         break;
@@ -53,8 +51,8 @@ public final class PermutationGenerator<T extends Comparable<T>> implements Gene
           Generators.range(rightmostSmaller + 1, size - 1)
               .filter(i -> objects.get(i).compareTo(objects.get(rightmostSmaller)) > 0)
               .reduce(
-                   rightmostSmaller + 1,
-                   (a, b) -> objects.get(a).compareTo(objects.get(b)) < 0 ? a : b);
+                  rightmostSmaller + 1,
+                  (a, b) -> objects.get(a).compareTo(objects.get(b)) < 0 ? a : b);
       swap(ceilIndex, rightmostSmaller);
       Generators.range(rightmostSmaller + 1, (size + rightmostSmaller) / 2)
           .forEach(i -> swap(i, size + rightmostSmaller - i));

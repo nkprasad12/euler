@@ -2,11 +2,10 @@ package src.problems.problems001to010;
 
 import java.lang.invoke.MethodHandles;
 import java.util.SortedSet;
-
 import src.utils.primes.Primes;
 
 public class Problem10 {
-  
+
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 

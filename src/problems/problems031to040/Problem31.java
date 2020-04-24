@@ -1,11 +1,10 @@
 package src.problems.problems031to040;
 
 import java.lang.invoke.MethodHandles;
-
-import java.util.Collections;
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class Problem31 {
 
@@ -15,9 +14,8 @@ public class Problem31 {
     System.out.println(numberOfCombinations(200, COIN_VALUES));
   }
 
-  public static final List<Integer> COIN_VALUES = 
-      Collections.unmodifiableList(
-          new ArrayList<>(Arrays.asList(1, 2, 5, 10, 20, 50, 100, 200)));
+  public static final List<Integer> COIN_VALUES =
+      Collections.unmodifiableList(new ArrayList<>(Arrays.asList(1, 2, 5, 10, 20, 50, 100, 200)));
 
   public static long numberOfCombinations(int target, List<Integer> coins) {
     long[] memo = new long[target + 1];
@@ -31,5 +29,4 @@ public class Problem31 {
     }
     return memo[target];
   }
-
 }

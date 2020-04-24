@@ -3,7 +3,7 @@ package src.problems.problems011to020;
 import java.lang.invoke.MethodHandles;
 
 public class Problem15 {
-  
+
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 

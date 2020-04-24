@@ -16,8 +16,7 @@ public class Rational {
 
   public static Rational fromLongs(long numerator, long denominator, Primes primes) {
     return new Rational(
-        PrimeFactorization.of(numerator, primes),
-        PrimeFactorization.of(denominator, primes));
+        PrimeFactorization.of(numerator, primes), PrimeFactorization.of(denominator, primes));
   }
 
   private final PrimeFactorization numerator;
@@ -41,7 +40,7 @@ public class Rational {
     return numerator.divideBy(denominator);
   }
 
-  @Override 
+  @Override
   public String toString() {
     return numerator.toString() + " / " + denominator.toString();
   }

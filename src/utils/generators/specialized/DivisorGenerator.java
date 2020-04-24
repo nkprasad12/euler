@@ -1,8 +1,7 @@
 package src.utils.generators.specialized;
 
-import java.util.SortedMap;
 import java.util.Map.Entry;
-
+import java.util.SortedMap;
 import src.utils.generators.Generator;
 import src.utils.primes.PrimeFactorization;
 
@@ -16,10 +15,7 @@ public class DivisorGenerator implements Generator<Long> {
 
   private final boolean includeNumber;
 
-  public DivisorGenerator(
-      PrimeFactorization number,
-      boolean includeOne,
-      boolean includeNumber) {
+  public DivisorGenerator(PrimeFactorization number, boolean includeOne, boolean includeNumber) {
     SortedMap<Long, Integer> factorMap = number.factorMap();
     this.includeNumber = includeNumber;
     primeFactors = factorMap.keySet().size();

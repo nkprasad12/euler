@@ -1,12 +1,11 @@
 package src.problems.problems041to050;
 
 import java.lang.invoke.MethodHandles;
-
 import src.utils.primes.PrimeFactorizations;
 import src.utils.primes.Primes;
 
 public class Problem47 {
-  
+
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 
@@ -29,10 +28,10 @@ public class Problem47 {
       if (numConsecutive == 4) {
         break;
       }
-      
+
       i++;
     }
 
-    System.out.println(i-3);
+    System.out.println(i - 3);
   }
 }

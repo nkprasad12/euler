@@ -3,12 +3,10 @@ package test.utils.datastructures;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThrows;
-
 import static test.Assertions.assertEqual;
 import static test.Assertions.assertNotEqual;
 
 import org.junit.Test;
-
 import src.utils.datastructures.DisjointSet;
 
 public class DisjointSetTest {
@@ -18,33 +16,33 @@ public class DisjointSetTest {
   private static final String GREETINGS = "GREETINGS";
   private static final String SALUTATIONS = "SALUTATIONS";
 
-  @Test 
+  @Test
   public void add_null_throwsException() {
     DisjointSet<Integer> set = new DisjointSet<>();
     assertThrows(RuntimeException.class, () -> set.add(null));
-  }  
+  }
 
-  @Test 
+  @Test
   public void addAll_addsAllToSet() {
     DisjointSet<String> set = new DisjointSet<>();
     set.addAll(HI, HELLO, GREETINGS);
 
-    assertNotNull(set.find(HI));    
-    assertNotNull(set.find(HELLO));    
-    assertNotNull(set.find(GREETINGS));    
+    assertNotNull(set.find(HI));
+    assertNotNull(set.find(HELLO));
+    assertNotNull(set.find(GREETINGS));
   }
 
-  @Test 
+  @Test
   public void add_multipleElements_addsAll() {
     DisjointSet<String> set = new DisjointSet<>();
     set.add(HI);
     set.add(HELLO);
 
-    assertNotNull(set.find(HI));    
-    assertNotNull(set.find(HELLO));    
+    assertNotNull(set.find(HI));
+    assertNotNull(set.find(HELLO));
   }
 
-  @Test 
+  @Test
   public void find_notInSet_returnsNull() {
     DisjointSet<String> set = new DisjointSet<>();
     set.add(HI);
@@ -52,7 +50,7 @@ public class DisjointSetTest {
     assertNull(set.find(HELLO));
   }
 
-  @Test 
+  @Test
   public void find_noUnion_returnsOriginals() {
     DisjointSet<String> set = new DisjointSet<>();
     set.addAll(HI, HELLO);
@@ -61,7 +59,7 @@ public class DisjointSetTest {
     assertEqual(HELLO, set.find(HELLO));
   }
 
-  @Test 
+  @Test
   public void find_afterUnion_returnsSame() {
     DisjointSet<String> set = new DisjointSet<>();
     set.addAll(HI, HELLO);
@@ -70,7 +68,7 @@ public class DisjointSetTest {
     assertEqual(set.find(HELLO), set.find(HI));
   }
 
-  @Test 
+  @Test
   public void find_afterDisjointUnion_returnsExpected() {
     DisjointSet<String> set = new DisjointSet<>();
     set.addAll(HI, GREETINGS, HELLO);
@@ -80,7 +78,7 @@ public class DisjointSetTest {
     assertEqual(set.find(HELLO), set.find(HI));
   }
 
-  @Test 
+  @Test
   public void union_ofUnionedSets_combinesAll() {
     DisjointSet<String> set = new DisjointSet<>();
 

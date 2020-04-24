@@ -2,12 +2,11 @@ package src.problems.problems021to030;
 
 import java.lang.invoke.MethodHandles;
 import java.util.HashMap;
-
 import src.utils.generators.Generators;
 import src.utils.generators.base.tuples.Tuples;
 
 public class Problem26 {
-  
+
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 
@@ -30,7 +29,7 @@ public class Problem26 {
       if (!ds.containsKey(d)) {
         ds.put(d, 1);
       } else {
-        ds.put(d, ds.get(d)+1);
+        ds.put(d, ds.get(d) + 1);
         record = true;
       }
       int zeros = -1;
@@ -49,9 +48,9 @@ public class Problem26 {
         ct++;
       }
       if (record) {
-        str += ct;        
+        str += ct;
       }
     }
-    return str;  
+    return str;
   }
 }

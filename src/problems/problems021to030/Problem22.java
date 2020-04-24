@@ -1,14 +1,12 @@
 package src.problems.problems021to030;
 
 import java.lang.invoke.MethodHandles;
+import java.util.ArrayList;
 import java.util.Collections;
-
 import src.utils.generators.Generators;
 
-import java.util.ArrayList;
-
 public class Problem22 {
-  
+
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 
@@ -25,7 +23,7 @@ public class Problem22 {
   }
 
   static long GetAlphabeticalValue(String name) {
-     char[] nameChars = name.toLowerCase().toCharArray();
+    char[] nameChars = name.toLowerCase().toCharArray();
 
     long initialAscii = ((long) 'a') - 1;
     long sumValue = 0;
@@ -34,5 +32,5 @@ public class Problem22 {
     }
 
     return sumValue;
-   }
+  }
 }

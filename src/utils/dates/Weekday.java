@@ -1,6 +1,5 @@
 package src.utils.dates;
 
-import java.lang.RuntimeException;
 
 public enum Weekday {
   MONDAY(0),
@@ -24,7 +23,7 @@ public enum Weekday {
   public static Weekday forValue(int n) {
     if (n == 0) {
       return MONDAY;
-    } 
+    }
     if (n == 1) {
       return TUESDAY;
     }
@@ -45,4 +44,4 @@ public enum Weekday {
     }
     throw new RuntimeException("Invalid value " + n + " for Weekday");
   }
-}  
+}

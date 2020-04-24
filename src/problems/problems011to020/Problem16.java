@@ -1,12 +1,11 @@
 package src.problems.problems011to020;
 
 import java.lang.invoke.MethodHandles;
-
 import src.utils.generators.Generators;
 import src.utils.numbers.BigNumber;
 
 public class Problem16 {
-  
+
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 

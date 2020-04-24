@@ -1,17 +1,16 @@
 package src.problems.problems001to010;
 
-import java.lang.Math;
 import java.lang.invoke.MethodHandles;
 
 public class Problem8 {
-  
+
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 
     System.out.println(maxWindowProduct(DIGIT_STRING, 13));
   }
 
-  static final String DIGIT_STRING = 
+  static final String DIGIT_STRING =
       "73167176531330624919225119674426574742355349194934"
           + "96983520312774506326239578318016984801869478851843"
           + "85861560789112949495459501737958331952853208805511"

@@ -4,7 +4,6 @@ import static org.junit.Assert.assertTrue;
 import static test.Assertions.assertEqual;
 
 import org.junit.Test;
-
 import src.utils.generators.Generator;
 import src.utils.generators.base.RecursiveGenerator;
 

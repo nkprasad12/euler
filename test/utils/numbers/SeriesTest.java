@@ -3,12 +3,11 @@ package test.utils.numbers;
 import static test.Assertions.assertEqual;
 
 import org.junit.Test;
-
 import src.utils.numbers.Series;
 
 public class SeriesTest {
 
-  @Test  
+  @Test
   public void ofIntegersUpTo_returnsExpected() {
     assertEqual(Series.ofIntegersUpTo(0), 0l);
     assertEqual(Series.ofIntegersUpTo(1), 1l);
@@ -16,7 +15,7 @@ public class SeriesTest {
     assertEqual(Series.ofIntegersUpTo(100), 5050l);
   }
 
-  @Test  
+  @Test
   public void ofIntegerSquaresUpTo_returnsExpected() {
     assertEqual(Series.ofIntegerSquaresUpTo(0), 0l);
     assertEqual(Series.ofIntegerSquaresUpTo(1), 1l);

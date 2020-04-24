@@ -5,10 +5,10 @@ import static src.utils.generators.base.tuples.Tuples.pair;
 import src.utils.generators.Generator;
 import src.utils.generators.base.tuples.Tuples.Pair;
 
-/** 
+/**
  * Generator that a pair of generators into a generator of pairs.
- * 
- * Generates elements only as long as both generators have next elements. 
+ *
+ * <p>Generates elements only as long as both generators have next elements.
  */
 public class CombiningGenerator<T, U> implements Generator<Pair<T, U>> {
 

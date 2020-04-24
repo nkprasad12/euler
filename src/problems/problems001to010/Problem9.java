@@ -1,10 +1,9 @@
 package src.problems.problems001to010;
 
-import java.lang.Math;
 import java.lang.invoke.MethodHandles;
 
 public class Problem9 {
-  
+
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 
@@ -29,25 +28,18 @@ public class Problem9 {
   }
 
   /**
-   * Find abc for a, b, c where
-   * a < b < c and a^2 + b^2 = c^2 
-   * and a + b + c = 1000
+   * Find abc for a, b, c where a < b < c and a^2 + b^2 = c^2 and a + b + c = 1000
    *
-   * 1000 - (a + b) = c
+   * <p>1000 - (a + b) = c
    *
-   * (1000 - (a + b))^2 = c^2 = a^2 + b^2
-   * 1,000,000 - 2,000(a + b) + (a + b)^2 = a^2 + b^2
+   * <p>(1000 - (a + b))^2 = c^2 = a^2 + b^2 1,000,000 - 2,000(a + b) + (a + b)^2 = a^2 + b^2
    * 1,000,000 - 2,000a - 2,000b + 2ab = 0
-   * 
-   * Let b = a + k
    *
-   * a(a + k) = 1000(2a + k) - 500000
-   * a = (2000 - k) / 2 +/- sqrt(k^2 + 2000000) / 2
-   * 
-   * a must be an integer, so we are looking for numbers k
-   * such that sqrt(k^2 + 2000000) is an integer.
-   * We know k < 1000, so we can simply try values.
+   * <p>Let b = a + k
+   *
+   * <p>a(a + k) = 1000(2a + k) - 500000 a = (2000 - k) / 2 +/- sqrt(k^2 + 2000000) / 2
+   *
+   * <p>a must be an integer, so we are looking for numbers k such that sqrt(k^2 + 2000000) is an
+   * integer. We know k < 1000, so we can simply try values.
    */
-
-
 }

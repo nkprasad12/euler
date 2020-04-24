@@ -1,15 +1,13 @@
 package src.problems.problems011to020;
 
 import java.lang.invoke.MethodHandles;
-import java.lang.Math;
 import java.util.List;
-
 import src.utils.generators.Generators;
 import src.utils.numbers.NumericUtils;
 import src.utils.numbers.Series;
 
 public class Problem18 {
-  
+
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 
@@ -17,10 +15,7 @@ public class Problem18 {
   }
 
   public static int maxTrianglePath(String fileName) {
-    List<Integer> triangle =
-        Generators.fromTextFile(fileName)
-            .map(Integer::parseInt)
-            .list();
+    List<Integer> triangle = Generators.fromTextFile(fileName).map(Integer::parseInt).list();
     int n = NumericUtils.inverseTriangle(triangle.size());
     for (int row = n - 2; row >= 0; row--) {
       for (int col = 0; col <= row; col++) {

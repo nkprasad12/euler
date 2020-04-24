@@ -7,9 +7,7 @@ import static test.Assertions.assertGeneratesNone;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
 import org.junit.Test;
-
 import src.utils.generators.Generator;
 import src.utils.generators.base.CombiningGenerator;
 import src.utils.generators.base.IteratorWrappingGenerator;
@@ -25,8 +23,7 @@ public class CombiningGeneratorTest {
   private static final String SIXTH = "sixth";
   private static final String SEVENTH = "seventh";
 
-  private static final List<String> EMPTY =
-      Collections.unmodifiableList(Collections.emptyList());
+  private static final List<String> EMPTY = Collections.unmodifiableList(Collections.emptyList());
   private static final List<String> FIRST_THREE =
       Collections.unmodifiableList(Arrays.asList(FIRST, SECOND, THIRD));
   private static final List<String> JUST_FOURTH =

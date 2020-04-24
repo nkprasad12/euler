@@ -8,17 +8,14 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.BiFunction;
-
 import org.junit.Test;
-
 import src.utils.generators.base.IteratorWrappingGenerator;
 import src.utils.generators.consumers.GeneratorConsumer;
 import src.utils.generators.consumers.PairGeneratorConsumer;
 
 public class PairGeneratorConsumerTest {
 
-  private static final List<String> EMPTY =
-      Collections.unmodifiableList(Collections.emptyList());
+  private static final List<String> EMPTY = Collections.unmodifiableList(Collections.emptyList());
   private static final List<String> SINGLETON =
       Collections.unmodifiableList(Collections.singletonList("Ten"));
   private static final List<String> LIST =
@@ -28,47 +25,42 @@ public class PairGeneratorConsumerTest {
   public void mapPair_pairToSingle_generatesExpected() {
     assertGeneratesNone(emptyPairGenerator().mapPair((i, str) -> i + str));
 
-    assertGenerates(
-        singletonPairGenerator().mapPair((i, str) -> i + str),
-        "0Ten");
+    assertGenerates(singletonPairGenerator().mapPair((i, str) -> i + str), "0Ten");
 
-    assertGenerates(
-        manyPairGenerator().mapPair((i, str) -> i + str),
-        "0Two", "1One", "2Six");
+    assertGenerates(manyPairGenerator().mapPair((i, str) -> i + str), "0Two", "1One", "2Six");
   }
 
   @Test
   public void mapPair_functionAndFunction_generatesExpected() {
-    assertGeneratesNone(
-        emptyPairGenerator().mapPair(i -> i + 7, str -> str + "7"));
+    assertGeneratesNone(emptyPairGenerator().mapPair(i -> i + 7, str -> str + "7"));
 
     assertGenerates(
-        singletonPairGenerator().mapPair(i -> i + 7, str -> str + "7"),
-        pair(7, "Ten7"));
+        singletonPairGenerator().mapPair(i -> i + 7, str -> str + "7"), pair(7, "Ten7"));
 
     assertGenerates(
         manyPairGenerator().mapPair(i -> i + 7, str -> str + "7"),
-        pair(7, "Two7"), pair(8, "One7"), pair(9, "Six7"));
+        pair(7, "Two7"),
+        pair(8, "One7"),
+        pair(9, "Six7"));
   }
 
   @Test
   public void mapPair_functionAndBiFunction_generatesExpected() {
-    assertGeneratesNone(
-        emptyPairGenerator().mapPair(i -> i + 7, (i, str) -> str + i));
+    assertGeneratesNone(emptyPairGenerator().mapPair(i -> i + 7, (i, str) -> str + i));
 
     assertGenerates(
-        singletonPairGenerator().mapPair(i -> i + 7, (i, str) -> str + i),
-        pair(7, "Ten0"));
+        singletonPairGenerator().mapPair(i -> i + 7, (i, str) -> str + i), pair(7, "Ten0"));
 
     assertGenerates(
         manyPairGenerator().mapPair(i -> i + 7, (i, str) -> str + i),
-        pair(7, "Two0"), pair(8, "One1"), pair(9, "Six2"));
+        pair(7, "Two0"),
+        pair(8, "One1"),
+        pair(9, "Six2"));
   }
 
   @Test
   public void mapPair_biFunctionAndFunction_generatesExpected() {
-    assertGeneratesNone(
-        emptyPairGenerator().mapPair((i, str) -> str + i, str -> str + str));
+    assertGeneratesNone(emptyPairGenerator().mapPair((i, str) -> str + i, str -> str + str));
 
     assertGenerates(
         singletonPairGenerator().mapPair((i, str) -> str + i, str -> str + str),
@@ -76,7 +68,9 @@ public class PairGeneratorConsumerTest {
 
     assertGenerates(
         manyPairGenerator().mapPair((i, str) -> str + i, str -> str + str),
-        pair("Two0", "TwoTwo"), pair("One1", "OneOne"), pair("Six2", "SixSix"));
+        pair("Two0", "TwoTwo"),
+        pair("One1", "OneOne"),
+        pair("Six2", "SixSix"));
   }
 
   @Test
@@ -90,7 +84,9 @@ public class PairGeneratorConsumerTest {
 
     assertGenerates(
         manyPairGenerator().mapPair((i, str) -> str + i, (i, str) -> i * str.length()),
-        pair("Two0", 0), pair("One1", 3), pair("Six2", 6));
+        pair("Two0", 0),
+        pair("One1", 3),
+        pair("Six2", 6));
   }
 
   @Test
@@ -101,9 +97,7 @@ public class PairGeneratorConsumerTest {
 
   @Test
   public void filter_singleton_generatesExpected() {
-    assertGenerates(
-        singletonPairGenerator().filter((i, str) -> true),
-        pair(0, "Ten"));
+    assertGenerates(singletonPairGenerator().filter((i, str) -> true), pair(0, "Ten"));
     assertGeneratesNone(singletonPairGenerator().filter((i, str) -> false));
   }
 
@@ -111,24 +105,22 @@ public class PairGeneratorConsumerTest {
   public void filter_many_generatesExpected() {
     assertGenerates(
         manyPairGenerator().filter((i, str) -> i == 1 || str.charAt(0) == 'S'),
-        pair(1, "One"), pair(2, "Six"));
+        pair(1, "One"),
+        pair(2, "Six"));
   }
 
   @Test
   public void whileTrue_generatesExpected() {
-    assertGeneratesNone(
-        emptyPairGenerator().whileTrue((i, str) -> true));
+    assertGeneratesNone(emptyPairGenerator().whileTrue((i, str) -> true));
 
-    assertGeneratesNone(
-        emptyPairGenerator().whileTrue((i, str) -> false));
+    assertGeneratesNone(emptyPairGenerator().whileTrue((i, str) -> false));
 
-    assertGenerates(
-        singletonPairGenerator().whileTrue((i, str) -> true),
-        pair(0, "Ten"));
+    assertGenerates(singletonPairGenerator().whileTrue((i, str) -> true), pair(0, "Ten"));
 
     assertGenerates(
         manyPairGenerator().whileTrue((i, str) -> i == 0 || str.charAt(0) == 'O'),
-        pair(0, "Two"), pair(1, "One"));
+        pair(0, "Two"),
+        pair(1, "One"));
   }
 
   @Test
@@ -140,12 +132,14 @@ public class PairGeneratorConsumerTest {
         emptyPairGenerator().reducing(pair("", 0), firstReduction, secondReduction));
 
     assertGenerates(
-        singletonPairGenerator().reducing(pair("", 0), firstReduction, secondReduction), 
+        singletonPairGenerator().reducing(pair("", 0), firstReduction, secondReduction),
         pair("0", 3));
 
     assertGenerates(
         manyPairGenerator().reducing(pair("", 0), firstReduction, secondReduction),
-        pair("0", 3), pair("01", 6), pair("012", 9));
+        pair("0", 3),
+        pair("01", 6),
+        pair("012", 9));
   }
 
   private static PairGeneratorConsumer<Integer, String> emptyPairGenerator() {
@@ -161,8 +155,6 @@ public class PairGeneratorConsumerTest {
   }
 
   private static <T> PairGeneratorConsumer<Integer, T> getPairGenerator(List<T> list) {
-    return GeneratorConsumer.from(
-         new IteratorWrappingGenerator<>(list.iterator())).addIndices();
+    return GeneratorConsumer.from(new IteratorWrappingGenerator<>(list.iterator())).addIndices();
   }
-
 }
