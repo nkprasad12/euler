@@ -258,7 +258,7 @@ public class GeneratorConsumer<T> {
     }
 
     public boolean isEmpty() {
-      return lastValue.isEmpty();
+      return !isPresent();
     }
 
     public T orElse(T other) {

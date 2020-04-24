@@ -33,7 +33,7 @@ public final class ConcatenatingGenerator<T> implements Generator<T> {
 
     private void findNext() {
       next = Optional.empty();
-      while (next.isEmpty()) {
+      while (!next.isPresent()) {
         if (useFirst) {
           if (first.hasNext()) {
             next = Optional.of(first.getNext());
