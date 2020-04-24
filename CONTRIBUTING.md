@@ -1,0 +1,7 @@
+- Problem Solutions go under src/problems
+- General utility code goes under src/utils
+- Utility code should be tested, with tests under test/
+- Code should be formatted:
+  - Google Java Style for Java code (see tool under lib/)
+  - Starlark Style for Bazel code (see buildifier under lib/)
+  - Merged code is automatically formatted post commit
