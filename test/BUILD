@@ -2,7 +2,7 @@ load("@rules_java//java:defs.bzl", "java_test", "java_library", "java_import")
 
 java_test(
     name = "all_tests",
-    srcs = glob(["**/*.java"]),
+    srcs = ["utils/datastructures/DisjointSetTest.java"],
     deps = [
         "//src/utils:utils",
         ":assertions",
