@@ -21,4 +21,4 @@ jobs:
     - name: run_tests
       uses: ngalaiko/bazel-action/1.2.1@master
       with:
-        args: test //test:all_tests
+        args: test //test:all
