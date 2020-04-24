@@ -9,8 +9,7 @@ public class Problem48 {
 
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
-    long startTime = System
-    .nanoTime();
+    long startTime = System.nanoTime();
 
     long mod = 10000000000l;
     range(1l, 1000l)
