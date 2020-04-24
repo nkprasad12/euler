@@ -20,7 +20,7 @@ java_library(
 java_import(
     name = "junit_jars",
     jars = [
-      "lib/hamcrest-core-1.3.jar",
-      "lib/junit-4.13.jar"
+      "//lib/hamcrest-core-1.3.jar",
+      "//lib/junit-4.13.jar"
     ]
 )
