@@ -1,7 +1,12 @@
 load("@rules_java//java:defs.bzl", "java_test", "java_library")
+load("//test:generate_all_tests.bzl", "generate_all_tests")
+
+generate_all_tests(
+    srcs = glob(["**/*Test.java"])
+)
 
 java_test(
-    name = "all_tests",
+    name = "DisjointSetTestOG",
     srcs = ["utils/datastructures/DisjointSetTest.java"],
     test_class = "test.utils.datastructures.DisjointSetTest",
     deps = [
