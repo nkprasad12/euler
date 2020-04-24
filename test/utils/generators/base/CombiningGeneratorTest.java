@@ -61,7 +61,7 @@ public class CombiningGeneratorTest {
 
     Generator<Pair<String, String>> generator = new CombiningGenerator<>(first, second);
 
-    assertGenerates(generator, pair(FIFTH, FOURTH));
+    assertGenerates(generator, pair(FIFTH, SEVENTH));
   }
 
   @Test
