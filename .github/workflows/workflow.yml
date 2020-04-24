@@ -9,6 +9,9 @@ jobs:
     name: build_and_run_tests
     runs-on: ubuntu-latest
     steps:
+    - run: mkdir -p euler/artifacts
+    - run: pwd > euler/artifacts/pwd.txt
+    - run: ls -l > euler/artifacts/ls_out.txt
     - uses: actions/checkout@master
     - name: build_utils
       uses: ngalaiko/bazel-action/1.2.1@master
@@ -26,4 +29,8 @@ jobs:
       if: failure()
       with:
         name: testlogs
-        path: /github/home/.cache/bazel/_bazel_root/3ef6b2ad9cc100f006a5d4a7217ff063/execroot/__main__/bazel-out/k8-fastbuild/testlogs
+        path: github/home/.cache/bazel/_bazel_root/3ef6b2ad9cc100f006a5d4a7217ff063/execroot/__main__/bazel-out/k8-fastbuild/testlogs
+    - uses: actions/upload-artifact@v1
+      with:
+        name: euler_artifacts
+        path: euler/artifacts
