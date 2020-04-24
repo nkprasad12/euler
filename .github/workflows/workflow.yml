@@ -6,13 +6,34 @@ on:
 name: ContinuousIntegration
 jobs:
   checks:
-    name: build_and_run_tests
+    name: Build Libraries and Run Tests
     runs-on: ubuntu-latest
     steps:
-    - run: mkdir -p euler/artifacts
-    - run: pwd > euler/artifacts/pwd.txt
-    - run: ls -l > euler/artifacts/ls_out.txt
     - uses: actions/checkout@master
+
+    - name: Mount Bazel Cache
+      uses: actions/cache@v1
+      with:
+        path: "/home/runner/.cache/bazel"
+        key: bazel
+
+    - name: Install Bazelisk
+      run: |
+        curl -LO "https://github.com/bazelbuild/bazelisk/releases/download/v1.1.0/bazelisk-linux-amd64"
+        mkdir -p "${GITHUB_WORKSPACE}/bin/"
+        mv bazelisk-linux-amd64 "${GITHUB_WORKSPACE}/bin/bazel"
+        chmod +x "${GITHUB_WORKSPACE}/bin/bazel"
+
+    - name: Build Utils
+      run: |
+        "${GITHUB_WORKSPACE}/bin/bazel" build //src/utils:utils
+    - name: Build Problem Solutions
+      run: |
+        "${GITHUB_WORKSPACE}/bin/bazel" build //src/problems:problem_solutions
+    - name: Run Unit Tests
+      run: |
+        "${GITHUB_WORKSPACE}/bin/bazel" test //test:all
+
     - name: build_utils
       uses: ngalaiko/bazel-action/1.2.1@master
       with:
@@ -25,7 +46,3 @@ jobs:
       uses: ngalaiko/bazel-action/1.2.1@master
       with:
         args: test //test:all
-    - uses: actions/upload-artifact@master
-      with:
-        name: euler_artifacts
-        path: euler/artifacts
