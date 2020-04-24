@@ -14,5 +14,8 @@ java_test(
 java_library(
     name = "assertions",
     srcs = ["Assertions.java"],
-    deps = ["//lib:junit_jars"]
+    deps = [
+        "//lib:junit_jars",
+        "//src/utils:utils"
+    ]
 )
