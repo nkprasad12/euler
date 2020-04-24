@@ -34,11 +34,11 @@ jobs:
 
     - name: Run Unit Tests
       run: |
-        "${GITHUB_WORKSPACE}/bin/bazel" test //test:all
+        "${GITHUB_WORKSPACE}/bin/bazel" test --test_output=errors //test:all
 
-    - name: Upload Test Logs
+    - name: Upload Failure Logs
       if: failure()
       uses: actions/upload-artifact@v1
       with:
-        name: TestLogs
+        name: FailureLogs
         path: /home/runner/.cache/bazel/_bazel_runner/c36920e0bc38ec2a04fa856b5d80f9f7/execroot/__main__/bazel-out/k8-fastbuild/testlogs
