@@ -29,7 +29,3 @@ jobs:
     - name: Run Unit Tests
       run: |
         "${GITHUB_WORKSPACE}/bin/bazel" test --test_output=errors //test:all
-
-
-    - name: Google Java Format
-      uses: axel-op/googlejavaformat-action@v2.0.0
