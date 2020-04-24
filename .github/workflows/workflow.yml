@@ -34,7 +34,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.github_token }}
         COMMIT_MSG: |
-          "Automated Java format to Google style"
+          Automated: Format Java to Google style
           skip-checks: true
       run: |
         # Hard-code user configuration
@@ -42,9 +42,7 @@ jobs:
         git config user.name "Automated Java Formatter"
         # Update origin with token
         git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/nkprasad12/euler.git
-        # Checkout the branch so we can push back to it
-        touch "${GITHUB_WORKSPACE}/.github/test.txt"
-        echo "Testing Commit Action" > "${GITHUB_WORKSPACE}/.github/test.txt"
-        git add .
+        touch "${GITHUB_WORKSPACE}/.github/TestClass.java"
+        echo "Testing Commit Action" >> "${GITHUB_WORKSPACE}/.github/test.txt"
         # Only commit and push if we have changes
-        git diff --quiet && git diff --staged --quiet || (git commit -m "${COMMIT_MSG}"; git push origin master)
+        git diff --quiet && git diff --staged --quiet || (git commit -a -m "${COMMIT_MSG}"; git push origin master)
