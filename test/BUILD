@@ -6,7 +6,7 @@ java_test(
     test_class = "test.utils.datastructures.DisjointSetTest",
     deps = [
         ":assertions",
-        "//lib:junit_jars"
+        "//lib:junit_jars",
         "//src/utils:utils",
     ]
 )
