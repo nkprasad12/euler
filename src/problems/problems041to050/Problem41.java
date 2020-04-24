@@ -1,19 +1,16 @@
 package src.problems.problems041to050;
 
-// import static src.utils.generators.Generators.from;
 import static src.utils.generators.Generators.range;
-// import static src.utils.generators.Generators.fromCartesianProductOf;
 
 import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
 import java.util.List;
-
 import src.utils.generators.Generators;
 import src.utils.generators.consumers.GeneratorConsumer;
 import src.utils.primes.Primes;
 
 public class Problem41 {
-  
+
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
     long startTime = System.nanoTime();
@@ -27,7 +24,7 @@ public class Problem41 {
         .filter(p -> primes.isPrime(p))
         .max(k -> k)
         .print();
-        
+
     System.out.println(((System.nanoTime() - startTime) / 1000000) + " ms");
   }
 
@@ -37,7 +34,7 @@ public class Problem41 {
       result += s;
     }
     return result;
-  } 
+  }
 
   public static GeneratorConsumer<String> permutationsOf(String str) {
     List<String> chars = new ArrayList<>();

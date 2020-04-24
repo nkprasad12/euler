@@ -1,15 +1,11 @@
 package src.problems.problems041to050;
 
-// package src.problems.problemsXtoX+9
-
+import java.lang.invoke.MethodHandles;
 import src.utils.generators.Generators;
-// import static src.utils.generators.Generators.fromCartesianProductOf;
 import src.utils.numbers.NumericUtils;
 
-import java.lang.invoke.MethodHandles;
-
 public class Problem42 {
-  
+
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
     long startTime = System.nanoTime();
@@ -25,16 +21,15 @@ public class Problem42 {
     System.out.println(((System.nanoTime() - startTime) / 1000000) + " ms");
   }
 
-
   static int GetAlphabeticalValue(String name) {
     char[] nameChars = name.toLowerCase().toCharArray();
 
-   int initialAscii = ((int) 'a') - 1;
-   int sumValue = 0;
-   for (char letter : nameChars) {
-     sumValue += ((int) letter) - initialAscii;
-   }
+    int initialAscii = ((int) 'a') - 1;
+    int sumValue = 0;
+    for (char letter : nameChars) {
+      sumValue += ((int) letter) - initialAscii;
+    }
 
-   return sumValue;
+    return sumValue;
   }
 }

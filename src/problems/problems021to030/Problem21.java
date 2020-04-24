@@ -17,7 +17,7 @@ public class Problem21 {
     ArrayList<Long> sumOfDivisors =
         // Based on heuristics, no number < 10000 has a sum of divisors > 30000.
         // Confirmed by empirical evidence
-        Generators.range(1l, 30000l) 
+        Generators.range(1l, 30000l)
             .map(n -> factor.properDivisorsOf(n))
             .map(list -> Generators.from(list).reduce(0l, (a, b) -> a + b))
             .collectInto(new ArrayList<>());

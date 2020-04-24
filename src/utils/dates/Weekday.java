@@ -1,6 +1,5 @@
 package src.utils.dates;
 
-
 public enum Weekday {
   MONDAY(0),
   TUESDAY(1),

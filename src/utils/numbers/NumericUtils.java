@@ -1,6 +1,5 @@
 package src.utils.numbers;
 
-
 public final class NumericUtils {
 
   /* Determines whether an input number is a perfect square. */

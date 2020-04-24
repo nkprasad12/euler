@@ -1,15 +1,12 @@
 package src.problems.problems041to050;
 
-// import static src.utils.generators.Generators.from;
 import static src.utils.generators.Generators.range;
-// import static src.utils.generators.Generators.fromCartesianProductOf;
 
 import java.lang.invoke.MethodHandles;
-
 import src.utils.numbers.NumericUtils;
 
 public class Problem48 {
-  
+
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
     long startTime = System.nanoTime();

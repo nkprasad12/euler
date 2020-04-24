@@ -54,8 +54,8 @@ public class Problem17 {
           return 7;
         case 17:
           return 9;
-        // eighteen
         case 18:
+          // eighteen
           return 8;
         case 19:
           return 8;
