@@ -39,7 +39,7 @@ public class Problem38 {
   public static String getNineDigit(Integer input) {
     String value = input.toString();
     Integer curMultiple = 2;
-    while (value.length() < 10) {
+    while ((value +  input * curMultiple).length() < 10) {
       value += input * curMultiple;
       curMultiple++;
     }
