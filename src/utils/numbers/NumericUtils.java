@@ -70,7 +70,9 @@ public final class NumericUtils {
       return 1l;
     } else if (exponent % 2 == 0) {
       long halfPow = powerModN(base, exponent / 2, mod);
-      // TODO make this work for long
+      if (halfPow >= 3037000499l) {
+        throw new RuntimeException("Mod too large - use BigNumber instead.");
+      }
       return (halfPow * halfPow) % mod;
     } else {
       return (powerModN(base, exponent - 1, mod) * base) % mod;

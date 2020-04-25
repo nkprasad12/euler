@@ -2,6 +2,7 @@ package test.utils.numbers;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 import static src.utils.numbers.NumericUtils.inverseHexagon;
 import static src.utils.numbers.NumericUtils.inversePentagon;
@@ -79,6 +80,11 @@ public class NumericUtilsTest {
 
   @Test
   public void powerModN_returnsExpected() {
-    assertEqual((int) NumericUtils.powerModN(17, 35, 14), 5);
+    assertEqual(NumericUtils.powerModN(17, 35, 14), 5l);
+  }
+
+  @Test
+  public void powerModN_largeNumbers_throws() {
+    assertThrows(RuntimeException.class, () -> NumericUtils.powerModN(12, 43545, 10000000000l));
   }
 }
