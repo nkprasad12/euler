@@ -1,9 +1,9 @@
 package src.utils.generators.specialized;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import src.utils.generators.Generator;
-import src.utils.generators.Generators;
 
 /** Generates all permutations of a list of comparable elements. */
 public final class PermutationGenerator<T extends Comparable<T>> implements Generator<List<T>> {
@@ -14,18 +14,18 @@ public final class PermutationGenerator<T extends Comparable<T>> implements Gene
   boolean isFinished;
 
   public PermutationGenerator(List<T> objects) {
-    this.objects = Generators.from(objects).list();
+    this.objects = new ArrayList<>(objects);
     Collections.sort(this.objects);
     this.size = this.objects.size();
     isFinished = size == 0;
   }
   // TODO: Possibly generate multiset permutations using the Takaoka algorithm.
-  //       currently, this will retern repeats if the list is not distinct.
+  //       currently, this will return repeats if the list is not distinct.
   @Override
   public List<T> getNext() {
-    List<T> result = Generators.from(objects).list();
+    List<T> result = new ArrayList<>(objects);
     int j = -1;
-    for (int z = result.size() - 2; z >= 0; z--) {
+    for (int z = size - 2; z >= 0; z--) {
       int compareResult = result.get(z).compareTo(result.get(z + 1));
       if (compareResult < 0) {
         j = z;
@@ -33,29 +33,20 @@ public final class PermutationGenerator<T extends Comparable<T>> implements Gene
       }
     }
     final int rightmostSmaller = j;
-    /*
-    TODO: Do this with generators
-    :'(
-    int rightmostSmaller =
-        Generators.naturalsUpTo(size - 1)
-            .map(i -> i - 1)
-            .map(i -> size - 2 - i).print("j")
-            .until(i -> objects.get(i).compareTo(objects.get(i + 1)) < 0).print("compareResult")
-            .lastValue(-1);
-            :'(
-    */
     if (rightmostSmaller == -1) {
       isFinished = true;
     } else {
-      int ceilIndex =
-          Generators.range(rightmostSmaller + 1, size - 1)
-              .filter(i -> objects.get(i).compareTo(objects.get(rightmostSmaller)) > 0)
-              .reduce(
-                  rightmostSmaller + 1,
-                  (a, b) -> objects.get(a).compareTo(objects.get(b)) < 0 ? a : b);
+      int ceilIndex = rightmostSmaller + 1;
+      for (int i = rightmostSmaller + 2; i <= size - 1; i++) {
+        if (objects.get(i).compareTo(objects.get(rightmostSmaller)) > 0) {
+          ceilIndex = objects.get(ceilIndex).compareTo(objects.get(i)) < 0 ? ceilIndex : i;
+        }
+      }
       swap(ceilIndex, rightmostSmaller);
-      Generators.range(rightmostSmaller + 1, (size + rightmostSmaller) / 2)
-          .forEach(i -> swap(i, size + rightmostSmaller - i));
+      int limit = (size + rightmostSmaller) / 2;
+      for (int i = rightmostSmaller + 1; i <= limit; i++) {
+        swap(i, size + rightmostSmaller - i);
+      }
     }
     return result;
   }

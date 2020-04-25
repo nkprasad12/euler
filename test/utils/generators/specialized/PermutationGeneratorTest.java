@@ -1,5 +1,6 @@
 package test.utils.generators.specialized;
 
+import static test.Assertions.assertEqual;
 import static test.Assertions.assertGeneratesLists;
 import static test.Assertions.assertGeneratesNone;
 
@@ -39,5 +40,19 @@ public class PermutationGeneratorTest {
 
     assertGeneratesLists(
         Generators.permutationsOf(unmodifiable), Arrays.asList(1, 2), Arrays.asList(2, 1));
+  }
+
+  @Test 
+  public void permutationsOf_nineElements_hasExpectedNumber() {
+    List<Integer> tenElements = Generators.range(1, 10).list();
+    int zeroIndexedExpectedNumber = 3628799;
+
+    int actualNumber = 
+        Generators.permutationsOf(tenElements)
+            .addIndices()
+            .mapPair((i, permutation) -> i)
+            .lastValue().get();
+
+    assertEqual(actualNumber, zeroIndexedExpectedNumber);
   }
 }
