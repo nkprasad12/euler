@@ -117,8 +117,8 @@ public final class PrimeFactorization {
       }
     }
     while (divisorFactor != null) {
-        denominatorFactors.put(divisorFactor.getKey(), divisorFactor.getValue());
-        divisorFactor = divisorFactors.hasNext() ? divisorFactors.next() : null;
+      denominatorFactors.put(divisorFactor.getKey(), divisorFactor.getValue());
+      divisorFactor = divisorFactors.hasNext() ? divisorFactors.next() : null;
     }
     return new Rational(
         new PrimeFactorization(numeratorFactors, primes),

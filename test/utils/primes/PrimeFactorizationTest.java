@@ -8,7 +8,6 @@ import static test.Assertions.assertMapsMatch;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.Test;
-
 import src.utils.numbers.Rational;
 import src.utils.primes.PrimeFactorization;
 import src.utils.primes.Primes;
@@ -282,7 +281,7 @@ public class PrimeFactorizationTest {
     assertMapsMatch(b.factorMap(), expectedB);
   }
 
-  @Test 
+  @Test
   public void divideBy_coprimes_hasExpected() {
     Primes primes = new Primes();
     PrimeFactorization a = PrimeFactorization.of(72l, primes);
@@ -294,7 +293,7 @@ public class PrimeFactorizationTest {
     assertMapsMatch(r.denominator().factorMap(), b.factorMap());
   }
 
-  @Test 
+  @Test
   public void divideBy_notCoprimes_hasExpected() {
     Primes primes = new Primes();
     PrimeFactorization a = PrimeFactorization.of(1008l, primes);
@@ -305,7 +304,6 @@ public class PrimeFactorizationTest {
     expectedB.put(5l, 1);
 
     Rational r = a.divideBy(b);
-
 
     assertMapsMatch(r.numerator().factorMap(), expectedA);
     assertMapsMatch(r.denominator().factorMap(), expectedB);
