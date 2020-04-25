@@ -42,16 +42,17 @@ public class PermutationGeneratorTest {
         Generators.permutationsOf(unmodifiable), Arrays.asList(1, 2), Arrays.asList(2, 1));
   }
 
-  @Test 
+  @Test
   public void permutationsOf_nineElements_hasExpectedNumber() {
     List<Integer> tenElements = Generators.range(1, 10).list();
     int zeroIndexedExpectedNumber = 3628799;
 
-    int actualNumber = 
+    int actualNumber =
         Generators.permutationsOf(tenElements)
             .addIndices()
             .mapPair((i, permutation) -> i)
-            .lastValue().get();
+            .lastValue()
+            .get();
 
     assertEqual(actualNumber, zeroIndexedExpectedNumber);
   }
