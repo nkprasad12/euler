@@ -42,8 +42,8 @@ public class DateTest {
     for (int i = 1; i <= 12; i++) {
       final int month = i;
       assertThrows(RuntimeException.class, () -> new Date(0, month, 1900));
-      assertThrows(RuntimeException.class, () -> new Date(-1, month, 1900)); 
-    }  
+      assertThrows(RuntimeException.class, () -> new Date(-1, month, 1900));
+    }
   }
 
   @Test
