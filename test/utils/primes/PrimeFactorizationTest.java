@@ -8,6 +8,8 @@ import static test.Assertions.assertMapsMatch;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.Test;
+
+import src.utils.numbers.Rational;
 import src.utils.primes.PrimeFactorization;
 import src.utils.primes.Primes;
 
@@ -178,6 +180,21 @@ public class PrimeFactorizationTest {
   }
 
   @Test
+  public void gcd_largeComposites_isExpected() {
+    Primes primes = new Primes();
+    PrimeFactorization a = PrimeFactorization.of(5549544l, primes);
+    PrimeFactorization b = PrimeFactorization.of(322959l, primes);
+
+    PrimeFactorization gcd = a.gcd(b);
+
+    Map<Long, Integer> expected = new HashMap<>();
+    expected.put(3l, 1);
+    expected.put(7l, 2);
+    expected.put(13l, 1);
+    assertMapsMatch(gcd.factorMap(), expected);
+  }
+
+  @Test
   public void gcd_doesNotMofifyOriginals() {
     Primes primes = new Primes();
     PrimeFactorization a = PrimeFactorization.of(72l, primes);
@@ -263,6 +280,35 @@ public class PrimeFactorizationTest {
     expectedB.put(3l, 4);
     assertMapsMatch(a.factorMap(), expectedA);
     assertMapsMatch(b.factorMap(), expectedB);
+  }
+
+  @Test 
+  public void divideBy_coprimes_hasExpected() {
+    Primes primes = new Primes();
+    PrimeFactorization a = PrimeFactorization.of(72l, primes);
+    PrimeFactorization b = PrimeFactorization.of(143l, primes);
+
+    Rational r = a.divideBy(b);
+
+    assertMapsMatch(r.numerator().factorMap(), a.factorMap());
+    assertMapsMatch(r.denominator().factorMap(), b.factorMap());
+  }
+
+  @Test 
+  public void divideBy_notCoprimes_hasExpected() {
+    Primes primes = new Primes();
+    PrimeFactorization a = PrimeFactorization.of(1008l, primes);
+    PrimeFactorization b = PrimeFactorization.of(720l, primes);
+    Map<Long, Integer> expectedA = new HashMap<>();
+    expectedA.put(7l, 1);
+    Map<Long, Integer> expectedB = new HashMap<>();
+    expectedB.put(5l, 1);
+
+    Rational r = a.divideBy(b);
+
+
+    assertMapsMatch(r.numerator().factorMap(), expectedA);
+    assertMapsMatch(r.denominator().factorMap(), expectedB);
   }
 
   @Test

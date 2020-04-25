@@ -1,6 +1,7 @@
 package src.utils.primes;
 
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.SortedMap;
@@ -60,42 +61,64 @@ public final class PrimeFactorization {
 
   /* Returns the Greatest Common Denimonator between this PrimeFactorization and another. */
   public PrimeFactorization gcd(PrimeFactorization other) {
-    // TODO - we can do better than this in terms of performance.
-    //        The prime factors are stored in a TreeSet, so we can
-    //        set a sorted iteration to walk through both primes
-    //        lists in a single pass - O(n + m)
     SortedMap<Long, Integer> commonFactors = new TreeMap<>();
+    Iterator<Entry<Long, Integer>> otherFactors = other.factorMap().entrySet().iterator();
+    if (!otherFactors.hasNext()) {
+      return new PrimeFactorization(commonFactors, this.primes);
+    }
+    Entry<Long, Integer> otherFactor = otherFactors.next();
     for (Entry<Long, Integer> entry : factorMap.entrySet()) {
       Long prime = entry.getKey();
-      Integer exponent = Math.min(entry.getValue(), other.exponentOf(prime));
-      if (exponent > 0) {
-        commonFactors.put(prime, exponent);
+      while (otherFactor.getKey() < prime) {
+        if (!otherFactors.hasNext()) {
+          break;
+        }
+        otherFactor = otherFactors.next();
       }
+      if (otherFactor.getKey() > prime) {
+        continue;
+      }
+      Integer exponent = Math.min(entry.getValue(), otherFactor.getValue());
+      commonFactors.put(prime, exponent);
     }
     return new PrimeFactorization(commonFactors, this.primes);
   }
 
-  /* Returns the rational result of a divison of this PrimeFactorization by another. */
   public Rational divideBy(PrimeFactorization divisor) {
-    // TODO - we can do better than this in terms of performance.
-    //        The prime factors are stored in a TreeSet, so we can
-    //        set a sorted iteration to walk through both primes
-    //        lists in a single pass - O(n + m)
     SortedMap<Long, Integer> numeratorFactors = new TreeMap<>();
     SortedMap<Long, Integer> denominatorFactors = new TreeMap<>();
+    Iterator<Entry<Long, Integer>> divisorFactors = divisor.factorMap().entrySet().iterator();
+    if (!divisorFactors.hasNext()) {
+      return new Rational(this, of(1, primes));
+    }
+    if (factorMap.isEmpty()) {
+      return new Rational(this, divisor);
+    }
+    Entry<Long, Integer> divisorFactor = divisorFactors.next();
     for (Entry<Long, Integer> entry : factorMap.entrySet()) {
       Long prime = entry.getKey();
-      Integer exponent = entry.getValue() - divisor.exponentOf(prime);
-      if (exponent > 0) {
-        numeratorFactors.put(prime, exponent);
+      while (divisorFactor != null && divisorFactor.getKey() < prime) {
+        denominatorFactors.put(divisorFactor.getKey(), divisorFactor.getValue());
+        divisorFactor = divisorFactors.hasNext() ? divisorFactors.next() : null;
+      }
+      if (divisorFactor == null || divisorFactor.getKey() > prime) {
+        numeratorFactors.put(prime, entry.getValue());
+        continue;
+      }
+      if (prime.equals(divisorFactor.getKey())) {
+        Integer thisExp = entry.getValue();
+        Integer otherExp = divisorFactor.getValue();
+        if (thisExp > otherExp) {
+          numeratorFactors.put(prime, thisExp - otherExp);
+        } else if (otherExp > thisExp) {
+          denominatorFactors.put(prime, otherExp - thisExp);
+        }
+        divisorFactor = divisorFactors.hasNext() ? divisorFactors.next() : null;
       }
     }
-    for (Entry<Long, Integer> entry : divisor.factorMap().entrySet()) {
-      Long prime = entry.getKey();
-      Integer exponent = entry.getValue() - this.exponentOf(prime);
-      if (exponent > 0) {
-        denominatorFactors.put(prime, exponent);
-      }
+    while (divisorFactor != null) {
+        denominatorFactors.put(divisorFactor.getKey(), divisorFactor.getValue());
+        divisorFactor = divisorFactors.hasNext() ? divisorFactors.next() : null;
     }
     return new Rational(
         new PrimeFactorization(numeratorFactors, primes),
