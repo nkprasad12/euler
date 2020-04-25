@@ -1,8 +1,8 @@
 package test.utils.dates;
 
-import static test.Assertions.assertEqual;
-import static src.utils.dates.Dates.weekdayOf;
 import static src.utils.dates.Dates.daysBetween;
+import static src.utils.dates.Dates.weekdayOf;
+import static test.Assertions.assertEqual;
 
 import org.junit.Test;
 import src.utils.dates.Date;
@@ -25,14 +25,14 @@ public class DatesTest {
     assertEqual(weekdayOf(BASTILLE_DAY), Weekday.TUESDAY);
   }
 
-  @Test 
+  @Test
   public void daysBetween_closeDays() {
     assertEqual(daysBetween(BLACK_TUESDAY, BLACK_TUESDAY), 0);
     assertEqual(daysBetween(BLACK_TUESDAY, new Date(30, 10, 1929)), 1);
     assertEqual(daysBetween(new Date(30, 10, 1929), BLACK_TUESDAY), -1);
   }
 
-  @Test 
+  @Test
   public void daysBetween_differentYears() {
     assertEqual(daysBetween(BLACK_TUESDAY, new Date(29, 10, 1930)), 365);
     assertEqual(daysBetween(CORONATION_OF_WILLIAM_THE_CONQUERER, new Date(1, 1, 1067)), 7);
