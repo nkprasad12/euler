@@ -1,25 +1,41 @@
 package test.utils.dates;
 
 import static test.Assertions.assertEqual;
+import static src.utils.dates.Dates.weekdayOf;
+import static src.utils.dates.Dates.daysBetween;
 
 import org.junit.Test;
 import src.utils.dates.Date;
-import src.utils.dates.Dates;
 import src.utils.dates.Weekday;
 
 public class DatesTest {
 
+  private static final Date BLACK_TUESDAY = new Date(29, 10, 1929);
+  private static final Date TEST_WRITTEN = new Date(18, 4, 2020);
+  private static final Date DEFENESTRATION_OF_PRAGUE = new Date(23, 5, 1618);
+  private static final Date CORONATION_OF_WILLIAM_THE_CONQUERER = new Date(25, 12, 1066);
+  private static final Date BASTILLE_DAY = new Date(14, 7, 1789);
+
   @Test
   public void weekdayOf_returnsExpectedResult() {
-    // Black Tuesday
-    assertEqual(Dates.weekdayOf(new Date(29, 10, 1929)), Weekday.TUESDAY);
-    // Date this test was written
-    assertEqual(Dates.weekdayOf(new Date(18, 4, 2020)), Weekday.SATURDAY);
-    // Defenestration of Prague
-    assertEqual(Dates.weekdayOf(new Date(23, 5, 1618)), Weekday.WEDNESDAY);
-    // Coronation of William the Conquerer
-    assertEqual(Dates.weekdayOf(new Date(25, 12, 1066)), Weekday.TUESDAY);
-    // Bastille Day
-    assertEqual(Dates.weekdayOf(new Date(14, 7, 1789)), Weekday.TUESDAY);
+    assertEqual(weekdayOf(BLACK_TUESDAY), Weekday.TUESDAY);
+    assertEqual(weekdayOf(TEST_WRITTEN), Weekday.SATURDAY);
+    assertEqual(weekdayOf(DEFENESTRATION_OF_PRAGUE), Weekday.WEDNESDAY);
+    assertEqual(weekdayOf(CORONATION_OF_WILLIAM_THE_CONQUERER), Weekday.TUESDAY);
+    assertEqual(weekdayOf(BASTILLE_DAY), Weekday.TUESDAY);
+  }
+
+  @Test 
+  public void daysBetween_closeDays() {
+    assertEqual(daysBetween(BLACK_TUESDAY, BLACK_TUESDAY), 0);
+    assertEqual(daysBetween(BLACK_TUESDAY, new Date(30, 10, 1929)), 1);
+    assertEqual(daysBetween(new Date(30, 10, 1929), BLACK_TUESDAY), -1);
+  }
+
+  @Test 
+  public void daysBetween_differentYears() {
+    assertEqual(daysBetween(BLACK_TUESDAY, new Date(29, 10, 1930)), 365);
+    assertEqual(daysBetween(CORONATION_OF_WILLIAM_THE_CONQUERER, new Date(1, 1, 1067)), 7);
+    assertEqual(daysBetween(DEFENESTRATION_OF_PRAGUE, BASTILLE_DAY), 62509);
   }
 }

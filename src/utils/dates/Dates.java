@@ -46,7 +46,7 @@ public final class Dates {
   }
 
   /** Returns the 1-indexed day of the year that a particular date was. */
-  public static int dayOfYear(Date date) {
+  static int dayOfYear(Date date) {
     int days = 0;
     for (Integer month : MONTH_LIST) {
       if (date.month() == month) {
@@ -58,7 +58,7 @@ public final class Dates {
     throw new RuntimeException("Month of date was not in Month list!");
   }
 
-  public static boolean isLeapYear(int year) {
+  static boolean isLeapYear(int year) {
     if (year % 400 == 0) {
       return true;
     } else if (year % 100 == 0) {
@@ -68,22 +68,22 @@ public final class Dates {
     }
   }
 
-  public static int daysInYear(int year) {
+  static int daysInYear(int year) {
     return isLeapYear(year) ? 366 : 365;
   }
 
-  public static boolean isValidMonth(int month) {
+  static boolean isValidMonth(int month) {
     return month >= 1 && month <= 12;
   }
 
-  public static void checkValidMonth(int month) {
+  static void checkValidMonth(int month) {
     if (!isValidMonth(month)) {
       String error = String.format("month must be in range [0, 12], was %d", month);
       throw new RuntimeException(error);
     }
   }
 
-  public static int daysInMonth(int month, int year) {
+  static int daysInMonth(int month, int year) {
     checkValidMonth(month);
     // April, June, September, November
     if (month == 4 || month == 6 || month == 9 || month == 11) {
@@ -95,11 +95,11 @@ public final class Dates {
     }
   }
 
-  public static boolean isDayValid(int day, int month, int year) {
+  static boolean isDayValid(int day, int month, int year) {
     return day >= 1 && day <= daysInMonth(month, year);
   }
 
-  public static void checkValidDate(int day, int month, int year) {
+  static void checkValidDate(int day, int month, int year) {
     checkValidMonth(month);
     if (!isDayValid(day, month, year)) {
       String error = String.format("Invalid date (DD-MM-YYYY) %d-%d-%d", day, month, year);
