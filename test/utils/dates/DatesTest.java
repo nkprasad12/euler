@@ -19,5 +19,7 @@ public class DatesTest {
     assertEqual(Dates.weekdayOf(new Date(23, 5, 1618)), Weekday.WEDNESDAY);
     // Coronation of William the Conquerer
     assertEqual(Dates.weekdayOf(new Date(25, 12, 1066)), Weekday.TUESDAY);
+    // Bastille Day
+    assertEqual(Dates.weekdayOf(new Date(14, 7, 1789)), Weekday.TUESDAY);
   }
 }
