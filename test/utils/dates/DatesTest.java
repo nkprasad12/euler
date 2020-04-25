@@ -2,7 +2,6 @@ package test.utils.dates;
 
 import static test.Assertions.assertEqual;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import src.utils.dates.Date;
 import src.utils.dates.Dates;
@@ -10,8 +9,6 @@ import src.utils.dates.Weekday;
 
 public class DatesTest {
 
-  // TODO: Fix weekdayOf and enable this test.
-  @Ignore
   @Test
   public void weekdayOf_returnsExpectedResult() {
     // Black Tuesday

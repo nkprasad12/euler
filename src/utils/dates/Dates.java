@@ -17,7 +17,15 @@ public final class Dates {
   /** Returns which day of the week a date fell on. */
   public static Weekday weekdayOf(Date date) {
     int daysFromReference = daysBetween(REFERENCE_DATE, date);
-    return Weekday.forValue((daysFromReference + REFERENCE_WEEKDAY.value()) % 7);
+    int dayValue = daysFromReference + REFERENCE_WEEKDAY.value();
+    while (dayValue < 0 || dayValue >= 7) {
+      if (dayValue < 0) {
+        dayValue += 7;
+      } else {
+        dayValue -= 7;
+      }
+    }
+    return Weekday.forValue(dayValue);
   }
 
   /**
