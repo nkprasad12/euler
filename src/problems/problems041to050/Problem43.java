@@ -1,7 +1,7 @@
 package src.problems.problems041to050;
 
-import static src.utils.generators.Generators.range;
 import static java.lang.Integer.parseInt;
+import static src.utils.generators.Generators.range;
 
 import java.lang.invoke.MethodHandles;
 import java.util.Collections;
@@ -60,13 +60,13 @@ public class Problem43 {
   }
 
   public static Integer getSubNumber(List<Integer> list, int startIdx, int endIdx) {
-      List<Integer> numbers = list.subList(startIdx, endIdx+1);
-      
-      String strNum = "";
-      for (Integer num : numbers) {
-          strNum += num.toString();
-      }
-      
-      return parseInt(strNum);
+    List<Integer> numbers = list.subList(startIdx, endIdx + 1);
+
+    String strNum = "";
+    for (Integer num : numbers) {
+      strNum += num.toString();
+    }
+
+    return parseInt(strNum);
   }
 }
