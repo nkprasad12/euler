@@ -16,7 +16,7 @@ jobs:
       run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
       id: extract_branch
       if: github.event_name == 'pull_request'
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v2
 
     - name: Install Bazelisk
       run: |
@@ -50,4 +50,4 @@ jobs:
         java -jar "${GITHUB_WORKSPACE}/lib/google-java-format-1.7-all-deps.jar" -i $(git ls-files)
         chmod +x "${GITHUB_WORKSPACE}/lib/buildifier"
         "${GITHUB_WORKSPACE}/lib/buildifier" -r "${GITHUB_WORKSPACE}"
-        git diff --quiet && git diff --staged --quiet || (git commit -a -m "${COMMIT_MSG}"; git push origin master)
+        git diff --quiet && git diff --staged --quiet || (git commit -a -m "${COMMIT_MSG}"; git push)
