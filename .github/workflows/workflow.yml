@@ -6,13 +6,12 @@ jobs:
     name: Build Libraries and Run Tests
     runs-on: ubuntu-latest
     steps:
-    - name: Step that prints name of pull request's base branch
-      run: |
-        echo "Pull request's base branch is: ${BASE_BRANCH}"
-        echo github.event_name
-      env:
-        BASE_BRANCH: ${{ github.base_ref }}
-    - uses: actions/checkout@master
+    - name: Extract branch name
+      shell: bash
+      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+      id: extract_branch
+      if: github.event_name == 'pull_request'
+    - uses: actions/checkout@${{steps.extract_branch.outputs.branch}}
 
     - name: Install Bazelisk
       run: |

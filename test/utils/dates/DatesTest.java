@@ -14,7 +14,7 @@ public class DatesTest {
   private static final Date TEST_WRITTEN = new Date(18, 4, 2020);
   private static final Date DEFENESTRATION_OF_PRAGUE = new Date(23, 5, 1618);
   private static final Date CORONATION_OF_WILLIAM_THE_CONQUERER = new Date(25, 12, 1066);
-  private static final Date BASTILLE_DAY = new Date(14, 7, 1789);
+  private static final Date BASTILLE_DAY = new Date(13, 7, 1789);
   private static final Date SWEDISH_PEACE_DAY = new Date(14, 8, 1814);
 
   @Test
