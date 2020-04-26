@@ -15,6 +15,7 @@ public class DatesTest {
   private static final Date DEFENESTRATION_OF_PRAGUE = new Date(23, 5, 1618);
   private static final Date CORONATION_OF_WILLIAM_THE_CONQUERER = new Date(25, 12, 1066);
   private static final Date BASTILLE_DAY = new Date(14, 7, 1789);
+  private static final Date SWEDISH_PEACE_DAY = new Date(14, 8, 1814);
 
   @Test
   public void weekdayOf_returnsExpectedResult() {
@@ -23,6 +24,7 @@ public class DatesTest {
     assertEqual(weekdayOf(DEFENESTRATION_OF_PRAGUE), Weekday.WEDNESDAY);
     assertEqual(weekdayOf(CORONATION_OF_WILLIAM_THE_CONQUERER), Weekday.TUESDAY);
     assertEqual(weekdayOf(BASTILLE_DAY), Weekday.TUESDAY);
+    assertEqual(weekdayOf(SWEDISH_PEACE_DAY), Weekday.SUNDAY);
   }
 
   @Test

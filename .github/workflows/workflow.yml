@@ -1,15 +1,19 @@
 on:
   push:
-    branches: [ master ]
+    branches:
+    - master
   pull_request:
-    branches: [ master ]
+    branches:
+    - master
 name: ContinuousIntegration
 jobs:
   checks:
     name: Build Libraries and Run Tests
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.head_ref }}
 
     - name: Install Bazelisk
       run: |
@@ -29,7 +33,6 @@ jobs:
     - name: Run Unit Tests
       run: |
         "${GITHUB_WORKSPACE}/bin/bazel" test --test_output=errors //test:all
-
     - name: Format Code
       env:
         GITHUB_TOKEN: ${{ secrets.github_token }}
@@ -43,4 +46,4 @@ jobs:
         java -jar "${GITHUB_WORKSPACE}/lib/google-java-format-1.7-all-deps.jar" -i $(git ls-files)
         chmod +x "${GITHUB_WORKSPACE}/lib/buildifier"
         "${GITHUB_WORKSPACE}/lib/buildifier" -r "${GITHUB_WORKSPACE}"
-        git diff --quiet && git diff --staged --quiet || (git commit -a -m "${COMMIT_MSG}"; git push origin master)
+        git diff --quiet && git diff --staged --quiet || (git commit -a -m "${COMMIT_MSG}"; git push origin ${{ github.head_ref }})
