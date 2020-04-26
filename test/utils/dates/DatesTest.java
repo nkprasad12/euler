@@ -19,11 +19,11 @@ public class DatesTest {
 
   @Test
   public void weekdayOf_returnsExpectedResult() {
-        assertEqual(weekdayOf(BLACK_TUESDAY), Weekday.TUESDAY);
-        assertEqual(weekdayOf(TEST_WRITTEN), Weekday.SATURDAY);
-        assertEqual(weekdayOf(DEFENESTRATION_OF_PRAGUE), Weekday.WEDNESDAY);
-        assertEqual(weekdayOf(CORONATION_OF_WILLIAM_THE_CONQUERER), Weekday.TUESDAY);
-        assertEqual(weekdayOf(BASTILLE_DAY), Weekday.TUESDAY);
+    assertEqual(weekdayOf(BLACK_TUESDAY), Weekday.TUESDAY);
+    assertEqual(weekdayOf(TEST_WRITTEN), Weekday.SATURDAY);
+    assertEqual(weekdayOf(DEFENESTRATION_OF_PRAGUE), Weekday.WEDNESDAY);
+    assertEqual(weekdayOf(CORONATION_OF_WILLIAM_THE_CONQUERER), Weekday.TUESDAY);
+    assertEqual(weekdayOf(BASTILLE_DAY), Weekday.TUESDAY);
   }
 
   @Test
