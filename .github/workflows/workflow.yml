@@ -52,4 +52,4 @@ jobs:
         java -jar "${GITHUB_WORKSPACE}/lib/google-java-format-1.7-all-deps.jar" -i $(git ls-files)
         chmod +x "${GITHUB_WORKSPACE}/lib/buildifier"
         "${GITHUB_WORKSPACE}/lib/buildifier" -r "${GITHUB_WORKSPACE}"
-        git diff --quiet && git diff --staged --quiet || (git commit -a -m "${COMMIT_MSG}"; git push)
+        git diff --quiet && git diff --staged --quiet || (git commit -a -m "${COMMIT_MSG}"; git push origin ${{ github.head_ref }})
