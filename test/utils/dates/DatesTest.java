@@ -24,6 +24,7 @@ public class DatesTest {
         assertEqual(weekdayOf(DEFENESTRATION_OF_PRAGUE), Weekday.WEDNESDAY);
         assertEqual(weekdayOf(CORONATION_OF_WILLIAM_THE_CONQUERER), Weekday.TUESDAY);
         assertEqual(weekdayOf(BASTILLE_DAY), Weekday.TUESDAY);
+        assertEqual(weekdayOf(SWEDISH_PEACE_DAY), Weekday.SUNDAY);
   }
 
   @Test

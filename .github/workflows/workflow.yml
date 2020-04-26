@@ -11,14 +11,6 @@ jobs:
     name: Build Libraries and Run Tests
     runs-on: ubuntu-latest
     steps:
-    - name: Extract branch name
-      shell: bash
-      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-      id: extract_branch
-      if: github.event_name == 'pull_request'
-    - name: Print branch name
-      shell: bash
-      run: echo ${{ steps.extract_branch.outputs.branch }}
     - uses: actions/checkout@v2
       with:
         ref: ${{ github.head_ref }}
