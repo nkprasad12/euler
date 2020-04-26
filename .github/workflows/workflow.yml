@@ -16,6 +16,9 @@ jobs:
       run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
       id: extract_branch
       if: github.event_name == 'pull_request'
+    - name: Print branch name
+      shell: bash
+      run: echo ${{ steps.extract_branch.outputs.branch }}
     - uses: actions/checkout@v2
 
     - name: Install Bazelisk
@@ -36,7 +39,6 @@ jobs:
     - name: Run Unit Tests
       run: |
         "${GITHUB_WORKSPACE}/bin/bazel" test --test_output=errors //test:all
-
     - name: Format Code
       env:
         GITHUB_TOKEN: ${{ secrets.github_token }}
