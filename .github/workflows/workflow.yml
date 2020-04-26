@@ -20,6 +20,8 @@ jobs:
       shell: bash
       run: echo ${{ steps.extract_branch.outputs.branch }}
     - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.head_ref }}
 
     - name: Install Bazelisk
       run: |
