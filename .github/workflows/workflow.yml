@@ -11,6 +11,11 @@ jobs:
     name: Build Libraries and Run Tests
     runs-on: ubuntu-latest
     steps:
+    - name: Extract branch name
+      shell: bash
+      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+      id: extract_branch
+      if: github.event_name == 'pull_request'
     - uses: actions/checkout@master
 
     - name: Install Bazelisk
