@@ -71,7 +71,7 @@ public final class BigNumber {
   }
 
   public BigNumber toPower(int exponent) {
-    if (exponent == 0) {
+      if (exponent == 0) {
       return BigNumber.fromLong(1, base);
     } else if (exponent % 2 == 0) {
       BigNumber halfPower = toPower(exponent / 2);
