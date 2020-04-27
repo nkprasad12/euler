@@ -1,8 +1,8 @@
 package utils.generators.consumers;
 
-import static utils.generators.base.tuples.Tuples.pair;
 import static assertions.Assertions.assertGenerates;
 import static assertions.Assertions.assertGeneratesNone;
+import static utils.generators.base.tuples.Tuples.pair;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -10,8 +10,6 @@ import java.util.List;
 import java.util.function.BiFunction;
 import org.junit.Test;
 import utils.generators.base.IteratorWrappingGenerator;
-import utils.generators.consumers.GeneratorConsumer;
-import utils.generators.consumers.PairGeneratorConsumer;
 
 public class PairGeneratorConsumerTest {
 

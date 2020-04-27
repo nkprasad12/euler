@@ -1,11 +1,10 @@
 package utils.generators;
 
-import static utils.generators.base.tuples.Tuples.pair;
 import static assertions.Assertions.assertGenerates;
 import static assertions.Assertions.assertGeneratesNone;
+import static utils.generators.base.tuples.Tuples.pair;
 
 import org.junit.Test;
-import utils.generators.Generators;
 
 public class GeneratorsTest {
 

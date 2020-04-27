@@ -3,7 +3,6 @@ package utils.numbers;
 import static assertions.Assertions.assertEqual;
 
 import org.junit.Test;
-import utils.numbers.Rational;
 import utils.primes.PrimeFactorization;
 import utils.primes.Primes;
 

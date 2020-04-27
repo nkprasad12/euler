@@ -10,7 +10,6 @@ import java.util.Arrays;
 import java.util.List;
 import org.junit.Test;
 import utils.generators.Generator;
-import utils.generators.base.FileReadingGenerator;
 
 public class FileReadingGeneratorTest {
 

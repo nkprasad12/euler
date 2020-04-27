@@ -1,5 +1,6 @@
 package utils.numbers;
 
+import static assertions.Assertions.assertEqual;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThrows;
@@ -8,10 +9,8 @@ import static utils.numbers.NumericUtils.inverseHexagon;
 import static utils.numbers.NumericUtils.inversePentagon;
 import static utils.numbers.NumericUtils.inverseTriangle;
 import static utils.numbers.NumericUtils.isPerfectSquare;
-import static assertions.Assertions.assertEqual;
 
 import org.junit.Test;
-import utils.numbers.NumericUtils;
 
 public class NumericUtilsTest {
 

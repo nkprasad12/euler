@@ -1,16 +1,15 @@
 package utils.primes;
 
+import static assertions.Assertions.assertEqual;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 import static utils.primes.Primes.isPrimeStatic;
-import static assertions.Assertions.assertEqual;
 
 import java.util.List;
 import java.util.SortedMap;
 import org.junit.Test;
 import utils.generators.Generators;
-import utils.primes.Primes;
 
 public class PrimesTest {
 

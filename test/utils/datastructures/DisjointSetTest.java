@@ -1,13 +1,12 @@
 package utils.datastructures;
 
+import static assertions.Assertions.assertEqual;
+import static assertions.Assertions.assertNotEqual;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThrows;
-import static assertions.Assertions.assertEqual;
-import static assertions.Assertions.assertNotEqual;
 
 import org.junit.Test;
-import utils.datastructures.DisjointSet;
 
 public class DisjointSetTest {
 

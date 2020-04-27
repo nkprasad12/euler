@@ -1,12 +1,10 @@
 package utils.dates;
 
+import static assertions.Assertions.assertEqual;
 import static utils.dates.Dates.daysBetween;
 import static utils.dates.Dates.weekdayOf;
-import static assertions.Assertions.assertEqual;
 
 import org.junit.Test;
-import utils.dates.Date;
-import utils.dates.Weekday;
 
 public class DatesTest {
 

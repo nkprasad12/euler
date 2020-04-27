@@ -8,7 +8,6 @@ import java.util.Arrays;
 import org.junit.Test;
 import utils.generators.Generators;
 import utils.generators.consumers.GeneratorConsumer;
-import utils.generators.specialized.DivisorGenerator;
 import utils.primes.PrimeFactorizations;
 import utils.primes.Primes;
 

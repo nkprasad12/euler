@@ -1,10 +1,9 @@
 package utils.dates;
 
-import static org.junit.Assert.assertThrows;
 import static assertions.Assertions.assertEqual;
+import static org.junit.Assert.assertThrows;
 
 import org.junit.Test;
-import utils.dates.Date;
 
 public class DateTest {
 

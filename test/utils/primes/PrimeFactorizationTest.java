@@ -1,16 +1,14 @@
 package utils.primes;
 
-import static org.junit.Assert.assertThrows;
-import static org.junit.Assert.assertTrue;
 import static assertions.Assertions.assertEqual;
 import static assertions.Assertions.assertMapsMatch;
+import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertTrue;
 
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.Test;
 import utils.numbers.Rational;
-import utils.primes.PrimeFactorization;
-import utils.primes.Primes;
 
 public class PrimeFactorizationTest {
 

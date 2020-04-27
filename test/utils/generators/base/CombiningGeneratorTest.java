@@ -1,16 +1,14 @@
 package utils.generators.base;
 
-import static utils.generators.base.tuples.Tuples.pair;
 import static assertions.Assertions.assertGenerates;
 import static assertions.Assertions.assertGeneratesNone;
+import static utils.generators.base.tuples.Tuples.pair;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import org.junit.Test;
 import utils.generators.Generator;
-import utils.generators.base.CombiningGenerator;
-import utils.generators.base.IteratorWrappingGenerator;
 import utils.generators.base.tuples.Tuples.Pair;
 
 public class CombiningGeneratorTest {

@@ -8,8 +8,6 @@ import java.util.Collections;
 import java.util.List;
 import org.junit.Test;
 import utils.generators.Generator;
-import utils.generators.base.IteratorWrappingGenerator;
-import utils.generators.base.TerminatingGenerator;
 
 public class TerminatingGeneratorTest {
 

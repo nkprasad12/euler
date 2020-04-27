@@ -7,10 +7,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import org.junit.Test;
-import utils.graphs.AdjacencyListGraph;
-import utils.graphs.Edge;
-import utils.graphs.Graph;
-import utils.graphs.Graphs;
 
 public class GraphsTest {
 

@@ -3,7 +3,6 @@ package utils.numbers;
 import static assertions.Assertions.assertEqual;
 
 import org.junit.Test;
-import utils.numbers.Series;
 
 public class SeriesTest {
 

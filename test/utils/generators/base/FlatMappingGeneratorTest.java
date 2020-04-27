@@ -1,7 +1,7 @@
 package utils.generators.base;
 
-import static org.junit.Assert.assertFalse;
 import static assertions.Assertions.assertGenerates;
+import static org.junit.Assert.assertFalse;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,8 +9,6 @@ import java.util.Collections;
 import java.util.List;
 import org.junit.Test;
 import utils.generators.Generator;
-import utils.generators.base.FlatMappingGenerator;
-import utils.generators.base.IteratorWrappingGenerator;
 
 public class FlatMappingGeneratorTest {
 

@@ -1,13 +1,13 @@
 package utils.generators.consumers;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static utils.generators.base.tuples.Tuples.pair;
 import static assertions.Assertions.assertEqual;
 import static assertions.Assertions.assertGenerates;
 import static assertions.Assertions.assertGeneratesNone;
 import static assertions.Assertions.assertListMatches;
 import static assertions.Assertions.assertListsMatch;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static utils.generators.base.tuples.Tuples.pair;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,7 +16,6 @@ import java.util.List;
 import org.junit.Test;
 import utils.generators.Generator;
 import utils.generators.base.IteratorWrappingGenerator;
-import utils.generators.consumers.GeneratorConsumer;
 
 public class GeneratorConsumerTest {
 
