@@ -9,7 +9,11 @@ public class Problem30 {
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 
-    Generators.range(2l, 999999l)
+    System.out.println(solution());
+  }
+
+  static String solution() {
+    return Generators.range(2l, 999999l)
         .filter(
             n ->
                 n
@@ -19,6 +23,6 @@ public class Problem30 {
                             .reduce(0, (a, b) -> a + b))
         .reducing(0l, (sum, next) -> sum + next)
         .lastValue()
-        .print();
+        .toString();
   }
 }

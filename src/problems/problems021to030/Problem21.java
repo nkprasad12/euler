@@ -11,6 +11,10 @@ public class Problem21 {
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 
+    System.out.println(solution());
+  }
+
+  static String solution() {
     Primes primes = new Primes();
     PrimeFactorizations factor = new PrimeFactorizations(primes);
 
@@ -22,11 +26,11 @@ public class Problem21 {
             .map(list -> Generators.from(list).reduce(0l, (a, b) -> a + b))
             .collectInto(new ArrayList<>());
     sumOfDivisors.add(0, 0l);
-    Generators.range(1l, 9999l)
+    return Generators.range(1l, 9999l)
         .filter(n -> isAmicable(sumOfDivisors, n))
         .reducing(0l, (a, b) -> a + b)
         .lastValue()
-        .print();
+        .toString();
   }
 
   static boolean isAmicable(ArrayList<Long> sumOfDivisors, long n) {

@@ -8,12 +8,17 @@ public class Problem24 {
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 
-    Generators.permutationsOf(Generators.range(0, 9).list())
+    System.out.println(solution());
+  }
+
+  static String solution() {
+    return Generators.permutationsOf(Generators.range(0, 9).list())
         .addIndices()
         .whileTrue((i, permutation) -> i < 1000000)
         .mapPair((i, permutation) -> Generators.from(permutation))
         .lastValue()
         .get()
-        .reduceAndPrint("", (a, b) -> a + b);
+        .reduce("", (a, b) -> a + b)
+        .toString();
   }
 }
