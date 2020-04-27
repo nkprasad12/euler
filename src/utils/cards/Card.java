@@ -1,4 +1,4 @@
-package src.utils.cards;
+package utils.cards;
 
 /** Represents a playing card. */
 public final class Card {

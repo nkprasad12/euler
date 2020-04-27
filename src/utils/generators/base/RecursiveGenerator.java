@@ -1,7 +1,7 @@
-package src.utils.generators.base;
+package utils.generators.base;
 
 import java.util.function.Function;
-import src.utils.generators.Generator;
+import utils.generators.Generator;
 
 /** An infinite generator that maps future values in terms of previous values. */
 public final class RecursiveGenerator<T> implements Generator<T> {

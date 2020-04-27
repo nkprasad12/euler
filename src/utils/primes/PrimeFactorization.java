@@ -1,4 +1,4 @@
-package src.utils.primes;
+package utils.primes;
 
 import java.util.Collections;
 import java.util.Iterator;
@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.SortedMap;
 import java.util.TreeMap;
-import src.utils.numbers.Rational;
+import utils.numbers.Rational;
 
 /* Class representing the prime factorization of a number. */
 public final class PrimeFactorization {

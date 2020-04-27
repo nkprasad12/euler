@@ -1,9 +1,9 @@
-package src.problems.problems011to020;
+package problems.problems011to020;
 
 import java.lang.invoke.MethodHandles;
 import java.util.Arrays;
-import src.utils.generators.Generators;
-import src.utils.numbers.BigNumber;
+import utils.generators.Generators;
+import utils.numbers.BigNumber;
 
 public class Problem13 {
 

@@ -1,7 +1,5 @@
-package src;
-
 import java.lang.invoke.MethodHandles;
-import src.utils.generators.Generators;
+import utils.generators.Generators;
 
 class Sandbox {
 

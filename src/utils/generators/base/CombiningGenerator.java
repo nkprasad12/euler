@@ -1,9 +1,9 @@
-package src.utils.generators.base;
+package utils.generators.base;
 
-import static src.utils.generators.base.tuples.Tuples.pair;
+import static utils.generators.base.tuples.Tuples.pair;
 
-import src.utils.generators.Generator;
-import src.utils.generators.base.tuples.Tuples.Pair;
+import utils.generators.Generator;
+import utils.generators.base.tuples.Tuples.Pair;
 
 /**
  * Generator that a pair of generators into a generator of pairs.

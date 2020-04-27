@@ -1,8 +1,8 @@
-package src.problems.problems001to010;
+package problems.problems001to010;
 
 import java.lang.invoke.MethodHandles;
-import src.utils.generators.Generators;
-import src.utils.primes.Primes;
+import utils.generators.Generators;
+import utils.primes.Primes;
 
 public class Problem10 {
 

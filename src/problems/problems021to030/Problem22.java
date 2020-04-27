@@ -1,9 +1,9 @@
-package src.problems.problems021to030;
+package problems.problems021to030;
 
 import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
 import java.util.Collections;
-import src.utils.generators.Generators;
+import utils.generators.Generators;
 
 public class Problem22 {
 

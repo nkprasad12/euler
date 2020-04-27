@@ -1,4 +1,4 @@
-package src.utils.graphs;
+package utils.graphs;
 
 /** Represents an edge of a graph. */
 public final class Edge<T> {

@@ -1,7 +1,7 @@
-package src.problems.problems031to040;
+package problems.problems031to040;
 
 import java.lang.invoke.MethodHandles;
-import src.utils.primes.Primes;
+import utils.primes.Primes;
 
 public class Problem37 {
   public static void main(String[] args) {

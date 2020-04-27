@@ -1,7 +1,7 @@
-package src.utils.generators.base;
+package utils.generators.base;
 
 import java.util.function.Predicate;
-import src.utils.generators.Generator;
+import utils.generators.Generator;
 
 /** Generator that removes values that do not match the filter. */
 public final class FilteringGenerator<T> implements Generator<T> {

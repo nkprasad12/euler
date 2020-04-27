@@ -1,16 +1,15 @@
-package test.utils.generators.specialized;
+package utils.generators.specialized;
 
-import static test.Assertions.assertContainEqualElements;
-import static test.Assertions.assertGenerates;
-import static test.Assertions.assertGeneratesNone;
+import static assertions.Assertions.assertContainEqualElements;
+import static assertions.Assertions.assertGenerates;
+import static assertions.Assertions.assertGeneratesNone;
 
 import java.util.Arrays;
 import org.junit.Test;
-import src.utils.generators.Generators;
-import src.utils.generators.consumers.GeneratorConsumer;
-import src.utils.generators.specialized.DivisorGenerator;
-import src.utils.primes.PrimeFactorizations;
-import src.utils.primes.Primes;
+import utils.generators.Generators;
+import utils.generators.consumers.GeneratorConsumer;
+import utils.primes.PrimeFactorizations;
+import utils.primes.Primes;
 
 public class DivisorGeneratorTest {
 

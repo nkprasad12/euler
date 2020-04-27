@@ -1,4 +1,4 @@
-package src.problems.problems141to150;
+package problems.problems141to150;
 
 import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;

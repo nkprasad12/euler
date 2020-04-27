@@ -1,7 +1,7 @@
-package src.problems.problems021to030;
+package problems.problems021to030;
 
 import java.lang.invoke.MethodHandles;
-import src.utils.numbers.BigNumber;
+import utils.numbers.BigNumber;
 
 public class Problem25 {
 

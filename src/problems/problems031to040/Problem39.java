@@ -1,12 +1,12 @@
-package src.problems.problems031to040;
+package problems.problems031to040;
 
-import static src.utils.generators.Generators.from;
-import static src.utils.generators.Generators.range;
-import static src.utils.generators.base.tuples.Tuples.pair;
+import static utils.generators.Generators.from;
+import static utils.generators.Generators.range;
+import static utils.generators.base.tuples.Tuples.pair;
 
 import java.lang.invoke.MethodHandles;
 import java.util.HashMap;
-import src.utils.numbers.NumericUtils;
+import utils.numbers.NumericUtils;
 
 public class Problem39 {
 

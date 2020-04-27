@@ -1,10 +1,10 @@
-package src.problems.problems011to020;
+package problems.problems011to020;
 
 import java.lang.invoke.MethodHandles;
 import java.util.List;
-import src.utils.generators.Generators;
-import src.utils.numbers.NumericUtils;
-import src.utils.numbers.Series;
+import utils.generators.Generators;
+import utils.numbers.NumericUtils;
+import utils.numbers.Series;
 
 public class Problem18 {
 

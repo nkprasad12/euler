@@ -1,13 +1,13 @@
-package src.problems.problems051to060;
+package problems.problems051to060;
 
 import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
 import java.util.List;
-import src.utils.cards.Card;
-import src.utils.cards.poker.PokerHand;
-import src.utils.generators.Generators;
-import src.utils.generators.base.tuples.Tuples;
-import src.utils.generators.base.tuples.Tuples.Pair;
+import utils.cards.Card;
+import utils.cards.poker.PokerHand;
+import utils.generators.Generators;
+import utils.generators.base.tuples.Tuples;
+import utils.generators.base.tuples.Tuples.Pair;
 
 public class Problem54 {
 

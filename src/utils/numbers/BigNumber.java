@@ -1,9 +1,9 @@
-package src.utils.numbers;
+package utils.numbers;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import src.utils.generators.Generators;
+import utils.generators.Generators;
 
 public final class BigNumber {
 

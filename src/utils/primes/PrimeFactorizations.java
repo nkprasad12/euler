@@ -1,8 +1,8 @@
-package src.utils.primes;
+package utils.primes;
 
-import src.utils.generators.Generator;
-import src.utils.generators.Generators;
-import src.utils.generators.specialized.DivisorGenerator;
+import utils.generators.Generator;
+import utils.generators.Generators;
+import utils.generators.specialized.DivisorGenerator;
 
 /** Factory class for prime factorizations. */
 public final class PrimeFactorizations {

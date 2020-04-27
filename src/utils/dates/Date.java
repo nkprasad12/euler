@@ -1,4 +1,4 @@
-package src.utils.dates;
+package utils.dates;
 
 public final class Date {
 

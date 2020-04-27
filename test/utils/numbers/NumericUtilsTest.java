@@ -1,17 +1,16 @@
-package test.utils.numbers;
+package utils.numbers;
 
+import static assertions.Assertions.assertEqual;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
-import static src.utils.numbers.NumericUtils.inverseHexagon;
-import static src.utils.numbers.NumericUtils.inversePentagon;
-import static src.utils.numbers.NumericUtils.inverseTriangle;
-import static src.utils.numbers.NumericUtils.isPerfectSquare;
-import static test.Assertions.assertEqual;
+import static utils.numbers.NumericUtils.inverseHexagon;
+import static utils.numbers.NumericUtils.inversePentagon;
+import static utils.numbers.NumericUtils.inverseTriangle;
+import static utils.numbers.NumericUtils.isPerfectSquare;
 
 import org.junit.Test;
-import src.utils.numbers.NumericUtils;
 
 public class NumericUtilsTest {
 

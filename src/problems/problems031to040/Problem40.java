@@ -1,6 +1,6 @@
-package src.problems.problems031to040;
+package problems.problems031to040;
 
-import static src.utils.generators.Generators.range;
+import static utils.generators.Generators.range;
 
 import java.lang.invoke.MethodHandles;
 

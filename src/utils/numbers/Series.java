@@ -1,4 +1,4 @@
-package src.utils.numbers;
+package utils.numbers;
 
 /** Functions to calculate sums of common series. */
 public final class Series {

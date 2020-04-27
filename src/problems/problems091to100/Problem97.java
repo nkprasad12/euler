@@ -1,9 +1,9 @@
-package src.problems.problems091to100;
+package problems.problems091to100;
 
-import static src.utils.numbers.BigNumber.fromLong;
+import static utils.numbers.BigNumber.fromLong;
 
 import java.lang.invoke.MethodHandles;
-import src.utils.numbers.BigNumber;
+import utils.numbers.BigNumber;
 
 public class Problem97 {
 

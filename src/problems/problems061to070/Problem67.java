@@ -1,7 +1,7 @@
-package src.problems.problems061to070;
+package problems.problems061to070;
 
 import java.lang.invoke.MethodHandles;
-import src.problems.problems011to020.Problem18;
+import problems.problems011to020.Problem18;
 
 public class Problem67 {
 

@@ -1,13 +1,13 @@
-package src.problems.problems031to040;
+package problems.problems031to040;
 
-import static src.utils.generators.Generators.from;
-import static src.utils.generators.Generators.range;
+import static utils.generators.Generators.from;
+import static utils.generators.Generators.range;
 
 import java.lang.invoke.MethodHandles;
 import java.util.List;
-import src.utils.generators.Generators;
-import src.utils.numbers.BigNumber;
-import src.utils.primes.Primes;
+import utils.generators.Generators;
+import utils.numbers.BigNumber;
+import utils.primes.Primes;
 
 public class Problem35 {
 

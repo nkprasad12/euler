@@ -1,4 +1,4 @@
-package src.utils.generators;
+package utils.generators;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -8,14 +8,14 @@ import java.util.function.BiPredicate;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
-import src.utils.generators.base.FileReadingGenerator;
-import src.utils.generators.base.IteratorWrappingGenerator;
-import src.utils.generators.base.tuples.Tuples.Pair;
-import src.utils.generators.consumers.GeneratorConsumer;
-import src.utils.generators.consumers.PairGeneratorConsumer;
-import src.utils.generators.specialized.DivisorGenerator;
-import src.utils.generators.specialized.PermutationGenerator;
-import src.utils.primes.PrimeFactorizations;
+import utils.generators.base.FileReadingGenerator;
+import utils.generators.base.IteratorWrappingGenerator;
+import utils.generators.base.tuples.Tuples.Pair;
+import utils.generators.consumers.GeneratorConsumer;
+import utils.generators.consumers.PairGeneratorConsumer;
+import utils.generators.specialized.DivisorGenerator;
+import utils.generators.specialized.PermutationGenerator;
+import utils.primes.PrimeFactorizations;
 
 /** Factory class for creating GeneratorConsumers for fluent chaining. */
 public final class Generators {

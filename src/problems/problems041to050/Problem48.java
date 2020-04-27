@@ -1,9 +1,9 @@
-package src.problems.problems041to050;
+package problems.problems041to050;
 
-import static src.utils.generators.Generators.range;
+import static utils.generators.Generators.range;
 
 import java.lang.invoke.MethodHandles;
-import src.utils.numbers.NumericUtils;
+import utils.numbers.NumericUtils;
 
 public class Problem48 {
 

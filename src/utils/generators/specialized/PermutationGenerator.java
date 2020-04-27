@@ -1,9 +1,9 @@
-package src.utils.generators.specialized;
+package utils.generators.specialized;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import src.utils.generators.Generator;
+import utils.generators.Generator;
 
 /** Generates all permutations of a list of comparable elements. */
 public final class PermutationGenerator<T extends Comparable<T>> implements Generator<List<T>> {

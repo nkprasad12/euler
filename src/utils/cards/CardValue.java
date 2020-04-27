@@ -1,4 +1,4 @@
-package src.utils.cards;
+package utils.cards;
 
 /** Value of a playing card. */
 public enum CardValue {

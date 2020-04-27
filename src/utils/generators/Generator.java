@@ -1,4 +1,4 @@
-package src.utils.generators;
+package utils.generators;
 
 /**
  * Generator representing sequences that may be too large or unnecesary to store in memory, but can

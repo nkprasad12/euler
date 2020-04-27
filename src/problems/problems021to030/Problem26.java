@@ -1,9 +1,9 @@
-package src.problems.problems021to030;
+package problems.problems021to030;
 
 import java.lang.invoke.MethodHandles;
 import java.util.HashMap;
-import src.utils.generators.Generators;
-import src.utils.generators.base.tuples.Tuples;
+import utils.generators.Generators;
+import utils.generators.base.tuples.Tuples;
 
 public class Problem26 {
 

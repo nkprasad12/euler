@@ -1,17 +1,17 @@
-package src.problems.problems041to050;
+package problems.problems041to050;
 
-import static src.utils.generators.Generators.from;
-import static src.utils.generators.Generators.fromCartesianProductOf;
+import static utils.generators.Generators.from;
+import static utils.generators.Generators.fromCartesianProductOf;
 
 import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.TreeSet;
-import src.utils.generators.Generators;
-import src.utils.generators.base.tuples.Tuples.Pair;
-import src.utils.generators.consumers.GeneratorConsumer;
-import src.utils.primes.Primes;
+import utils.generators.Generators;
+import utils.generators.base.tuples.Tuples.Pair;
+import utils.generators.consumers.GeneratorConsumer;
+import utils.primes.Primes;
 
 public class Problem49 {
 

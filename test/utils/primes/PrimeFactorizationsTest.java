@@ -1,11 +1,9 @@
-package test.utils.primes;
+package utils.primes;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
-import src.utils.primes.PrimeFactorizations;
-import src.utils.primes.Primes;
 
 public class PrimeFactorizationsTest {
 

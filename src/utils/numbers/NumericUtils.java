@@ -1,4 +1,4 @@
-package src.utils.numbers;
+package utils.numbers;
 
 public final class NumericUtils {
 

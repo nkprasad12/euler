@@ -1,13 +1,13 @@
-package src.problems.problems041to050;
+package problems.problems041to050;
 
 import static java.lang.Integer.parseInt;
-import static src.utils.generators.Generators.range;
+import static utils.generators.Generators.range;
 
 import java.lang.invoke.MethodHandles;
 import java.util.Collections;
 import java.util.List;
-import src.utils.generators.Generators;
-import src.utils.numbers.BigNumber;
+import utils.generators.Generators;
+import utils.numbers.BigNumber;
 
 public class Problem43 {
 

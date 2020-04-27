@@ -1,11 +1,10 @@
-package test.utils.numbers;
+package utils.numbers;
 
-import static test.Assertions.assertEqual;
+import static assertions.Assertions.assertEqual;
 
 import org.junit.Test;
-import src.utils.numbers.Rational;
-import src.utils.primes.PrimeFactorization;
-import src.utils.primes.Primes;
+import utils.primes.PrimeFactorization;
+import utils.primes.Primes;
 
 public class RationalTest {
 

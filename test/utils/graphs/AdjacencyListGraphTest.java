@@ -1,16 +1,13 @@
-package test.utils.graphs;
+package utils.graphs;
 
+import static assertions.Assertions.assertGeneratesNone;
+import static assertions.Assertions.assertGeneratesUnordered;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
-import static test.Assertions.assertGeneratesNone;
-import static test.Assertions.assertGeneratesUnordered;
 
 import java.util.Arrays;
 import org.junit.Test;
-import src.utils.graphs.AdjacencyListGraph;
-import src.utils.graphs.Edge;
-import src.utils.graphs.Graph;
 
 public class AdjacencyListGraphTest {
 
