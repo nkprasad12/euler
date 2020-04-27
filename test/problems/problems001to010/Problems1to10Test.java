@@ -20,4 +20,9 @@ public class Problems1to10Test {
   public void problem3_producesExpected() {
     assertEqual(Problem3.solution(), "6857");
   }
+
+  @Test
+  public void problem4_producesExpected() {
+    assertEqual(Problem4.solution(), "906609");
+  }
 }
