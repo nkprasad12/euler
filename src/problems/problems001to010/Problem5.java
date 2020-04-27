@@ -10,6 +10,10 @@ public class Problem5 {
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 
+    System.out.println(solution());
+  }
+
+  public static String solution() {
     Primes primes = new Primes();
     PrimeFactorizations factor = new PrimeFactorizations(primes);
 
@@ -19,6 +23,6 @@ public class Problem5 {
           allFactors.multiplyBy(
               allFactors.divideBy(factor.factorizationOf(i)).reduce().denominator());
     }
-    System.out.println(allFactors.toLong());
+    return String.valueOf(allFactors.toLong());
   }
 }
