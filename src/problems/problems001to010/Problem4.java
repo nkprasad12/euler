@@ -1,5 +1,7 @@
 package problems.problems001to010;
 
+import static utils.generators.Generators.range;
+
 import java.lang.invoke.MethodHandles;
 
 public class Problem4 {
@@ -7,6 +9,13 @@ public class Problem4 {
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
     findMaxPalindrome();
+  }
+
+  public static String solution() {
+    return range(100, 999)
+        .flatMap(i -> range(100, i).map(j -> i * j))
+        .reduce(-1, (max, next) -> next > max && isPalindrome(next) ? next : max)
+        .toString();
   }
 
   public static void findMaxPalindrome() {
