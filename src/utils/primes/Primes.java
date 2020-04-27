@@ -112,9 +112,8 @@ public final class Primes {
   /**
    * Returns a map representing the prime factorization of the input.
    *
-   * <p>
-   * The keys of the map are the prime factors, and the values are the powers to
-   * which the prime key is raised in the factorization.
+   * <p>The keys of the map are the prime factors, and the values are the powers to which the prime
+   * key is raised in the factorization.
    */
   public SortedMap<Long, Integer> factor(long n) {
     if (n <= 0) {
