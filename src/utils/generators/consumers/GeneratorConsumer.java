@@ -262,7 +262,12 @@ public class GeneratorConsumer<T> {
     }
 
     public void print() {
-      System.out.println(lastValue.isPresent() ? lastValue.get() : "No values generated.");
+      System.out.println(toString());
+    }
+
+    @Override
+    public String toString() {
+      return lastValue.isPresent() ? lastValue.get().toString() : "No values generated.";
     }
   }
 }

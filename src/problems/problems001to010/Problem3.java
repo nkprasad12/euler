@@ -8,6 +8,11 @@ public class Problem3 {
 
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
-    System.out.println(PrimeFactorization.of(600851475143l, new Primes()).largestFactor());
+
+    System.out.println(solution());
+  }
+
+  public static String solution() {
+    return String.valueOf(PrimeFactorization.of(600851475143l, new Primes()).largestFactor());
   }
 }
