@@ -1,7 +1,8 @@
 package utils.primes;
 
+import static java.util.Collections.unmodifiableList;
+
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -130,8 +131,9 @@ public final class Primes {
         factorMap.put(prime, exponent);
       }
     }
-    computePrimesUpTo(remaining);
-    for (Long prime : primes) {
+    int maxCheckedIndex = primes.primesList.size() - 1;
+    computePrimesUpTo((long) Math.sqrt(remaining));
+    for (Long prime : primes.valuesAfterIndex(maxCheckedIndex)) {
       int exponent = 0;
       while (remaining % prime == 0) {
         exponent++;
@@ -142,7 +144,7 @@ public final class Primes {
       }
     }
     if (remaining > 1) {
-      throw new RuntimeException("Error in factor method - could not complete factorization.");
+      factorMap.put(remaining, 1);
     }
     return factorMap;
   }
@@ -182,11 +184,19 @@ public final class Primes {
     }
 
     List<Long> valuesUpTo(Long max) {
-      int index =
-          max >= primesList.get(primesList.size() - 1)
-              ? primesList.size()
-              : firstIndexGreaterThan(max);
-      return Collections.unmodifiableList(primesList.subList(0, index));
+      int index = max >= lastPrime() ? primesList.size() : firstIndexGreaterThan(max);
+      return unmodifiableList(primesList.subList(0, index));
+    }
+
+    List<Long> valuesAfterIndex(int index) {
+      if (index >= primesList.size() - 1) {
+        return new ArrayList<>();
+      }
+      return unmodifiableList(primesList.subList(index + 1, primesList.size()));
+    }
+
+    private long lastPrime() {
+      return primesList.get(primesList.size() - 1);
     }
 
     private int firstIndexGreaterThan(Long max) {
