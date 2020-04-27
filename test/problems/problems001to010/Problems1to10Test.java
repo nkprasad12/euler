@@ -17,8 +17,6 @@ public class Problems1to10Test {
     assertEqual(Problem2.solution(), "4613732");
   }
 
-  // TODO - fix the implementation and enable the test!
-  @Ignore
   @Test
   public void problem3_producesExpected() {
     assertEqual(Problem3.solution(), "6857");
