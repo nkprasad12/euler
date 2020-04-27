@@ -9,7 +9,7 @@ public class Problems1to10Test {
 
   @Test
   public void problem1_producesExpected() {
-      assertEqual(Problem1.solution(), "233168");
+    assertEqual(Problem1.solution(), "233168");
   }
 
   @Test
