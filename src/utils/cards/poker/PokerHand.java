@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
-
 import src.utils.cards.Card;
 import src.utils.cards.CardValue;
 import src.utils.cards.Suit;
@@ -82,7 +81,7 @@ public final class PokerHand implements Comparable<PokerHand> {
         List<CardValue> remainingCardValues) {
       this.result = result;
       this.resultValue = resultValue;
-      this.resultSecondaryValue = 
+      this.resultSecondaryValue =
           resultSecondaryValue != null ? Optional.of(resultSecondaryValue) : Optional.empty();
       this.remainingCardValues = new ArrayList<>(remainingCardValues);
       Collections.sort(this.remainingCardValues);
@@ -102,8 +101,7 @@ public final class PokerHand implements Comparable<PokerHand> {
       if (resultValue.compareTo(o.resultValue) != 0) {
         return resultValue.compareTo(o.resultValue);
       }
-      boolean useSecondary =
-          resultSecondaryValue.isPresent() && o.resultSecondaryValue.isPresent();
+      boolean useSecondary = resultSecondaryValue.isPresent() && o.resultSecondaryValue.isPresent();
       if (useSecondary) {
         int secondaryCompareResult =
             resultSecondaryValue.get().compareTo(o.resultSecondaryValue.get());
