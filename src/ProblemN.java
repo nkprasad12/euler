@@ -1,9 +1,8 @@
-package src;
-// package src.problems.problemsXtoX+9
+// package problems.problemsXtoX+9
 
-// import static src.utils.generators.Generators.from;
-// import static src.utils.generators.Generators.range;
-// import static src.utils.generators.Generators.fromCartesianProductOf;
+// import static utils.generators.Generators.from;
+// import static utils.generators.Generators.range;
+// import static utils.generators.Generators.fromCartesianProductOf;
 
 import java.lang.invoke.MethodHandles;
 

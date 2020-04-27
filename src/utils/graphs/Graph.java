@@ -1,10 +1,10 @@
-package src.utils.graphs;
+package utils.graphs;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
-import src.utils.generators.Generator;
-import src.utils.generators.Generators;
+import utils.generators.Generator;
+import utils.generators.Generators;
 
 /** Basic representation of a graph. */
 public interface Graph<T> {

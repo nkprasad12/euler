@@ -1,4 +1,4 @@
-package test;
+package assertions;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -9,9 +9,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import src.utils.generators.Generator;
-import src.utils.generators.Generators;
-import src.utils.generators.consumers.GeneratorConsumer;
+import utils.generators.Generator;
+import utils.generators.Generators;
+import utils.generators.consumers.GeneratorConsumer;
 
 public class Assertions {
 

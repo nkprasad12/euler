@@ -1,17 +1,17 @@
-package test.utils.generators.consumers;
+package utils.generators.consumers;
 
-import static src.utils.generators.base.tuples.Tuples.pair;
-import static test.Assertions.assertGenerates;
-import static test.Assertions.assertGeneratesNone;
+import static utils.generators.base.tuples.Tuples.pair;
+import static assertions.Assertions.assertGenerates;
+import static assertions.Assertions.assertGeneratesNone;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.BiFunction;
 import org.junit.Test;
-import src.utils.generators.base.IteratorWrappingGenerator;
-import src.utils.generators.consumers.GeneratorConsumer;
-import src.utils.generators.consumers.PairGeneratorConsumer;
+import utils.generators.base.IteratorWrappingGenerator;
+import utils.generators.consumers.GeneratorConsumer;
+import utils.generators.consumers.PairGeneratorConsumer;
 
 public class PairGeneratorConsumerTest {
 

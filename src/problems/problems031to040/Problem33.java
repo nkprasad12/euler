@@ -1,8 +1,8 @@
-package src.problems.problems031to040;
+package problems.problems031to040;
 
 import java.lang.invoke.MethodHandles;
-import src.utils.generators.Generators;
-import src.utils.generators.base.tuples.Tuples;
+import utils.generators.Generators;
+import utils.generators.base.tuples.Tuples;
 
 public class Problem33 {
 

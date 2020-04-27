@@ -1,4 +1,4 @@
-package src.problems.problems021to030;
+package problems.problems021to030;
 
 public class Problem28 {
 

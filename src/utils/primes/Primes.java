@@ -1,4 +1,4 @@
-package src.utils.primes;
+package utils.primes;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,4 +1,4 @@
-package test.utils.numbers;
+package utils.numbers;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThrows;
@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.Test;
-import src.utils.numbers.BigNumber;
-import test.Assertions;
+import utils.numbers.BigNumber;
+import assertions.Assertions;
 
 public class BigNumberTest {
 

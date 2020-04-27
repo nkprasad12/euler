@@ -1,7 +1,7 @@
-package src.utils.generators.base;
+package utils.generators.base;
 
 import java.util.function.Function;
-import src.utils.generators.Generator;
+import utils.generators.Generator;
 
 /** Generator that transforms each element of an input generator. */
 public final class MappingGenerator<I, O> implements Generator<O> {

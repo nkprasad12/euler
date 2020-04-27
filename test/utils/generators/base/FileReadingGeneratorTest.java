@@ -1,6 +1,6 @@
-package test.utils.generators.base;
+package utils.generators.base;
 
-import static test.Assertions.assertGenerates;
+import static assertions.Assertions.assertGenerates;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -9,8 +9,8 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.Test;
-import src.utils.generators.Generator;
-import src.utils.generators.base.FileReadingGenerator;
+import utils.generators.Generator;
+import utils.generators.base.FileReadingGenerator;
 
 public class FileReadingGeneratorTest {
 

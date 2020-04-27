@@ -1,13 +1,13 @@
-package src.problems.problems041to050;
+package problems.problems041to050;
 
-import static src.utils.generators.Generators.range;
+import static utils.generators.Generators.range;
 
 import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
 import java.util.List;
-import src.utils.generators.Generators;
-import src.utils.generators.consumers.GeneratorConsumer;
-import src.utils.primes.Primes;
+import utils.generators.Generators;
+import utils.generators.consumers.GeneratorConsumer;
+import utils.primes.Primes;
 
 public class Problem41 {
 

@@ -1,8 +1,8 @@
-package src.problems.problems041to050;
+package problems.problems041to050;
 
 import java.lang.invoke.MethodHandles;
-import src.utils.generators.Generators;
-import src.utils.numbers.NumericUtils;
+import utils.generators.Generators;
+import utils.numbers.NumericUtils;
 
 public class Problem42 {
 

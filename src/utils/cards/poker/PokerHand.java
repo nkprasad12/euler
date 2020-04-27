@@ -1,13 +1,13 @@
-package src.utils.cards.poker;
+package utils.cards.poker;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
-import src.utils.cards.Card;
-import src.utils.cards.CardValue;
-import src.utils.cards.Suit;
+import utils.cards.Card;
+import utils.cards.CardValue;
+import utils.cards.Suit;
 
 public final class PokerHand implements Comparable<PokerHand> {
 

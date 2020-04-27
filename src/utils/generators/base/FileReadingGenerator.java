@@ -1,8 +1,8 @@
-package src.utils.generators.base;
+package utils.generators.base;
 
 import java.io.File;
 import java.util.Scanner;
-import src.utils.generators.Generator;
+import utils.generators.Generator;
 
 /** Generator that generators tokens from a file. */
 public final class FileReadingGenerator implements Generator<String> {

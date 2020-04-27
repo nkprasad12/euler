@@ -1,16 +1,16 @@
-package test.utils.primes;
+package utils.primes;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
-import static src.utils.primes.Primes.isPrimeStatic;
-import static test.Assertions.assertEqual;
+import static utils.primes.Primes.isPrimeStatic;
+import static assertions.Assertions.assertEqual;
 
 import java.util.List;
 import java.util.SortedMap;
 import org.junit.Test;
-import src.utils.generators.Generators;
-import src.utils.primes.Primes;
+import utils.generators.Generators;
+import utils.primes.Primes;
 
 public class PrimesTest {
 

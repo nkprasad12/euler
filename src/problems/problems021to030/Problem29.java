@@ -1,11 +1,11 @@
-package src.problems.problems021to030;
+package problems.problems021to030;
 
-import static src.utils.generators.Generators.range;
+import static utils.generators.Generators.range;
 
 import java.lang.invoke.MethodHandles;
 import java.util.HashSet;
-import src.utils.generators.Generators;
-import src.utils.numbers.BigNumber;
+import utils.generators.Generators;
+import utils.numbers.BigNumber;
 
 public class Problem29 {
 

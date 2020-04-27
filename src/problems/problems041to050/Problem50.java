@@ -1,12 +1,12 @@
-package src.problems.problems041to050;
+package problems.problems041to050;
 
-import static src.utils.generators.Generators.from;
-import static src.utils.generators.Generators.range;
+import static utils.generators.Generators.from;
+import static utils.generators.Generators.range;
 
 import java.lang.invoke.MethodHandles;
 import java.util.List;
-import src.utils.generators.base.tuples.Tuples;
-import src.utils.primes.Primes;
+import utils.generators.base.tuples.Tuples;
+import utils.primes.Primes;
 
 public class Problem50 {
 

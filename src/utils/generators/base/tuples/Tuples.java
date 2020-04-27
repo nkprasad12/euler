@@ -1,4 +1,4 @@
-package src.utils.generators.base.tuples;
+package utils.generators.base.tuples;
 
 import java.util.Objects;
 

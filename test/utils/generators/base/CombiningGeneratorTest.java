@@ -1,17 +1,17 @@
-package test.utils.generators.base;
+package utils.generators.base;
 
-import static src.utils.generators.base.tuples.Tuples.pair;
-import static test.Assertions.assertGenerates;
-import static test.Assertions.assertGeneratesNone;
+import static utils.generators.base.tuples.Tuples.pair;
+import static assertions.Assertions.assertGenerates;
+import static assertions.Assertions.assertGeneratesNone;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import org.junit.Test;
-import src.utils.generators.Generator;
-import src.utils.generators.base.CombiningGenerator;
-import src.utils.generators.base.IteratorWrappingGenerator;
-import src.utils.generators.base.tuples.Tuples.Pair;
+import utils.generators.Generator;
+import utils.generators.base.CombiningGenerator;
+import utils.generators.base.IteratorWrappingGenerator;
+import utils.generators.base.tuples.Tuples.Pair;
 
 public class CombiningGeneratorTest {
 

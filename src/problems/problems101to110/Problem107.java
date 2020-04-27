@@ -1,12 +1,12 @@
-package src.problems.problems101to110;
+package problems.problems101to110;
 
 import java.lang.invoke.MethodHandles;
 import java.util.Arrays;
-import src.utils.generators.Generators;
-import src.utils.graphs.AdjacencyListGraph;
-import src.utils.graphs.Edge;
-import src.utils.graphs.Graph;
-import src.utils.graphs.Graphs;
+import utils.generators.Generators;
+import utils.graphs.AdjacencyListGraph;
+import utils.graphs.Edge;
+import utils.graphs.Graph;
+import utils.graphs.Graphs;
 
 public class Problem107 {
 

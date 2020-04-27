@@ -1,14 +1,14 @@
-package test.utils.generators.specialized;
+package utils.generators.specialized;
 
-import static test.Assertions.assertEqual;
-import static test.Assertions.assertGeneratesLists;
-import static test.Assertions.assertGeneratesNone;
+import static assertions.Assertions.assertEqual;
+import static assertions.Assertions.assertGeneratesLists;
+import static assertions.Assertions.assertGeneratesNone;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import org.junit.Test;
-import src.utils.generators.Generators;
+import utils.generators.Generators;
 
 public class PermutationGeneratorTest {
 

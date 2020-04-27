@@ -1,9 +1,9 @@
-package src.problems.problems011to020;
+package problems.problems011to020;
 
 import java.lang.invoke.MethodHandles;
-import src.utils.primes.PrimeFactorization;
-import src.utils.primes.PrimeFactorizations;
-import src.utils.primes.Primes;
+import utils.primes.PrimeFactorization;
+import utils.primes.PrimeFactorizations;
+import utils.primes.Primes;
 
 public class Problem12 {
 

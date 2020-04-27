@@ -1,9 +1,9 @@
-package src.utils.generators.specialized;
+package utils.generators.specialized;
 
 import java.util.Map.Entry;
 import java.util.SortedMap;
-import src.utils.generators.Generator;
-import src.utils.primes.PrimeFactorization;
+import utils.generators.Generator;
+import utils.primes.PrimeFactorization;
 
 /** Generates all integer divisors of a given integer. */
 public class DivisorGenerator implements Generator<Long> {

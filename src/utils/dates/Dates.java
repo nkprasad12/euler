@@ -1,4 +1,4 @@
-package src.utils.dates;
+package utils.dates;
 
 import java.util.ArrayList;
 import java.util.Arrays;

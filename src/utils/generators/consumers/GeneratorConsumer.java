@@ -1,6 +1,6 @@
-package src.utils.generators.consumers;
+package utils.generators.consumers;
 
-import static src.utils.generators.base.tuples.Tuples.pair;
+import static utils.generators.base.tuples.Tuples.pair;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,17 +13,17 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
-import src.utils.generators.Generator;
-import src.utils.generators.base.CombiningGenerator;
-import src.utils.generators.base.FilteringGenerator;
-import src.utils.generators.base.FlatMappingGenerator;
-import src.utils.generators.base.IteratorWrappingGenerator;
-import src.utils.generators.base.MappingGenerator;
-import src.utils.generators.base.RecursiveGenerator;
-import src.utils.generators.base.ReducingGenerator;
-import src.utils.generators.base.TerminatingGenerator;
-import src.utils.generators.base.tuples.Tuples;
-import src.utils.generators.base.tuples.Tuples.Pair;
+import utils.generators.Generator;
+import utils.generators.base.CombiningGenerator;
+import utils.generators.base.FilteringGenerator;
+import utils.generators.base.FlatMappingGenerator;
+import utils.generators.base.IteratorWrappingGenerator;
+import utils.generators.base.MappingGenerator;
+import utils.generators.base.RecursiveGenerator;
+import utils.generators.base.ReducingGenerator;
+import utils.generators.base.TerminatingGenerator;
+import utils.generators.base.tuples.Tuples;
+import utils.generators.base.tuples.Tuples.Pair;
 
 /** Convenience wrapper class for fluent computations with generators. */
 public class GeneratorConsumer<T> {

@@ -1,7 +1,7 @@
-package src.problems.problems011to020;
+package problems.problems011to020;
 
 import java.lang.invoke.MethodHandles;
-import src.utils.generators.Generators;
+import utils.generators.Generators;
 
 public class Problem11 {
 

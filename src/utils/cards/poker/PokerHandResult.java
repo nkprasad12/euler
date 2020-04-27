@@ -1,4 +1,4 @@
-package src.utils.cards.poker;
+package utils.cards.poker;
 
 /** Possible results for a poker hand. */
 public enum PokerHandResult {

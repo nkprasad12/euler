@@ -1,7 +1,7 @@
-package src.utils.numbers;
+package utils.numbers;
 
-import src.utils.primes.PrimeFactorization;
-import src.utils.primes.Primes;
+import utils.primes.PrimeFactorization;
+import utils.primes.Primes;
 
 /** Class that represents a rational number as the division of two integers. */
 public class Rational {

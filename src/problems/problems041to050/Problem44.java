@@ -1,9 +1,9 @@
-package src.problems.problems041to050;
+package problems.problems041to050;
 
 import java.lang.invoke.MethodHandles;
 import java.util.HashMap;
 import java.util.List;
-import src.utils.generators.Generators;
+import utils.generators.Generators;
 
 public class Problem44 {
 

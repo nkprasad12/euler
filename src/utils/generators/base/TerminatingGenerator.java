@@ -1,8 +1,8 @@
-package src.utils.generators.base;
+package utils.generators.base;
 
 import java.util.Optional;
 import java.util.function.Predicate;
-import src.utils.generators.Generator;
+import utils.generators.Generator;
 
 /** Generator that gives elements of an input generator until a termination condition is met. */
 public final class TerminatingGenerator<T> implements Generator<T> {

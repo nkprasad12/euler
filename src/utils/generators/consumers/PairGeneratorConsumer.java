@@ -1,11 +1,11 @@
-package src.utils.generators.consumers;
+package utils.generators.consumers;
 
 import java.util.function.BiFunction;
 import java.util.function.BiPredicate;
 import java.util.function.Function;
-import src.utils.generators.Generator;
-import src.utils.generators.base.tuples.Tuples;
-import src.utils.generators.base.tuples.Tuples.Pair;
+import utils.generators.Generator;
+import utils.generators.base.tuples.Tuples;
+import utils.generators.base.tuples.Tuples.Pair;
 
 public class PairGeneratorConsumer<T, R> extends GeneratorConsumer<Pair<T, R>> {
 

@@ -1,9 +1,9 @@
-package test.utils.numbers;
+package utils.numbers;
 
-import static test.Assertions.assertEqual;
+import static assertions.Assertions.assertEqual;
 
 import org.junit.Test;
-import src.utils.numbers.Series;
+import utils.numbers.Series;
 
 public class SeriesTest {
 

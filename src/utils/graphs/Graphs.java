@@ -1,11 +1,11 @@
-package src.utils.graphs;
+package utils.graphs;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-import src.utils.datastructures.DisjointSet;
-import src.utils.generators.Generators;
+import utils.datastructures.DisjointSet;
+import utils.generators.Generators;
 
 public final class Graphs {
 

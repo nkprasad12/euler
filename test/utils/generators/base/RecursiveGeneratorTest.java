@@ -1,11 +1,11 @@
-package test.utils.generators.base;
+package utils.generators.base;
 
 import static org.junit.Assert.assertTrue;
-import static test.Assertions.assertEqual;
+import static assertions.Assertions.assertEqual;
 
 import org.junit.Test;
-import src.utils.generators.Generator;
-import src.utils.generators.base.RecursiveGenerator;
+import utils.generators.Generator;
+import utils.generators.base.RecursiveGenerator;
 
 public class RecursiveGeneratorTest {
 

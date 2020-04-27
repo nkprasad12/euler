@@ -1,7 +1,7 @@
-package src.utils.generators.base;
+package utils.generators.base;
 
 import java.util.Optional;
-import src.utils.generators.Generator;
+import utils.generators.Generator;
 
 /** Generator that conbines two generators in sequence into a single generator. */
 public final class ConcatenatingGenerator<T> implements Generator<T> {

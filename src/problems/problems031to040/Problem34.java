@@ -1,8 +1,8 @@
-package src.problems.problems031to040;
+package problems.problems031to040;
 
 import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
-import src.utils.numbers.BigNumber;
+import utils.numbers.BigNumber;
 
 public class Problem34 {
 

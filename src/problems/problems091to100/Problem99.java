@@ -1,11 +1,11 @@
-package src.problems.problems091to100;
+package problems.problems091to100;
 
 import static java.lang.Double.parseDouble;
 import static java.lang.Math.log;
 
 import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
-import src.utils.generators.Generators;
+import utils.generators.Generators;
 
 public class Problem99 {
 

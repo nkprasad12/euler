@@ -1,12 +1,12 @@
-package test.utils.generators.base;
+package utils.generators.base;
 
 import static org.junit.Assert.assertFalse;
-import static test.Assertions.assertGenerates;
+import static assertions.Assertions.assertGenerates;
 
 import java.util.ArrayList;
 import org.junit.Test;
-import src.utils.generators.Generator;
-import src.utils.generators.base.IteratorWrappingGenerator;
+import utils.generators.Generator;
+import utils.generators.base.IteratorWrappingGenerator;
 
 public class IteratorWrappingGeneratorTest {
 

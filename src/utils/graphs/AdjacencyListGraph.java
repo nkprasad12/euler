@@ -1,9 +1,9 @@
-package src.utils.graphs;
+package utils.graphs;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import src.utils.generators.Generator;
-import src.utils.generators.Generators;
+import utils.generators.Generator;
+import utils.generators.Generators;
 
 public class AdjacencyListGraph<T> implements Graph<T> {
 

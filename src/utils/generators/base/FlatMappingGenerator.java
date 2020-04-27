@@ -1,8 +1,8 @@
-package src.utils.generators.base;
+package utils.generators.base;
 
 import java.util.Optional;
 import java.util.function.Function;
-import src.utils.generators.Generator;
+import utils.generators.Generator;
 
 /** Generator that flattens a Generator of Generators into a single Generator. */
 public final class FlatMappingGenerator<I, O> implements Generator<O> {

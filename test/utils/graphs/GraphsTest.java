@@ -1,4 +1,4 @@
-package test.utils.graphs;
+package utils.graphs;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -7,10 +7,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import org.junit.Test;
-import src.utils.graphs.AdjacencyListGraph;
-import src.utils.graphs.Edge;
-import src.utils.graphs.Graph;
-import src.utils.graphs.Graphs;
+import utils.graphs.AdjacencyListGraph;
+import utils.graphs.Edge;
+import utils.graphs.Graph;
+import utils.graphs.Graphs;
 
 public class GraphsTest {
 
