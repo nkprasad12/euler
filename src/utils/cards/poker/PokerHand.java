@@ -3,8 +3,11 @@ package utils.cards.poker;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 import java.util.List;
-import java.util.Optional;
+
 import utils.cards.Card;
 import utils.cards.CardValue;
 import utils.cards.Suit;
@@ -27,6 +30,7 @@ public final class PokerHand implements Comparable<PokerHand> {
     boolean isStraight = true;
     CardValue highCard = CardValue.Two;
     List<Integer> values = new ArrayList<Integer>();
+    Set<Card> usedCards = new HashSet<>();
 
     for (Card card : cardList) {
       values.add(card.value().cardValue());
@@ -35,7 +39,6 @@ public final class PokerHand implements Comparable<PokerHand> {
       } else {
         occurenceCount.put(card.value(), Integer.valueOf(1));
       }
-
       if (card.value().cardValue() > highCard.cardValue()) {
         highCard = card.value();
       }
@@ -52,9 +55,90 @@ public final class PokerHand implements Comparable<PokerHand> {
       previousValue = value;
     }
 
-    boolean hi = isFlush() && isStraight;
-    System.out.println(hi);
-    return null;
+    boolean isFlush = isFlush();
+
+    PokerHandData pokerData = null;
+    PokerHandResult result = PokerHandResult.HighCard;
+    CardValue resultValue = null;
+    CardValue secondaryValue = null;
+    List<CardValue> remainingCards = new ArrayList<CardValue>();
+
+    if (isStraight && isFlush) {
+        result = PokerHandResult.StraightFlush;
+        resultValue = highCard;
+        usedCards.addAll(cardList);
+    } else if (isNumberOfAKind(occurenceCount, 4) != null) {
+        result = PokerHandResult.FourOfAKind;
+        resultValue = isNumberOfAKind(occurenceCount, 4);
+        for (Card card : cardList) {
+          if (card.value().equals(resultValue)) {
+            usedCards.add(card);
+          }
+        }
+    } else if (isNumberOfAKind(occurenceCount, 3) != null && isNumberOfAKind(occurenceCount, 2) != null) {
+        result = PokerHandResult.FullHouse;
+        resultValue = isNumberOfAKind(occurenceCount, 3);
+        secondaryValue = isNumberOfAKind(occurenceCount, 2);
+        usedCards.addAll(cardList);
+    } else if (isFlush) {
+        result = PokerHandResult.Flush;
+        usedCards.addAll(cardList);
+    } else if (isStraight) {
+        result = PokerHandResult.Straight;
+        resultValue = highCard;
+        usedCards.addAll(cardList);
+    } else if (isNumberOfAKind(occurenceCount, 3) != null) {
+        result = PokerHandResult.ThreeOfAKind;
+        resultValue = isNumberOfAKind(occurenceCount, 3);
+        for (Card card : cardList) {
+          if (card.value().equals(resultValue)) {
+            usedCards.add(card);
+          }
+        }
+    } else if (isNumberOfAKind(occurenceCount, 2) != null) {
+        resultValue = isNumberOfAKind(occurenceCount, 2);
+        for (Card card : cardList) {
+          if (card.value().equals(resultValue)) {
+            usedCards.add(card);
+          }
+        }
+        occurenceCount.put(resultValue, 0);
+        secondaryValue = isNumberOfAKind(occurenceCount, 2);
+        result = secondaryValue == null ? PokerHandResult.OnePair : PokerHandResult.TwoPair;
+        if (secondaryValue != null) {
+          for (Card card : cardList) {
+            if (card.value().equals(resultValue)) {
+              usedCards.add(card);
+            }
+          }
+        }
+    } else {
+        resultValue = highCard;
+    }
+
+    for (Card card : cardList) {
+        if (usedCards.contains(card)) {
+          continue;
+        }
+        remainingCards.add(card.value());
+    }
+
+    pokerData = new PokerHandData(result, resultValue, secondaryValue, remainingCards);
+
+    return pokerData;
+  }
+
+  private CardValue isNumberOfAKind(HashMap<CardValue, Integer> occurenceMap, int n) {
+    CardValue hasNOfAKind = null;
+
+    for (Map.Entry<CardValue, Integer> entry : occurenceMap.entrySet())
+    {
+        if (entry.getValue() == n) {
+            hasNOfAKind = entry.getKey();
+        }
+    }
+
+    return hasNOfAKind;
   }
 
   private boolean isFlush() {
@@ -65,57 +149,5 @@ public final class PokerHand implements Comparable<PokerHand> {
       }
     }
     return false;
-  }
-
-  private static final class PokerHandData implements Comparable<PokerHandData> {
-
-    private final PokerHandResult result;
-    private final CardValue resultValue;
-    private final Optional<CardValue> resultSecondaryValue;
-    private final List<CardValue> remainingCardValues;
-
-    private PokerHandData(
-        PokerHandResult result,
-        CardValue resultValue,
-        CardValue resultSecondaryValue,
-        List<CardValue> remainingCardValues) {
-      this.result = result;
-      this.resultValue = resultValue;
-      this.resultSecondaryValue =
-          resultSecondaryValue != null ? Optional.of(resultSecondaryValue) : Optional.empty();
-      this.remainingCardValues = new ArrayList<>(remainingCardValues);
-      Collections.sort(this.remainingCardValues);
-      Collections.reverse(this.remainingCardValues);
-    }
-
-    private PokerHandData(
-        PokerHandResult result, CardValue resultValue, List<CardValue> remainingCardValues) {
-      this(result, resultValue, null, remainingCardValues);
-    }
-
-    @Override
-    public int compareTo(PokerHandData o) {
-      if (result.compareTo(o.result) != 0) {
-        return result.compareTo(o.result);
-      }
-      if (resultValue.compareTo(o.resultValue) != 0) {
-        return resultValue.compareTo(o.resultValue);
-      }
-      boolean useSecondary = resultSecondaryValue.isPresent() && o.resultSecondaryValue.isPresent();
-      if (useSecondary) {
-        int secondaryCompareResult =
-            resultSecondaryValue.get().compareTo(o.resultSecondaryValue.get());
-        if (secondaryCompareResult != 0) {
-          return secondaryCompareResult;
-        }
-      }
-      for (int i = 0; i < remainingCardValues.size(); i++) {
-        int compareResult = remainingCardValues.get(i).compareTo(o.remainingCardValues.get(i));
-        if (compareResult != 0) {
-          return compareResult;
-        }
-      }
-      return 0;
-    }
   }
 }
