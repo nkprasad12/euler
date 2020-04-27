@@ -2,7 +2,6 @@ package problems.problems001to010;
 
 import static assertions.Assertions.assertEqual;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 public class Problems1to10Test {
