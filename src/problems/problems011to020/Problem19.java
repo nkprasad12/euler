@@ -10,6 +10,10 @@ public class Problem19 {
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 
+    System.out.println(solution());
+  }
+
+  public static String solution() {
     int sundays = 0;
     for (int year = 1901; year <= 2000; year++) {
       for (Integer month : Dates.MONTH_LIST) {
@@ -18,6 +22,6 @@ public class Problem19 {
         sundays += isSunday ? 1 : 0;
       }
     }
-    System.out.println(sundays);
+    return String.valueOf(sundays);
   }
 }

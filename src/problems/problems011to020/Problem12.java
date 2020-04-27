@@ -10,6 +10,10 @@ public class Problem12 {
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 
+    System.out.println(solution());
+  }
+
+  public static String solution() {
     Primes primes = new Primes();
     PrimeFactorizations factor = new PrimeFactorizations(primes);
 
@@ -25,7 +29,6 @@ public class Problem12 {
       next = factor.factorizationOf(k + 1);
       kthTriangle = kthTriangle.multiplyBy(next).divideBy(last).reduce().numerator();
     }
-
-    System.out.println(kthTriangle.toLong());
+    return String.valueOf(kthTriangle.toLong());
   }
 }

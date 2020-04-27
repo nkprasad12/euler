@@ -10,12 +10,15 @@ public class Problem13 {
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 
-    System.out.println(
-        Generators.from(Arrays.asList(NUMBERS.split(" ")))
-            .map(BigNumber::fromString)
-            .reduce(BigNumber.fromString("0"), (a, b) -> a.addTo(b))
-            .toString()
-            .substring(0, 10));
+    System.out.println(solution());
+  }
+
+  public static String solution() {
+    return Generators.from(Arrays.asList(NUMBERS.split(" ")))
+        .map(BigNumber::fromString)
+        .reduce(BigNumber.fromString("0"), (a, b) -> a.addTo(b))
+        .toString()
+        .substring(0, 10);
   }
 
   static final String NUMBERS =
