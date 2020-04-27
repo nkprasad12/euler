@@ -38,6 +38,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.github_token }}
         COMMIT_MSG: |
           Automated: Format Code
+          skip-checks: true	
       run: |
         git config user.email ""
         git config user.name "Automated Code Formatter"
@@ -45,4 +46,4 @@ jobs:
         java -jar "${GITHUB_WORKSPACE}/lib/google-java-format-1.7-all-deps.jar" -i $(git ls-files)
         chmod +x "${GITHUB_WORKSPACE}/lib/buildifier"
         "${GITHUB_WORKSPACE}/lib/buildifier" -r "${GITHUB_WORKSPACE}"
-        git diff --quiet && git diff --staged --quiet || (git commit -a -m "${COMMIT_MSG}"; git push origin ${{ github.head_ref }}; exit 1)
+        git diff --quiet && git diff --staged --quiet || (git commit -a -m "${COMMIT_MSG}"; git push origin ${{ github.head_ref }})
