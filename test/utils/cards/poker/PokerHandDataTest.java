@@ -32,7 +32,7 @@ public class PokerHandDataTest {
     PokerHandData first = new PokerHandData(OnePair, Five, EMPTY);
     PokerHandData second = new PokerHandData(HighCard, Jack, EMPTY);
 
-    assertTrue(first.compareTo(second) < 0);
-    assertTrue(second.compareTo(first) > 0);
+    assertTrue(first.compareTo(second) > 0);
+    assertTrue(second.compareTo(first) < 0);
   }
 }
