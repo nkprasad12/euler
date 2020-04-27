@@ -12,14 +12,14 @@ public class Problems1to10Test {
     assertEqual(Problem1.solution(), "233168");
   }
 
-  @Test 
+  @Test
   public void problem2_producesExpected() {
     assertEqual(Problem2.solution(), "4613732");
   }
 
   // TODO - fix the implementation and enable the test!
   @Ignore
-  @Test 
+  @Test
   public void problem3_producesExpected() {
     assertEqual(Problem3.solution(), "6857");
   }
