@@ -7,7 +7,6 @@ import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 import java.util.TreeSet;
 import src.utils.generators.Generators;
 import src.utils.generators.base.tuples.Tuples.Pair;
@@ -24,7 +23,7 @@ public class Problem49 {
 
   public static String answer() {
     Primes primesHelper = new Primes();
-    Set<Long> primes = primesHelper.primesUpTo(10000l);
+    List<Long> primes = primesHelper.primesUpTo(10000l);
     return from(primes)
         .filter(p -> p > 999 && p != 1487 && p != 4817 && p != 8147) // Get all eligible primes.
         .map(p -> Long.toString(p)) // Convert prime to string

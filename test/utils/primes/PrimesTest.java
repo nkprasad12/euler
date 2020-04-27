@@ -6,8 +6,8 @@ import static org.junit.Assert.assertTrue;
 import static src.utils.primes.Primes.isPrimeStatic;
 import static test.Assertions.assertEqual;
 
+import java.util.List;
 import java.util.SortedMap;
-import java.util.SortedSet;
 import org.junit.Test;
 import src.utils.generators.Generators;
 import src.utils.primes.Primes;
@@ -44,23 +44,25 @@ public class PrimesTest {
   public void primesUpTo_doesNotContainValuesAboveLimit() {
     Primes primes = new Primes();
     primes.primesUpTo(1000l);
+    List<Long> primesUpTo = primes.primesUpTo(100l);
 
-    assertTrue(primes.primesUpTo(100l).last() <= 100);
+    assertTrue(primesUpTo.get(primesUpTo.size() - 1) <= 100);
   }
 
   @Test
   public void primesUpTo_primeMax_containsPrine() {
     Primes primes = new Primes();
+    List<Long> primesUpTo = primes.primesUpTo(97l);
 
-    assertTrue(primes.primesUpTo(97l).last() == 97l);
+    assertEqual(primesUpTo.get(primesUpTo.size() - 1), 97l);
   }
 
   @Test
   public void primesUpTo_returnsUnModifiableSet() {
     Primes primes = new Primes();
-    SortedSet<Long> set = primes.primesUpTo(100l);
+    List<Long> list = primes.primesUpTo(100l);
 
-    assertThrows(UnsupportedOperationException.class, () -> set.add(4l));
+    assertThrows(UnsupportedOperationException.class, () -> list.add(4l));
   }
 
   @Test

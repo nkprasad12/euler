@@ -5,7 +5,6 @@ import static src.utils.generators.Generators.range;
 
 import java.lang.invoke.MethodHandles;
 import java.util.List;
-import java.util.SortedSet;
 import src.utils.generators.base.tuples.Tuples;
 import src.utils.primes.Primes;
 
@@ -16,7 +15,7 @@ public class Problem50 {
     long startTime = System.nanoTime();
 
     Primes primeHelper = new Primes();
-    SortedSet<Long> primes = primeHelper.primesUpTo(1000000);
+    List<Long> primes = primeHelper.primesUpTo(1000000);
     List<Long> primeSums =
         from(primes)
             .reducing(0l, (sum, p) -> sum + p)
