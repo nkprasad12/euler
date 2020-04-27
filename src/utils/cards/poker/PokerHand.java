@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.List;
-
 import utils.cards.Card;
 import utils.cards.CardValue;
 import utils.cards.Suit;
@@ -64,63 +63,64 @@ public final class PokerHand implements Comparable<PokerHand> {
     List<CardValue> remainingCards = new ArrayList<CardValue>();
 
     if (isStraight && isFlush) {
-        result = PokerHandResult.StraightFlush;
-        resultValue = highCard;
-        usedCards.addAll(cardList);
+      result = PokerHandResult.StraightFlush;
+      resultValue = highCard;
+      usedCards.addAll(cardList);
     } else if (isNumberOfAKind(occurenceCount, 4) != null) {
-        result = PokerHandResult.FourOfAKind;
-        resultValue = isNumberOfAKind(occurenceCount, 4);
-        for (Card card : cardList) {
-          if (card.value().equals(resultValue)) {
-            usedCards.add(card);
-          }
+      result = PokerHandResult.FourOfAKind;
+      resultValue = isNumberOfAKind(occurenceCount, 4);
+      for (Card card : cardList) {
+        if (card.value().equals(resultValue)) {
+          usedCards.add(card);
         }
-    } else if (isNumberOfAKind(occurenceCount, 3) != null && isNumberOfAKind(occurenceCount, 2) != null) {
-        result = PokerHandResult.FullHouse;
-        resultValue = isNumberOfAKind(occurenceCount, 3);
-        secondaryValue = isNumberOfAKind(occurenceCount, 2);
-        usedCards.addAll(cardList);
+      }
+    } else if (isNumberOfAKind(occurenceCount, 3) != null
+        && isNumberOfAKind(occurenceCount, 2) != null) {
+      result = PokerHandResult.FullHouse;
+      resultValue = isNumberOfAKind(occurenceCount, 3);
+      secondaryValue = isNumberOfAKind(occurenceCount, 2);
+      usedCards.addAll(cardList);
     } else if (isFlush) {
-        result = PokerHandResult.Flush;
-        usedCards.addAll(cardList);
+      result = PokerHandResult.Flush;
+      usedCards.addAll(cardList);
     } else if (isStraight) {
-        result = PokerHandResult.Straight;
-        resultValue = highCard;
-        usedCards.addAll(cardList);
+      result = PokerHandResult.Straight;
+      resultValue = highCard;
+      usedCards.addAll(cardList);
     } else if (isNumberOfAKind(occurenceCount, 3) != null) {
-        result = PokerHandResult.ThreeOfAKind;
-        resultValue = isNumberOfAKind(occurenceCount, 3);
-        for (Card card : cardList) {
-          if (card.value().equals(resultValue)) {
-            usedCards.add(card);
-          }
+      result = PokerHandResult.ThreeOfAKind;
+      resultValue = isNumberOfAKind(occurenceCount, 3);
+      for (Card card : cardList) {
+        if (card.value().equals(resultValue)) {
+          usedCards.add(card);
         }
+      }
     } else if (isNumberOfAKind(occurenceCount, 2) != null) {
-        resultValue = isNumberOfAKind(occurenceCount, 2);
+      resultValue = isNumberOfAKind(occurenceCount, 2);
+      for (Card card : cardList) {
+        if (card.value().equals(resultValue)) {
+          usedCards.add(card);
+        }
+      }
+      occurenceCount.put(resultValue, 0);
+      secondaryValue = isNumberOfAKind(occurenceCount, 2);
+      result = secondaryValue == null ? PokerHandResult.OnePair : PokerHandResult.TwoPair;
+      if (secondaryValue != null) {
         for (Card card : cardList) {
           if (card.value().equals(resultValue)) {
             usedCards.add(card);
           }
         }
-        occurenceCount.put(resultValue, 0);
-        secondaryValue = isNumberOfAKind(occurenceCount, 2);
-        result = secondaryValue == null ? PokerHandResult.OnePair : PokerHandResult.TwoPair;
-        if (secondaryValue != null) {
-          for (Card card : cardList) {
-            if (card.value().equals(resultValue)) {
-              usedCards.add(card);
-            }
-          }
-        }
+      }
     } else {
-        resultValue = highCard;
+      resultValue = highCard;
     }
 
     for (Card card : cardList) {
-        if (usedCards.contains(card)) {
-          continue;
-        }
-        remainingCards.add(card.value());
+      if (usedCards.contains(card)) {
+        continue;
+      }
+      remainingCards.add(card.value());
     }
 
     pokerData = new PokerHandData(result, resultValue, secondaryValue, remainingCards);
@@ -131,11 +131,10 @@ public final class PokerHand implements Comparable<PokerHand> {
   private CardValue isNumberOfAKind(HashMap<CardValue, Integer> occurenceMap, int n) {
     CardValue hasNOfAKind = null;
 
-    for (Map.Entry<CardValue, Integer> entry : occurenceMap.entrySet())
-    {
-        if (entry.getValue() == n) {
-            hasNOfAKind = entry.getKey();
-        }
+    for (Map.Entry<CardValue, Integer> entry : occurenceMap.entrySet()) {
+      if (entry.getValue() == n) {
+        hasNOfAKind = entry.getKey();
+      }
     }
 
     return hasNOfAKind;

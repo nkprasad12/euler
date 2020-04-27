@@ -9,9 +9,7 @@ import static utils.cards.poker.PokerHandResult.OnePair;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import org.junit.Test;
-
 import utils.cards.CardValue;
 
 public class PokerHandDataTest {
