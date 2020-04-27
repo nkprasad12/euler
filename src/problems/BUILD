@@ -4,4 +4,7 @@ java_library(
     name = "problem_solutions",
     srcs = glob(["**/*.java"]),
     deps = ["//src/utils"],
+    visibility = [
+        "//test:__subpackages__",
+        ],
 )
