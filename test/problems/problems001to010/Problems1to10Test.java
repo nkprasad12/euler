@@ -25,4 +25,24 @@ public class Problems1to10Test {
   public void problem4_producesExpected() {
     assertEqual(Problem4.solution(), "906609");
   }
+
+  @Test
+  public void problem5_producesExpected() {
+    assertEqual(Problem5.solution(), "232792560"); 
+  }
+
+  @Test
+  public void problem6_producesExpected() {
+    assertEqual(Problem6.solution(), "25164150"); 
+  }
+
+  @Test
+  public void problem7_producesExpected() {
+    assertEqual(Problem7.solution(), "104743"); 
+  }
+
+  @Test
+  public void problem10_producesExpected() {
+    assertEqual(Problem10.solution(), "142913828922");
+  }
 }
