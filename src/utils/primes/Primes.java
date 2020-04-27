@@ -182,24 +182,25 @@ public final class Primes {
     }
 
     List<Long> valuesUpTo(Long max) {
-      int index = 
-          max >= primesList.get(primesList.size() - 1) 
-                ? primesList.size() : firstIndexGreaterThan(max);
-      return Collections.unmodifiableList(primesList.subList(0, index));   
+      int index =
+          max >= primesList.get(primesList.size() - 1)
+              ? primesList.size()
+              : firstIndexGreaterThan(max);
+      return Collections.unmodifiableList(primesList.subList(0, index));
     }
 
     private int firstIndexGreaterThan(Long max) {
       int start = 0;
-      int end = primesList.size() - 1;  
-      int index = -1;  
-      while (start <= end) {  
-        int mid = (start + end) / 2;  
-        if (primesList.get(mid) <= max) {  
-          start = mid + 1;  
-        }  else {  
-          index = mid;  
-          end = mid - 1;  
-        }  
+      int end = primesList.size() - 1;
+      int index = -1;
+      while (start <= end) {
+        int mid = (start + end) / 2;
+        if (primesList.get(mid) <= max) {
+          start = mid + 1;
+        } else {
+          index = mid;
+          end = mid - 1;
+        }
       }
       return index;
     }

@@ -10,7 +10,6 @@ public class Problem10 {
     System.out.println(MethodHandles.lookup().lookupClass());
 
     Primes primes = new Primes();
-    Generators.from(primes.primesUpTo(2000000l))
-        .reduceAndPrint(0l, (sum, next) -> sum + next);
+    Generators.from(primes.primesUpTo(2000000l)).reduceAndPrint(0l, (sum, next) -> sum + next);
   }
 }
