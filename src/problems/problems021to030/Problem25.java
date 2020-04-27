@@ -4,7 +4,6 @@ import static utils.generators.Generators.fromRecursion;
 import static utils.generators.base.tuples.Tuples.pair;
 
 import java.lang.invoke.MethodHandles;
-
 import utils.numbers.BigNumber;
 
 public class Problem25 {
@@ -28,10 +27,8 @@ public class Problem25 {
     BigNumber low = BigNumber.fromLong(1l);
     BigNumber high = BigNumber.fromLong(2l);
     return fromRecursion(
-          pair(low, high),
-          (l, h) -> pair(h, l.addTo(h)),
-          (l, h) -> h.digits().size() < 1000)
-      .reduce(3, (ct, next) -> ct + 1)
-      .toString();
+            pair(low, high), (l, h) -> pair(h, l.addTo(h)), (l, h) -> h.digits().size() < 1000)
+        .reduce(3, (ct, next) -> ct + 1)
+        .toString();
   }
 }

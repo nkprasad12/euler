@@ -10,12 +10,11 @@ public class Problem26 {
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 
-
     System.out.println(solution());
   }
 
   static String solution() {
-    return    Generators.range(2, 999)
+    return Generators.range(2, 999)
         .map(i -> Tuples.pair(i, repeatingPart(1, i).length()))
         .reducing(
             Tuples.pair(-1, -1),

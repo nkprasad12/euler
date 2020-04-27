@@ -13,7 +13,7 @@ public class Problem30 {
   }
 
   static String solution() {
-    return     Generators.range(2l, 999999l)
+    return Generators.range(2l, 999999l)
         .filter(
             n ->
                 n
