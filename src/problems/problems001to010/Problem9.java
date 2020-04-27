@@ -2,9 +2,6 @@ package problems.problems001to010;
 
 import java.lang.invoke.MethodHandles;
 
-import utils.generators.Generators;
-import utils.numbers.NumericUtils;
-
 public class Problem9 {
 
   public static void main(String[] args) {

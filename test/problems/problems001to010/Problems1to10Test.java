@@ -28,17 +28,17 @@ public class Problems1to10Test {
 
   @Test
   public void problem5_producesExpected() {
-    assertEqual(Problem5.solution(), "232792560"); 
+    assertEqual(Problem5.solution(), "232792560");
   }
 
   @Test
   public void problem6_producesExpected() {
-    assertEqual(Problem6.solution(), "25164150"); 
+    assertEqual(Problem6.solution(), "25164150");
   }
 
   @Test
   public void problem7_producesExpected() {
-    assertEqual(Problem7.solution(), "104743"); 
+    assertEqual(Problem7.solution(), "104743");
   }
 
   @Test

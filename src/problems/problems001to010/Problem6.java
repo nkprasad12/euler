@@ -10,7 +10,7 @@ public class Problem6 {
 
     /* Sum of first n integers is 1/2 n (n + 1)
      * Sum of first n squares of integers is 1/6  n (n + 1) (2n + 1)
-     * 
+     *
      * Taking the square of the first and subtracting the second gives
      * 1/12 (n-1) n (n + 1) (3n + 2)
      *
