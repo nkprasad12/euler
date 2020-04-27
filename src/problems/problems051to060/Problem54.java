@@ -17,7 +17,7 @@ public class Problem54 {
 
     Generators.fromTextFile("problem54.txt", "\\n")
         .mapToPair(input -> toHands(input))
-        .filter((hand, other) -> hand.beats(other))
+        .filter((hand, other) -> hand.compareTo(other) > 0)
         .reduceAndPrint(0, (count, next) -> count + 1);
 
     System.out.println(((System.nanoTime() - startTime) / 1000000) + " ms");
