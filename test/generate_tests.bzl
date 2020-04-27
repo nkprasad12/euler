@@ -13,5 +13,6 @@ def generate_targets_for_tests_in_subdirectories():
                 "//test:assertions",
                 "//lib:junit_jars",
                 "//src/utils:utils",
+                "//src/problems:problem_solutions",
             ],
         )
