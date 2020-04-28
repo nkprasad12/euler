@@ -36,8 +36,7 @@ public class Problem33 {
         Generators.range(10, 98)
             .mapAndPair(i -> Generators.range(i + 1, 99))
             .filter((a, b) -> isCancelling(a, b) != null)
-            .reducing(
-                Tuples.pair(1, 1), (aProd, a) -> aProd * a, (bProd, b) -> bProd * b)
+            .reducing(Tuples.pair(1, 1), (aProd, a) -> aProd * a, (bProd, b) -> bProd * b)
             .lastValue()
             .get();
     return Rational.fromInts(fraction.first(), fraction.second())

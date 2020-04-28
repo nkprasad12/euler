@@ -2,7 +2,6 @@ package problems.problems031to040;
 
 import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
-
 import utils.generators.Generators;
 
 public class Problem34 {

@@ -30,15 +30,13 @@ public class Problem32 {
   }
 
   static String solution() {
-    HashSet<Integer> products = 
+    HashSet<Integer> products =
         range(100, 9999)
             .mapAndPair(a -> a < 1000 ? range(10, 99) : range(2, 9))
             .filter((a, b) -> isPandigital(a, b))
             .mapPair((a, b) -> a * b)
             .collectInto(new HashSet<>());
-    return Generators.from(products)
-        .reduce(0, (sum, next) -> sum + next)
-        .toString();
+    return Generators.from(products).reduce(0, (sum, next) -> sum + next).toString();
   }
 
   public static boolean isPandigital(String input) {
@@ -63,7 +61,7 @@ public class Problem32 {
         return false;
       }
       hasChar[digit - 1] = true;
-    }    
+    }
     while (b > 0) {
       int digit = b % 10;
       b /= 10;

@@ -42,7 +42,7 @@ public class Problem35 {
       int lastDigit = number % 10;
       number /= 10;
       number += lastDigit * largestPowerOfTenLessThan;
-      if (! primes.isPrime(number)) {
+      if (!primes.isPrime(number)) {
         return false;
       }
     }
