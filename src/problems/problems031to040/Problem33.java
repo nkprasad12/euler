@@ -3,6 +3,8 @@ package problems.problems031to040;
 import java.lang.invoke.MethodHandles;
 import utils.generators.Generators;
 import utils.generators.base.tuples.Tuples;
+import utils.generators.base.tuples.Tuples.Pair;
+import utils.numbers.Rational;
 
 public class Problem33 {
 
@@ -26,13 +28,22 @@ public class Problem33 {
     System.out.println("---------");
     System.out.println(denomProduct);
 
-    Generators.range(10, 98)
-        .mapAndPair(i -> Generators.range(i + 1, 99))
-        .filter((a, b) -> isCancelling(a, b) != null)
-        .reducing(
-            Tuples.pair(1, 1), (aProd, aNext) -> aProd * aNext, (bProd, bNext) -> bProd * bNext)
-        .lastValue()
-        .print();
+    System.out.println(solution());
+  }
+
+  static String solution() {
+    Pair<Integer, Integer> fraction =
+        Generators.range(10, 98)
+            .mapAndPair(i -> Generators.range(i + 1, 99))
+            .filter((a, b) -> isCancelling(a, b) != null)
+            .reducing(Tuples.pair(1, 1), (aProd, a) -> aProd * a, (bProd, b) -> bProd * b)
+            .lastValue()
+            .get();
+    return Rational.fromInts(fraction.first(), fraction.second())
+        .reduce()
+        .denominator()
+        .toLong()
+        .toString();
   }
 
   public static Integer isCancelling(int a, int b) {

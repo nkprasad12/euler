@@ -13,8 +13,12 @@ public class Problem39 {
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
     long startTime = System.nanoTime();
+    System.out.println(solution());
+    System.out.println(((System.nanoTime() - startTime) / 1000000) + " ms");
+  }
 
-    range(2, 499)
+  static String solution() {
+    return range(2, 499)
         .mapAndPair(i -> range(1, i - 1))
         .filter((a, b) -> NumericUtils.isPerfectSquare(a * a + b * b))
         .mapPair((a, b) -> a + b + (int) Math.sqrt(a * a + b * b))
@@ -25,9 +29,9 @@ public class Problem39 {
         .flatMap(map -> from(map.entrySet()))
         .mapToPair(entry -> pair(entry.getKey(), entry.getValue()))
         .max(pair -> (long) pair.second())
-        .print();
-
-    System.out.println(((System.nanoTime() - startTime) / 1000000) + " ms");
+        .get()
+        .first()
+        .toString();
   }
 
   public static HashMap<Integer, Integer> putOrIncrement(HashMap<Integer, Integer> map, int num) {

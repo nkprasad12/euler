@@ -8,6 +8,10 @@ public class Problem36 {
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
 
+    System.out.println(solution());
+  }
+
+  static String solution() {
     int sum = 0;
     for (int i = 1; i < 1000000; i++) {
       BigNumber base10 = BigNumber.fromLong(i, 10);
@@ -17,7 +21,7 @@ public class Problem36 {
         sum += i;
       }
     }
-    System.out.println(sum);
+    return String.valueOf(sum);
   }
 
   static boolean isPalindrome(BigNumber n) {

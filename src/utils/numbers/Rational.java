@@ -14,6 +14,10 @@ public class Rational {
     return fromLongs(numerator, denominator, new Primes());
   }
 
+  public static Rational fromInts(int numerator, int denominator) {
+    return fromLongs((long) numerator, (long) denominator);
+  }
+
   public static Rational fromLongs(long numerator, long denominator, Primes primes) {
     return new Rational(
         PrimeFactorization.of(numerator, primes), PrimeFactorization.of(denominator, primes));
