@@ -7,15 +7,19 @@ import utils.generators.Generators;
 
 public final class BigNumber {
 
-  private final ArrayList<Integer> digits;
+  private final List<Integer> digits;
   private final int base;
 
   public BigNumber(List<Integer> digits) {
     this(digits, 10);
   }
 
-  public BigNumber(List<Integer> digits, int base) {
+  private BigNumber(List<Integer> digits, int base, boolean makeCopy) {
     this.base = base;
+    if (!makeCopy) {
+      this.digits = digits;
+      return;
+    }
     this.digits = new ArrayList<>();
     int lastNonZero = 0;
     for (int i = 0; i < digits.size(); i++) {
@@ -29,6 +33,10 @@ public final class BigNumber {
     for (int i = 0; i <= lastNonZero; i++) {
       this.digits.add(digits.get(i));
     }
+  }
+
+  public BigNumber(List<Integer> digits, int base) {
+    this(digits, base, true);
   }
 
   public List<Integer> digits() {
@@ -50,7 +58,7 @@ public final class BigNumber {
       digits.add((int) n % base);
       n /= base;
     }
-    return new BigNumber(digits, base);
+    return new BigNumber(digits, base, false);
   }
 
   public static BigNumber fromString(String num) {
@@ -59,7 +67,7 @@ public final class BigNumber {
         .map(i -> num.length() - 1 - i)
         .map(i -> Character.getNumericValue(num.charAt(i)))
         .collectInto(digits);
-    return new BigNumber(digits);
+    return new BigNumber(digits, 10, false);
   }
 
   public static BigNumber factorialOf(long n) {

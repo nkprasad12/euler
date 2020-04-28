@@ -12,18 +12,6 @@ public class Problem38 {
     System.out.println(MethodHandles.lookup().lookupClass());
     long startTime = System.nanoTime();
 
-    range(1, 9999)
-        .map(
-            k ->
-                range(1, 9)
-                    .reducing("", (str, i) -> str + (k * i))
-                    .whileTrue(str -> str.length() <= 9)
-                    .lastValue()
-                    .get())
-        .filter(str -> isPandigital(str))
-        .max(str -> Long.parseLong(str))
-        .print();
-
     int maxPanDigital = 0;
     for (int i = 1; i < 9999; i++) {
       String nineDigit = getNineDigit(i);
@@ -34,6 +22,20 @@ public class Problem38 {
     System.out.println("Max Pan digital: " + maxPanDigital);
 
     System.out.println(((System.nanoTime() - startTime) / 1000000) + " ms");
+  }
+
+  static String solution() {
+    return range(1, 9999)
+        .map(
+            k ->
+                range(1, 9)
+                    .reducing("", (str, i) -> str + (k * i))
+                    .whileTrue(str -> str.length() <= 9)
+                    .lastValue()
+                    .get())
+        .filter(str -> isPandigital(str))
+        .max(str -> Long.parseLong(str))
+        .toString();
   }
 
   public static String getNineDigit(Integer input) {

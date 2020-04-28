@@ -1,60 +1,51 @@
 package problems.problems031to040;
 
 import static utils.generators.Generators.from;
-import static utils.generators.Generators.range;
 
 import java.lang.invoke.MethodHandles;
-import java.util.List;
-import utils.generators.Generators;
-import utils.numbers.BigNumber;
 import utils.primes.Primes;
 
 public class Problem35 {
 
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
+    long startTime = System.nanoTime();
+    System.out.println(solution());
+    System.out.println(((System.nanoTime() - startTime) / 1000000) + " ms");
+  }
+
+  static String solution() {
     Primes primes = new Primes();
-
-    int num =
-        from(primes.primesUpTo(1000000l)).filter(p -> isCircularPrime(p, primes)).list().size();
-
-    System.out.println(num);
+    return from(primes.primesUpTo(1000000l))
+        .filter(p -> isCircularPrime(p, primes))
+        .reducing(0, (ct, next) -> ct + 1)
+        .lastValue()
+        .toString();
   }
 
   public static boolean isCircularPrime(Long p, Primes primes) {
-    List<Integer> digits = BigNumber.fromLong(p).digits();
-    if (digits.contains(0)) {
-      return false;
-    }
-    return !Generators.permutationsOf(range(0, digits.size() - 1).list())
-        .filter(Problem35::isPermutationRotation2) // Rotation
-        .map(perm -> from(perm).map(i -> digits.get(i)).list()) // Rotated digit list
-        .map(d -> Long.parseLong(new BigNumber(d).toString()))
-        .anyMatch(pr -> !primes.isPrime(pr)); // BigNumber
-  }
-
-  public static boolean isPermutationRotation(List<Integer> list) {
-    int last = list.get(0);
-    for (int i = 1; i < list.size(); i++) {
-      if (list.get(i) != 0 && list.get(i) - last != 1) {
+    int number = (int) p.longValue();
+    int numDigits = 0;
+    while (number > 0) {
+      if (number % 10 == 0) {
         return false;
       }
-      last = list.get(i);
+      number /= 10;
+      numDigits++;
+    }
+    int largestPowerOfTenLessThan = 1;
+    for (int i = 0; i < numDigits - 1; i++) {
+      largestPowerOfTenLessThan *= 10;
+    }
+    number = (int) p.longValue();
+    for (int i = 0; i < numDigits - 1; i++) {
+      int lastDigit = number % 10;
+      number /= 10;
+      number += lastDigit * largestPowerOfTenLessThan;
+      if (! primes.isPrime(number)) {
+        return false;
+      }
     }
     return true;
-  }
-
-  public static boolean isPermutationRotation2(List<Integer> list) {
-    Integer current = list.get(0);
-    int nonIncrementingDigits = 0;
-    for (int i = 0; i < list.size() - 1; i++) {
-
-      if (list.get(i + 1) - current != 1) {
-        nonIncrementingDigits++;
-      }
-      current = list.get(i + 1);
-    }
-
-    return nonIncrementingDigits <= 1;
   }
 }

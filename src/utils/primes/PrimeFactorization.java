@@ -143,7 +143,7 @@ public final class PrimeFactorization {
     return new PrimeFactorization(factors, this.primes);
   }
 
-  public long toLong() {
+  public Long toLong() {
     long product = 1;
     for (Entry<Long, Integer> entry : factorMap().entrySet()) {
       Long prime = entry.getKey();
