@@ -2,7 +2,6 @@ package problems.problems071to080;
 
 import java.lang.invoke.MethodHandles;
 import java.util.HashMap;
-
 import utils.primes.Primes;
 
 public class Problem77 {
@@ -34,13 +33,13 @@ public class Problem77 {
     K, F(K, K)
                   p = 7    p = 5     p = 3     p = 2
     F(10, 10) = F(3, 7) + F(5, 5) + F(7, 3) + F(8, 2)
-    F(3, 7) = F(0, 3) + F(1, 2)          
+    F(3, 7) = F(0, 3) + F(1, 2)
   */
   private static class PrimeSumHelper {
 
     Primes primes;
     HashMap<String, Long> table;
-    
+
     PrimeSumHelper(Primes primes) {
       this.primes = primes;
       table = new HashMap<>();
