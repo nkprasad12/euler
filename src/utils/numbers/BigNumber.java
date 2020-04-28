@@ -3,7 +3,6 @@ package utils.numbers;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import utils.generators.Generators;
 
 public final class BigNumber {
 
@@ -63,10 +62,13 @@ public final class BigNumber {
 
   public static BigNumber fromString(String num) {
     ArrayList<Integer> digits = new ArrayList<>();
-    Generators.range(0, num.length() - 1)
-        .map(i -> num.length() - 1 - i)
-        .map(i -> Character.getNumericValue(num.charAt(i)))
-        .collectInto(digits);
+    for (int i = 0; i < num.length(); i++) {
+      int digit = Character.getNumericValue(num.charAt(i));
+      if (digits.size() == 0 && digit == 0) {
+        continue;
+      }
+      digits.add(0, digit);
+    }
     return new BigNumber(digits, 10, false);
   }
 
