@@ -16,14 +16,13 @@ public class Problem77 {
 
   public static String solution() {
     Primes primes = new Primes();
-    primes.primesUpTo(1000000);
-    Memo memo = new Memo(primes);
-    long k = 10;
+    PrimeSumHelper helper = new PrimeSumHelper(primes);
+    long number = 10;
     while (true) {
-      if (memo.get(k, k) > 5000) {
-        return String.valueOf(k);
+      if (helper.waysToWriteAsSumOfPrimes(number) > 5000) {
+        return String.valueOf(number);
       }
-      k++;
+      number++;
     }
   }
 
@@ -37,35 +36,38 @@ public class Problem77 {
     F(10, 10) = F(3, 7) + F(5, 5) + F(7, 3) + F(8, 2)
     F(3, 7) = F(0, 3) + F(1, 2)          
   */
-
-  private static class Memo {
+  private static class PrimeSumHelper {
 
     Primes primes;
     HashMap<String, Long> table;
     
-    Memo(Primes primes) {
+    PrimeSumHelper(Primes primes) {
       this.primes = primes;
       table = new HashMap<>();
     }
 
-    long get(long n, long m) {
-      if (n < 0) {
+    long waysToWriteAsSumOfPrimes(long number) {
+      return get(number, number);
+    }
+
+    private long get(long number, long maxAllowedInSum) {
+      if (number < 0) {
         return 0;
       }
-      if (n == 0) {
+      if (number == 0) {
         return 1;
       }
-      if (n == 1) {
+      if (number == 1) {
         return 0;
       }
-      if (m > n) {
-        return get(n, n);
+      if (maxAllowedInSum > number) {
+        return get(number, number);
       }
-      String key = n + " " + m;
+      String key = number + " " + maxAllowedInSum;
       if (!table.containsKey(key)) {
         long ways = 0;
-        for (Long p : primes.primesUpTo(m)) {
-          ways += get(n - p, p);
+        for (Long prime : primes.primesUpTo(maxAllowedInSum)) {
+          ways += get(number - prime, prime);
         }
         table.put(key, ways);
       }

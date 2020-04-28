@@ -8,14 +8,6 @@ import utils.numbers.BigNumber;
 
 public class Problem57 {
 
-  // F_0 = 1 + 1 / (1 + 1)
-  // F_n+1 = 1 + 1 / (1 + F_n)
-  //       = 1 + 1 / (1 + p / q)
-  //       = 1 + q / (p + q)
-  //       = (p + 2q) / (p + q)
-
-  // p / q -> (p + 2q) / (p + q)
-
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
     long startTime = System.nanoTime();
@@ -24,24 +16,30 @@ public class Problem57 {
   }
 
   public static String solution() {
-    fromLong(5).addTo(fromLong(7));
-    BigNumber pn = fromLong(3);
-    BigNumber qn = fromLong(2);
+    BigNumber p = fromLong(3);
+    BigNumber q = fromLong(2);
     int numLongerNumerator = 0;
-    for (int n = 1;  n<1000; n++){
-        // Check if pn is longer
-        BigNumber qnm1 = qn;
-        qn = pn.addTo(qn);
-        pn = qnm1.addTo(qn);
+    for (int n = 1; n < 1000; n++){
+        // F_0 = 1 + 1 / (1 + 1)
+        // F_n+1 = 1 + 1 / (1 + F_n)
+        //       = 1 + 1 / (1 + p / q)
+        //       = 1 + q / (p + q)
+        //       = (p + 2q) / (p + q)
 
-        int len_qn = qn.digits().size();
-        int len_pn = pn.digits().size();
-
-        if (len_pn > len_qn){
+        // p / q -> (p + 2q) / (p + q)
+        BigNumber tmp = q;
+        q = p.addTo(q);
+        p = tmp.addTo(q);
+        // There are always relatively prime.
+        // gcd(p + 2q, p + q):
+        // p + 2q - (p + q) = q
+        // p + q - q = p
+        // which is now gcd(p, q)
+        // By induction, this reduces to gcd(1, 1) = 1
+        if (p.digits().size() > q.digits().size()){
             numLongerNumerator++;
         }
     }
-
     return String.valueOf(numLongerNumerator);
   }
 }
