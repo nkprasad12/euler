@@ -29,7 +29,7 @@ public class Problem121 {
         .filter(bits -> from(bits).reduce(0, (ct, next) -> next ? ct + 1 : ct) >= turns / 2 + 1)
         // Map each winning sequence to the number of ways that sequence was possible.
         .map(
-            bits -> 
+            bits ->
                 from(bits)
                     .addIndices()
                     // In every round, there's only one Red disc, so if the bit is true, there's
@@ -40,7 +40,7 @@ public class Problem121 {
                     // required selection at each turn to get the total number of ways the entire
                     // sequence was possible.
                     .reduce(1l, (ways, next) -> ways * next))
-        // Each sequence is independent. Add the number of ways each winning sequence is possible 
+        // Each sequence is independent. Add the number of ways each winning sequence is possible
         // to get the total number of ways to win the game.
         .reducing(0l, (ways, next) -> ways + next)
         .lastValue()
