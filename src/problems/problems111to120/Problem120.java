@@ -16,16 +16,16 @@ public class Problem120 {
   public static String solution() {
     // Similar to the analysis in Problem 123, we see that the remainder in division of
     // (a - 1)^n + (a + 1)^n is equal to 2 (n even) and 2 a n mod a^2 (n odd).
-    //  
-    // Note that if n = a + k, then 
-    // 2 a (a + k) mod a^2 = 2 a^2 + 2 a k (mod a^2) = 2 a k mod a^2, 
+    //
+    // Note that if n = a + k, then
+    // 2 a (a + k) mod a^2 = 2 a^2 + 2 a k (mod a^2) = 2 a k mod a^2,
     // However, note that if a is odd, then a + k has a different parity
     // than k. Therefore, we need to check n until 2a.
 
     // For 3 <= a <= 1000
     return range(3l, 1000l)
         .map(
-            a -> 
+            a ->
                 // Try out n in range 0 to 2a - 1. Note n = 0 produces 0 and is skipped.
                 range(1l, 2 * a - 1)
                     // r = 2 if n is even and 2 a n mod a^2 if odd
