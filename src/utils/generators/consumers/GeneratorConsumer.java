@@ -241,6 +241,10 @@ public class GeneratorConsumer<T> {
       return lastValue.get();
     }
 
+    public <V> LastValue<V> map(Function<T, V> mapper) {
+      return new LastValue<>(lastValue.map(mapper));
+    }
+
     public boolean isPresent() {
       return lastValue.isPresent();
     }
