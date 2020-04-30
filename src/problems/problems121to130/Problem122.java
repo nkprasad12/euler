@@ -57,7 +57,7 @@ public class Problem122 {
     long depth;
 
     Node(Node parent, long value, long depth) {
-      this.parent = parent; 
+      this.parent = parent;
       this.value = value;
       this.depth = depth;
     }
