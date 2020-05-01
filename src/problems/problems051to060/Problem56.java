@@ -4,7 +4,6 @@ import static utils.generators.Generators.from;
 import static utils.generators.Generators.range;
 
 import java.lang.invoke.MethodHandles;
-
 import utils.generators.Generators;
 import utils.numbers.BigNumber;
 
@@ -22,5 +21,5 @@ public class Problem56 {
         .map(digits -> from(digits).reduce(0, (sum, next) -> sum + next))
         .max(sum -> sum)
         .toString();
-  }     
+  }
 }

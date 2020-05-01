@@ -33,9 +33,8 @@ public class Problem53 {
       } else {
         currentRow.add(1);
       }
-      lastRow = currentRow;      
+      lastRow = currentRow;
     }
     return String.valueOf(totalGreater);
   }
-
 }
