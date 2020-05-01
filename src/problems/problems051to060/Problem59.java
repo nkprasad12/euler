@@ -18,9 +18,12 @@ public class Problem59 {
     System.out.println(((System.nanoTime() - startTime) / 1000000) + " ms");
   }
 
+  private static final int LETTER_MIN = (int) 'a';
+  private static final int LETTER_MAX = (int) 'z';
+
   public static String solution() {
     List<Integer> bytes = fromTextFile("problem59.txt", ",").map(Integer::parseInt).list();
-    List<Integer> key = new ArrayList<Integer>(Arrays.asList(97, 97, 97));
+    List<Integer> key = new ArrayList<Integer>(Arrays.asList(LETTER_MIN, LETTER_MIN, LETTER_MIN));
 
     int maxThes = 0;
     int sum = -1;
@@ -67,15 +70,15 @@ public class Problem59 {
   private static List<Integer> incrementKey(List<Integer> key) {
     // We are given that the key is 3 lower case characters.
     key.set(2, key.get(2) + 1);
-    if (key.get(2) > 122) {
-      key.set(2, 97);
+    if (key.get(2) > LETTER_MAX) {
+      key.set(2, LETTER_MIN);
       key.set(1, key.get(1) + 1);
     }
-    if (key.get(1) > 122) {
-      key.set(1, 97);
+    if (key.get(1) > LETTER_MAX) {
+      key.set(1, LETTER_MIN);
       key.set(0, key.get(0) + 1);
     }
-    if (key.get(0) > 122) {
+    if (key.get(0) > LETTER_MAX) {
       return null;
     }
     return key;
