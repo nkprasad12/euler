@@ -20,6 +20,7 @@ public class Problem59 {
 
   private static final int LETTER_MIN = (int) 'a';
   private static final int LETTER_MAX = (int) 'z';
+  private static final int[] THE_CHARS = {(int) ' ', (int) 't', (int) 'h', (int) 'e', (int) ' '};
 
   public static String solution() {
     List<Integer> bytes = fromTextFile("problem59.txt", ",").map(Integer::parseInt).list();
@@ -41,19 +42,13 @@ public class Problem59 {
 
   private static Pair<Integer, Integer> decrypt(List<Integer> bytes, List<Integer> key) {
     int numThes = 0;
-    int[] theChars = new int[5];
-    theChars[0] = (int) ' ';
-    theChars[1] = (int) 't';
-    theChars[2] = (int) 'h';
-    theChars[3] = (int) 'e';
-    theChars[4] = (int) ' ';
     int patternPosition = 0;
     int sum = 0;
 
     for (int i = 0; i < bytes.size(); i++) {
       int currByte = key.get(i % 3) ^ bytes.get(i);
       sum += currByte;
-      if (currByte == theChars[patternPosition]) {
+      if (currByte == THE_CHARS[patternPosition]) {
         if (patternPosition == 4) {
           patternPosition = 0;
           numThes++;
