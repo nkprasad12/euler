@@ -38,7 +38,7 @@ public class Problem59 {
 
   private static Pair<Integer, Integer> decrypt(List<Integer> bytes, List<Integer> key) {
     int numThes = 0;
-    int [] theChars = new int[5];
+    int[] theChars = new int[5];
     theChars[0] = (int) ' ';
     theChars[1] = (int) 't';
     theChars[2] = (int) 'h';
