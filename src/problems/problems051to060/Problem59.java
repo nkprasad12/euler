@@ -4,10 +4,9 @@ import static utils.generators.Generators.fromTextFile;
 import static utils.generators.base.tuples.Tuples.pair;
 
 import java.lang.invoke.MethodHandles;
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
-
+import java.util.List;
 import utils.generators.base.tuples.Tuples.Pair;
 
 public class Problem59 {
@@ -60,7 +59,7 @@ public class Problem59 {
     for (int i = 0; i < bytes.size(); i++) {
       int currByte = key.get(i % 3) ^ bytes.get(i);
       sum += currByte;
-      message[i] = (char) currByte; 
+      message[i] = (char) currByte;
     }
     return pair(sum, new String(message));
   }
@@ -73,18 +72,18 @@ public class Problem59 {
     value3++;
 
     if (value3 > 127) {
-        value3=0;
-        value2++;
+      value3 = 0;
+      value2++;
     }
 
     if (value2 > 127) {
-        value2=0;
-        value1++;
-        System.out.println(key);
+      value2 = 0;
+      value1++;
+      System.out.println(key);
     }
 
     if (value1 > 127) {
-        return null;
+      return null;
     }
 
     List<Integer> result = new ArrayList<Integer>(3);
@@ -93,5 +92,5 @@ public class Problem59 {
     result.add(value3);
 
     return result;
-  } 
+  }
 }

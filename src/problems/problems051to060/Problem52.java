@@ -24,10 +24,10 @@ public class Problem52 {
   public static boolean doesItWork(long n) {
     String nStr = sortString(String.valueOf(n));
     for (int i = 2; i <= 6; i++) {
-      long multiple = i*n;
+      long multiple = i * n;
       String multipleStr = sortString(String.valueOf(multiple));
       if (!multipleStr.equals(nStr)) {
-          return false;
+        return false;
       }
     }
     return true;
@@ -38,5 +38,4 @@ public class Problem52 {
     Arrays.sort(chars);
     return new String(chars);
   }
-  
 }
