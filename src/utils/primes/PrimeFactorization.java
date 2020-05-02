@@ -158,6 +158,19 @@ public final class PrimeFactorization {
     return product;
   }
 
+  public Long totient() {
+    long result = 1;
+    for (Entry<Long, Integer> entry : factorMap().entrySet()) {
+      Long prime = entry.getKey();
+      Integer exponent = entry.getValue();
+      for (int i = 0; i < exponent - 1; i++) {
+        result *= prime;
+      }
+      result *= prime - 1;
+    }
+    return result;
+  }
+
   @Override
   public String toString() {
     String str = "";
