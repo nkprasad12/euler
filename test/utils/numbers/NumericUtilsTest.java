@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
+import static utils.numbers.NumericUtils.gcd;
 import static utils.numbers.NumericUtils.inverseHexagon;
 import static utils.numbers.NumericUtils.inversePentagon;
 import static utils.numbers.NumericUtils.inverseTriangle;
@@ -85,5 +86,39 @@ public class NumericUtilsTest {
   @Test
   public void powerModN_largeNumbers_throws() {
     assertThrows(RuntimeException.class, () -> NumericUtils.powerModN(12, 43545, 10000000000l));
+  }
+
+  @Test
+  public void gcd_primes_isOne() {
+    assertEqual(gcd(7, 13), 1l);
+  }
+
+  @Test
+  public void gcd_coprimeComposites_isOne() {
+    assertEqual(gcd(98, 15), 1l);
+  }
+
+  @Test
+  public void gcd_sameNumber_isNumber() {
+    assertEqual(gcd(456437, 456437), 456437l);
+  }
+
+  @Test
+  public void gcd_isCommutative() {
+    assertEqual(gcd(98, 15), gcd(15, 98));
+    assertEqual(gcd(8, 1), gcd(1, 8));
+    assertEqual(gcd(908, 215), gcd(215, 908));
+    assertEqual(gcd(5118, 758), gcd(758, 5118));
+    assertEqual(gcd(938, 125), gcd(125, 938));
+  }
+
+  @Test
+  public void gcd_composites_isExpected() {
+    assertEqual(gcd(72, 81), 9l);
+  }
+
+  @Test
+  public void gcd_largeComposites_isExpected() {
+    assertEqual(gcd(5549544, 322959), 1911l);
   }
 }
