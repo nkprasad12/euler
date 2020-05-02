@@ -13,24 +13,30 @@ public final class PrimeFactorization {
 
   /* Computes and returns the factorization of the input. */
   public static PrimeFactorization of(long n, Primes primes) {
-    return new PrimeFactorization(primes.factor(n), primes);
+    return new PrimeFactorization(primes.factor(n), primes, false);
   }
 
   private final SortedMap<Long, Integer> factorMap;
   private final Primes primes;
 
-  private PrimeFactorization(SortedMap<Long, Integer> factorMap, Primes primes) {
-    TreeMap<Long, Integer> copyMap = new TreeMap<>();
+  private PrimeFactorization(SortedMap<Long, Integer> factorMap, Primes primes, boolean makeCopy) {
+    SortedMap<Long, Integer> map = makeCopy ? new TreeMap<>() : factorMap;
     for (Map.Entry<Long, Integer> entry : factorMap.entrySet()) {
       if (entry.getValue() < 0) {
         throw new RuntimeException("Factor map contains negative exponent.");
       }
       if (entry.getValue() == 0) {
-        continue;
+        if (!makeCopy) {
+          throw new RuntimeException("Factor map contains 0 exponent.");
+        } else {
+          continue;
+        }
       }
-      copyMap.put(entry.getKey(), entry.getValue());
+      if (makeCopy) {
+        map.put(entry.getKey(), entry.getValue());
+      }
     }
-    this.factorMap = copyMap;
+    this.factorMap = map;
     this.primes = primes;
   }
 
@@ -62,26 +68,23 @@ public final class PrimeFactorization {
   /* Returns the Greatest Common Denimonator between this PrimeFactorization and another. */
   public PrimeFactorization gcd(PrimeFactorization other) {
     SortedMap<Long, Integer> commonFactors = new TreeMap<>();
-    Iterator<Entry<Long, Integer>> otherFactors = other.factorMap().entrySet().iterator();
-    if (!otherFactors.hasNext()) {
-      return new PrimeFactorization(commonFactors, this.primes);
-    }
-    Entry<Long, Integer> otherFactor = otherFactors.next();
     for (Entry<Long, Integer> entry : factorMap.entrySet()) {
-      Long prime = entry.getKey();
-      while (otherFactor.getKey() < prime) {
-        if (!otherFactors.hasNext()) {
-          break;
-        }
-        otherFactor = otherFactors.next();
+      Integer otherExponent = other.factorMap().get(entry.getKey());
+      if (otherExponent != null) {
+        commonFactors.put(entry.getKey(), Math.min(entry.getValue(), otherExponent));
       }
-      if (otherFactor.getKey() > prime) {
-        continue;
-      }
-      Integer exponent = Math.min(entry.getValue(), otherFactor.getValue());
-      commonFactors.put(prime, exponent);
     }
-    return new PrimeFactorization(commonFactors, this.primes);
+    return new PrimeFactorization(commonFactors, this.primes, false);
+  }
+
+  /* Returns whether this number is coprime with the input. */
+  public boolean isCoprimeWith(long n) {
+    for (Long prime : factorMap.keySet()) {
+      if (n % prime == 0) {
+        return false;
+      }
+    }
+    return true;
   }
 
   public Rational divideBy(PrimeFactorization divisor) {
@@ -121,8 +124,8 @@ public final class PrimeFactorization {
       divisorFactor = divisorFactors.hasNext() ? divisorFactors.next() : null;
     }
     return new Rational(
-        new PrimeFactorization(numeratorFactors, primes),
-        new PrimeFactorization(denominatorFactors, primes));
+        new PrimeFactorization(numeratorFactors, primes, true),
+        new PrimeFactorization(denominatorFactors, primes, true));
   }
 
   /* Multiplies this PrimeFactorization by another. */
@@ -140,7 +143,7 @@ public final class PrimeFactorization {
       }
       factors.put(prime, newExponent);
     }
-    return new PrimeFactorization(factors, this.primes);
+    return new PrimeFactorization(factors, this.primes, false);
   }
 
   public Long toLong() {
