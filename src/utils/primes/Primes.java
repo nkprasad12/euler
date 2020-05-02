@@ -121,7 +121,8 @@ public final class Primes {
     }
     long remaining = n;
     SortedMap<Long, Integer> factorMap = new TreeMap<>();
-    for (Long prime : primes) {
+    for (int i = 0; i < primes.primesList.size(); i++) {
+      long prime = primes.primesList.get(i);
       int exponent = 0;
       while (remaining % prime == 0) {
         exponent++;
@@ -130,6 +131,12 @@ public final class Primes {
       if (exponent > 0) {
         factorMap.put(prime, exponent);
       }
+      if (remaining == 1) {
+        break;
+      }
+    }
+    if (remaining == 1) {
+      return factorMap;
     }
     int maxCheckedIndex = primes.primesList.size() - 1;
     computePrimesUpTo((long) Math.sqrt(remaining));
@@ -184,7 +191,7 @@ public final class Primes {
     }
 
     List<Long> valuesUpTo(Long max) {
-      int index = max >= lastPrime() ? primesList.size() : firstIndexGreaterThan(max);
+      int index = max >= last() ? primesList.size() : firstIndexGreaterThan(max);
       return unmodifiableList(primesList.subList(0, index));
     }
 
@@ -193,10 +200,6 @@ public final class Primes {
         return new ArrayList<>();
       }
       return unmodifiableList(primesList.subList(index + 1, primesList.size()));
-    }
-
-    private long lastPrime() {
-      return primesList.get(primesList.size() - 1);
     }
 
     private int firstIndexGreaterThan(Long max) {
