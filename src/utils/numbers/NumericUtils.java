@@ -83,7 +83,7 @@ public final class NumericUtils {
     if (b > a) {
       gcd(b, a);
     }
-  
+
     long temp = 0;
     while (b != 0) {
       temp = b;

@@ -1,7 +1,6 @@
 package problems.problems071to080;
 
 import java.lang.invoke.MethodHandles;
-
 import utils.numbers.NumericUtils;
 
 public class Problem73 {
@@ -20,7 +19,7 @@ public class Problem73 {
         if (NumericUtils.gcd(d, j) == 1) {
           numberOfFractions++;
         }
-      }        
+      }
     }
     return String.valueOf(numberOfFractions);
   }

@@ -3,11 +3,10 @@ package problems.problems081to090;
 import java.lang.invoke.MethodHandles;
 import java.util.HashSet;
 import java.util.List;
-
 import utils.primes.Primes;
 
 public class Problem87 {
-  
+
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
     long startTime = System.nanoTime();
