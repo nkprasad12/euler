@@ -78,4 +78,18 @@ public final class NumericUtils {
       return (powerModN(base, exponent - 1, mod) * base) % mod;
     }
   }
+
+  public static long gcd(long a, long b) {
+    if (b > a) {
+      gcd(b, a);
+    }
+
+    long temp = 0;
+    while (b != 0) {
+      temp = b;
+      b = a % b;
+      a = temp;
+    }
+    return a;
+  }
 }
