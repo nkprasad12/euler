@@ -8,7 +8,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import org.junit.Before;
 import org.junit.Test;
 import utils.numbers.Rational;
@@ -270,8 +269,7 @@ public class PrimeFactorizationTest {
 
   @Test
   public void multiplyBy_one_returnsEqual() {
-    PrimeFactorization product =
-        fromLong(72l).multiplyBy(fromLong(1l));
+    PrimeFactorization product = fromLong(72l).multiplyBy(fromLong(1l));
 
     Map<Long, Integer> expected = new HashMap<>();
     expected.put(2l, 3);
@@ -282,8 +280,7 @@ public class PrimeFactorizationTest {
 
   @Test
   public void multiplyBy_coprime_returnsJoinedFactorMap() {
-    PrimeFactorization product =
-        fromLong(25l).multiplyBy(fromLong(1331l));
+    PrimeFactorization product = fromLong(25l).multiplyBy(fromLong(1331l));
 
     Map<Long, Integer> expected = new HashMap<>();
     expected.put(5l, 2);
@@ -294,8 +291,7 @@ public class PrimeFactorizationTest {
 
   @Test
   public void multiplyBy_oneDividesOther_changesOnlyExponents() {
-    PrimeFactorization product =
-        fromLong(216l).multiplyBy(fromLong(6l));
+    PrimeFactorization product = fromLong(216l).multiplyBy(fromLong(6l));
 
     Map<Long, Integer> expected = new HashMap<>();
     expected.put(2l, 4);
@@ -306,8 +302,7 @@ public class PrimeFactorizationTest {
 
   @Test
   public void multiplyBy_hasExpectedResult() {
-    PrimeFactorization product =
-        fromLong(12l).multiplyBy(fromLong(370));
+    PrimeFactorization product = fromLong(12l).multiplyBy(fromLong(370));
 
     Map<Long, Integer> expected = new HashMap<>();
     expected.put(2l, 3);

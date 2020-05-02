@@ -1,7 +1,6 @@
 package problems.problems071to080;
 
 import java.lang.invoke.MethodHandles;
-
 import utils.numbers.NumericUtils;
 import utils.primes.PrimeFactorization;
 import utils.primes.PrimeFactorizations;
