@@ -19,8 +19,7 @@ public final class PermutationGenerator<T extends Comparable<T>> implements Gene
     this.size = this.objects.size();
     isFinished = size == 0;
   }
-  // TODO: Possibly generate multiset permutations using the Takaoka algorithm.
-  //       currently, this will return repeats if the list is not distinct.
+
   @Override
   public List<T> getNext() {
     List<T> result = new ArrayList<>(objects);
