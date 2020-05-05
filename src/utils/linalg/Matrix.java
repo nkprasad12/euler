@@ -32,6 +32,17 @@ public final class Matrix {
     return new Matrix(result);
   }
 
+  public long trace() {
+    if (matrix.length != matrix[0].length) {
+      throw new RuntimeException("Trace is only defined for square matrices");
+    }
+    long trace = 0;
+    for (int i = 0; i < matrix.length; i++) {
+      trace += matrix[i][i];
+    }
+    return trace;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -68,5 +79,10 @@ public final class Matrix {
     }
     result += "\n";
     return result;
+  }
+
+  @Override
+  public int hashCode() {
+    return toString().hashCode();
   }
 }
