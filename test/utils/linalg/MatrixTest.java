@@ -57,4 +57,18 @@ public class MatrixTest {
 
     assertThrows(RuntimeException.class, () -> from(a).multiplyBy(from(a)));
   }
+
+  @Test
+  public void trace_nonSquare_throwsException() {
+    long[][] a = {{1, 2, 5}, {3, 4, 9}};
+
+    assertThrows(RuntimeException.class, () -> from(a).trace());
+  }
+
+  @Test
+  public void trace_square_returnsExpected() {
+    long[][] a = {{7, 2, 5}, {40, 40, 9}, {2, 1, 900}};
+
+    assertEqual(from(a).trace(), 947l);
+  }
 }
