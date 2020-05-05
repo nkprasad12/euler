@@ -80,4 +80,9 @@ public final class Matrix {
     result += "\n";
     return result;
   }
+
+  @Override
+  public int hashCode() {
+    return toString().hashCode();
+  }
 }
