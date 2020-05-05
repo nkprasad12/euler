@@ -1,7 +1,7 @@
 package utils.linalg;
 
 public final class Matrix {
-  
+
   public static Matrix from(long[][] matrix) {
     return new Matrix(matrix);
   }
@@ -68,5 +68,5 @@ public final class Matrix {
     }
     result += "\n";
     return result;
-  } 
+  }
 }
