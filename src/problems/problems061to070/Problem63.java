@@ -16,7 +16,7 @@ public class Problem63 {
     // nth root of 10^(n-1) = nth root of (10^n / 10) = 10 / nth root of 10
     long total = 0;
     for (int n = 1; n <= 21; n++) {
-      long lower = (long) Math.ceil(10 / Math.pow(10, 1.0/n));
+      long lower = (long) Math.ceil(10 / Math.pow(10, 1.0 / n));
       total += 10 - lower;
     }
     return String.valueOf(total);

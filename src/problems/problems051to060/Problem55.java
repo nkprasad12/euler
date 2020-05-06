@@ -3,11 +3,10 @@ package problems.problems051to060;
 import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
 import java.util.List;
-
 import utils.numbers.BigNumber;
 
 public class Problem55 {
-  
+
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
     long startTime = System.nanoTime();
@@ -43,9 +42,9 @@ public class Problem55 {
   }
 
   public static BigNumber nextLychrel(BigNumber current) {
-      return current.addTo(reverse(current));
+    return current.addTo(reverse(current));
   }
-  
+
   public static boolean isPalindrome(BigNumber n) {
     if (n.digits().get(0) == 0) {
       return false;
