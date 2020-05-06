@@ -51,7 +51,7 @@ public class Problem420 {
             long b = bc / c;
             if (aSq + dSq >= N - 2 * bc) {
               continue;
-            } 
+            }
             long f = b * (a + d);
             if (f <= 0 || f % denom != 0) {
               continue;
@@ -70,8 +70,10 @@ public class Problem420 {
             // long trC = e * e + h * h + 2 * f * g;
             // String bMatStr = matrixFormat(a, b, c, d);
             // String cMatStr = matrixFormat(e, f, g, h);
-            // System.out.println("Found B matrix, multiplicity " + multiplicity + ":\n" + a + " " + b + "\n" + c + " " + d);
-            // System.out.println("Paired C matrix: \n" + e / denom + " " + f / denom + "\n" + g / denom + " " + h / denom + "\n");
+            // System.out.println("Found B matrix, multiplicity " + multiplicity + ":\n" + a + " " +
+            // b + "\n" + c + " " + d);
+            // System.out.println("Paired C matrix: \n" + e / denom + " " + f / denom + "\n" + g /
+            // denom + " " + h / denom + "\n");
           }
         }
       }
@@ -81,5 +83,5 @@ public class Problem420 {
 
   static String matrixFormat(long a, long b, long c, long d) {
     return a + " " + b + "\n" + c + " " + d;
-  } 
+  }
 }
