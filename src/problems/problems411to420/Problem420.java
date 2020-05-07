@@ -13,7 +13,7 @@ public class Problem420 {
 
   public static String solution() {
     /*
-     * Let B = 
+     * Let B =
      * (a, b)
      * (c, d)
      *
@@ -42,7 +42,7 @@ public class Problem420 {
         long aSq = a * a;
         long dSq = d * d;
         long ad = a * d;
-        // This is one bound on bc that comes from the trace restriction given in the problem: 
+        // This is one bound on bc that comes from the trace restriction given in the problem:
         // tr(B^2) < N <=> 2bc < N - a^2 - d^2
         long traceBound = N - aSq - dSq;
         traceBound = traceBound % 2 == 0 ? traceBound / 2 - 1 : traceBound / 2;
@@ -52,7 +52,8 @@ public class Problem420 {
         if (bcMax < 1) {
           continue;
         }
-        // If a > d, for any solution we find we also know there's a solution where d and a are flipped.
+        // If a > d, for any solution we find we also know there's a solution where d and a are
+        // flipped.
         long diagFactor = a == d ? 1 : 2;
         // This is related to the factor m mentioned above. Note that m = sqrt((a - d)^2 + 4bc)
         // must be an integer for the C matrix to have positive integer entries. This means that
@@ -73,7 +74,7 @@ public class Problem420 {
           long e = aSq - det + bc;
           if (e <= 0 || e % m != 0) {
             // m += 2 because we need m to have the same parity as k. Then, note that if
-            // m^2 = k^2 + 4bc, then (m + 2)^2 = m^2 + 4m + 4 = k^2 + 4m + 4 + 4bc = 
+            // m^2 = k^2 + 4bc, then (m + 2)^2 = m^2 + 4m + 4 = k^2 + 4m + 4 + 4bc =
             // k^2 + 4(bc + m + 1), so the next valid value of bc so that m is an integer is
             // bc + m + 1.
             bc += m + 1;
