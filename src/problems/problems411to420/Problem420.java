@@ -31,8 +31,9 @@ public class Problem420 {
      * This solution essentially checks the matrices B such that tr(B^2) = a^2 + d^2 + 2bc < N,
      * and determines whether the corresponding C matrix has positive integer entries.
      */
+
     long numValid = 0;
-    long N = 100000;
+    long N = 10000000;
     // We require tr(B^2) < N, so it's safe to only check a < root(N) <=> a^2 < N to avoid floating
     // point operations for performance reasons.
     for (long a = 1; a * a < N; a++) {
@@ -59,8 +60,10 @@ public class Problem420 {
         // must be an integer for the C matrix to have positive integer entries. This means that
         // Let k = a - d; then this requires k^2 + 4bc = m^2.
         long k = a - d;
-        // bc >= 1, so compute the first integer greater than sqrt(k^2 + 4)
-        long m = (long) Math.ceil(Math.sqrt(k * k + 4));
+        // We know the bottom right entry of the C matrix is d^2 - ad + 2bc, and this must be
+        // positive, so bc >= d * k / 2 + 1, so compute the first integer greater than 
+        // sqrt(k^2 + 4 (dk / 2 + 1)).
+        long m = (long) Math.ceil(Math.sqrt(k * k + 4 * ((d * k) / 2 + 1)));
         // If m and k are not both even or not both odd, note that m^2 - k^2 is not divisible by
         // 4, then bc would not be an integer.
         if (m % 2 != k % 2) {
@@ -72,7 +75,7 @@ public class Problem420 {
           long det = ad - bc;
           // Compute the top left entry of the C matrix; this needs to be a positive integer.
           long e = aSq - det + bc;
-          if (e <= 0 || e % m != 0) {
+          if (e % m != 0) {
             // m += 2 because we need m to have the same parity as k. Then, note that if
             // m^2 = k^2 + 4bc, then (m + 2)^2 = m^2 + 4m + 4 = k^2 + 4m + 4 + 4bc =
             // k^2 + 4(bc + m + 1), so the next valid value of bc so that m is an integer is
@@ -83,7 +86,7 @@ public class Problem420 {
           }
           // Compute the bottom right entry of the C matrix; this needs to be a positive integer.
           long h = dSq - det + bc;
-          if (h <= 0 || h % m != 0) {
+          if (h % m != 0) {
             bc += m + 1;
             m += 2;
             continue;
@@ -98,11 +101,11 @@ public class Problem420 {
             long b = bc / c;
             // Verify the remaining elements of the C matrix are positive integers.
             long f = b * (a + d);
-            if (f <= 0 || f % m != 0) {
+            if (f % m != 0) {
               continue;
             }
             long g = c * (a + d);
-            if (g <= 0 || g % m != 0) {
+            if (g % m != 0) {
               continue;
             }
             // Add solutions to the count.
