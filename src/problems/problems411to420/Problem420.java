@@ -61,7 +61,7 @@ public class Problem420 {
         // Let k = a - d; then this requires k^2 + 4bc = m^2.
         long k = a - d;
         // We know the bottom right entry of the C matrix is d^2 - ad + 2bc, and this must be
-        // positive, so bc >= d * k / 2 + 1, so compute the first integer greater than 
+        // positive, so bc >= d * k / 2 + 1, so compute the first integer greater than
         // sqrt(k^2 + 4 (dk / 2 + 1)).
         long m = (long) Math.ceil(Math.sqrt(k * k + 4 * ((d * k) / 2 + 1)));
         // If m and k are not both even or not both odd, note that m^2 - k^2 is not divisible by
