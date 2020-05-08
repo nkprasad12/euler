@@ -1,7 +1,6 @@
 package problems.problems051to060;
 
 import java.lang.invoke.MethodHandles;
-
 import utils.primes.Primes;
 
 public class Problem58 {
