@@ -24,5 +24,5 @@ From here is clear that the solution must either be kN, where
 
 N = 2 * 3 * ... * 23 and k is some product of primes that divide N, or N * 29. 
 
-Since we need only test values of k < N, it is easy to proceed by hand. It was determined 
+Since we need only test values of k < 29, it is easy to proceed by hand. It was determined 
 experimentally that D < R(3N) < R(2N), but R(4N) < D.
