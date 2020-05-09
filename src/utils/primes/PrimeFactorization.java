@@ -171,6 +171,15 @@ public final class PrimeFactorization {
     return result;
   }
 
+  /** Returns the radical, i.e the product of all primes that divide this number. */
+  public Long radical() {
+    long result = 1;
+    for (Long prime : factorMap.keySet()) {
+      result *= prime;
+    }
+    return result;
+  }
+
   @Override
   public String toString() {
     String str = "";
