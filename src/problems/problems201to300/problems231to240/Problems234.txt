@@ -1,0 +1,28 @@
+Note that R(d) = φ(d) / (d - 1)
+
+Let P(d) = Product of [ (1 - 1 / p) ], for all p | d
+
+It is well known that φ(d) = d P(d), so we can re-write R(d) = P(d) * d / (d - 1)
+
+Note that the P(d) part is < 1, depends only on the primes that divide d, and 
+decreases for every such prime. 
+
+Since d / (d - 1) > 1, P(d) < R(d), and furthermore since d / (d - 1) -> 1 from
+above as d -> ∞, it is clear that for any m | d that P(m) = P(d), and
+
+P(d) < R(m) < R(d)
+
+Given the bound D = 15499/94744, it follows numerically that 
+
+P(2) > P(2 * 3) > P(2 * 3 * 5) > ... > P(2 * 3 * ... * 19) > D > P(2 * 3 * ... * 23)
+
+It is also true numerically that:
+
+R(2 * 3 * ... * 29) < P(2 * 3 * ... * 23) < D < R(2 * 3 * ... * 23)
+
+From here is clear that the solution must either be kN, where
+
+N = 2 * 3 * ... * 23 and k is some product of primes that divide N, or N * 29. 
+
+Since we need only test values of k < N, it is easy to proceed by hand. It was determined 
+experimentally that D < R(3N) < R(2N), but R(4N) < D.
