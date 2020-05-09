@@ -3,7 +3,7 @@ package problems.problems101to200.problems111to120;
 import java.lang.invoke.MethodHandles;
 
 public class Problem112 {
-  
+
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
     long startTime = System.nanoTime();
