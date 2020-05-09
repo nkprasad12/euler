@@ -95,7 +95,7 @@ public final class NumericUtils {
     return a;
   }
 
-public static boolean isPalindrome(long n) {
+  public static boolean isPalindrome(long n) {
     ArrayList<Long> digits = new ArrayList<>();
     while (n > 0) {
       digits.add(n % 10);
@@ -104,7 +104,7 @@ public static boolean isPalindrome(long n) {
     for (int i = 0; i < digits.size() / 2; i++) {
       if (digits.get(i) != digits.get(digits.size() - 1 - i)) {
         return false;
-      } 
+      }
     }
     return true;
   }

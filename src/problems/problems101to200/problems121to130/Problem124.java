@@ -3,7 +3,6 @@ package problems.problems101to200.problems121to130;
 import java.lang.invoke.MethodHandles;
 import java.util.Collections;
 import java.util.List;
-
 import utils.generators.Generators;
 import utils.primes.PrimeFactorizations;
 import utils.primes.Primes;
@@ -31,10 +30,8 @@ public class Problem124 {
     long N = 100000;
     List<Long> firstN = Generators.range(1, N).list();
     Collections.sort(
-        firstN, 
-        (a, b) ->
-            Long.compare(
-                pf.factorizationOf(a).radical(), pf.factorizationOf(b).radical()));
+        firstN,
+        (a, b) -> Long.compare(pf.factorizationOf(a).radical(), pf.factorizationOf(b).radical()));
     return firstN.get(k - 1).toString();
   }
 }

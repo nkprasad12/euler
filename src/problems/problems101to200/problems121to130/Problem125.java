@@ -2,7 +2,6 @@ package problems.problems101to200.problems121to130;
 
 import java.lang.invoke.MethodHandles;
 import java.util.HashSet;
-
 import utils.generators.Generators;
 import utils.numbers.NumericUtils;
 
@@ -25,7 +24,7 @@ public class Problem125 {
 
     HashSet<Long> sqPals = new HashSet<>();
     for (int i = 0; i <= n; i++) {
-      for (int j = 2; i + j <= n; j++)  {
+      for (int j = 2; i + j <= n; j++) {
         long diff = sqSums[i + j] - sqSums[i];
         if (diff >= lim) {
           break;
