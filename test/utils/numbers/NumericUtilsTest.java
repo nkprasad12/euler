@@ -9,6 +9,7 @@ import static utils.numbers.NumericUtils.gcd;
 import static utils.numbers.NumericUtils.inverseHexagon;
 import static utils.numbers.NumericUtils.inversePentagon;
 import static utils.numbers.NumericUtils.inverseTriangle;
+import static utils.numbers.NumericUtils.isPalindrome;
 import static utils.numbers.NumericUtils.isPerfectSquare;
 
 import org.junit.Test;
@@ -120,5 +121,21 @@ public class NumericUtilsTest {
   @Test
   public void gcd_largeComposites_isExpected() {
     assertEqual(gcd(5549544, 322959), 1911l);
+  }
+
+  @Test
+  public void isPalindrome_palindromes_returnsTrue() {
+    assertTrue(isPalindrome(1));
+    assertTrue(isPalindrome(101));
+    assertTrue(isPalindrome(32123));
+    assertTrue(isPalindrome(4004));
+  }
+
+  @Test
+  public void isPalindrome_notPalindromes_returnsFalse() {
+    assertFalse(isPalindrome(10));
+    assertFalse(isPalindrome(112));
+    assertFalse(isPalindrome(42123));
+    assertFalse(isPalindrome(4014));
   }
 }

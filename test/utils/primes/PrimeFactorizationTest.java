@@ -373,4 +373,12 @@ public class PrimeFactorizationTest {
     assertEqual(fromLong(6l).totient(), 2l);
     assertEqual(fromLong(1l).totient(), 1l);
   }
+
+  @Test
+  public void radical_hasExpectedResult() {
+    assertEqual(fromLong(1).radical(), 1l);
+    assertEqual(fromLong(2).radical(), 2l);
+    assertEqual(fromLong(105).radical(), 105l);
+    assertEqual(fromLong(525).radical(), 105l);
+  }
 }

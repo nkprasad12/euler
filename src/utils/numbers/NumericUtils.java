@@ -1,5 +1,7 @@
 package utils.numbers;
 
+import java.util.ArrayList;
+
 public final class NumericUtils {
 
   /* Determines whether an input number is a perfect square. */
@@ -91,5 +93,19 @@ public final class NumericUtils {
       a = temp;
     }
     return a;
+  }
+
+  public static boolean isPalindrome(long n) {
+    ArrayList<Long> digits = new ArrayList<>();
+    while (n > 0) {
+      digits.add(n % 10);
+      n /= 10;
+    }
+    for (int i = 0; i < digits.size() / 2; i++) {
+      if (digits.get(i) != digits.get(digits.size() - 1 - i)) {
+        return false;
+      }
+    }
+    return true;
   }
 }
