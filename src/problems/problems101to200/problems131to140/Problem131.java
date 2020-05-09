@@ -3,7 +3,6 @@ package problems.problems101to200.problems131to140;
 import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
 import java.util.List;
-
 import utils.primes.Primes;
 
 public class Problem131 {
