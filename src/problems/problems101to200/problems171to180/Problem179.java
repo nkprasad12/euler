@@ -20,7 +20,7 @@ public class Problem179 {
     }
     int current = 2;
     while (current <= 10000000) {
-      if (nums[current] == 1)  {
+      if (nums[current] == 1) {
         current++;
         continue;
       }
