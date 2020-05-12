@@ -1,7 +1,6 @@
 package problems.problems001to100.problems071to080;
 
 import java.lang.invoke.MethodHandles;
-
 import utils.numbers.NumericUtils;
 
 public class Problem71 {
