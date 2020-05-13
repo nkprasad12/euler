@@ -14,11 +14,10 @@ public class Problem89 {
   }
 
   public static String solution() {
-    int solution = 
-        Generators.fromTextFile("problem89.txt")
+    return Generators.fromTextFile("problem89.txt")
             .map(roman -> roman.length() - reduce(roman).length())
-            .reduce(0, (sum, saved) -> sum + saved);
-    return String.valueOf(solution);
+            .reduce(0, (sum, saved) -> sum + saved)
+            .toString();
   }
 
   static int value(char c) {
