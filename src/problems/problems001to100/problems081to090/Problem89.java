@@ -1,12 +1,11 @@
 package problems.problems001to100.problems081to090;
 
 import java.lang.invoke.MethodHandles;
-
 import utils.generators.Generators;
 
 public class Problem89 {
 
-    public static void main(String[] args) {
+  public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
     long startTime = System.nanoTime();
     System.out.println(solution());
@@ -15,9 +14,9 @@ public class Problem89 {
 
   public static String solution() {
     return Generators.fromTextFile("problem89.txt")
-            .map(roman -> roman.length() - reduce(roman).length())
-            .reduce(0, (sum, saved) -> sum + saved)
-            .toString();
+        .map(roman -> roman.length() - reduce(roman).length())
+        .reduce(0, (sum, saved) -> sum + saved)
+        .toString();
   }
 
   static int value(char c) {
@@ -31,7 +30,7 @@ public class Problem89 {
       return 10;
     }
     if (c == 'L') {
-     return 50;
+      return 50;
     }
     if (c == 'C') {
       return 100;
@@ -59,7 +58,6 @@ public class Problem89 {
       num = num.replaceAll("VV", "X");
       num = num.replaceAll("LL", "C");
       num = num.replaceAll("DD", "M");
-
 
       // I in the middle
       num = num.replaceAll("XXXIX", "IL");
@@ -89,7 +87,7 @@ public class Problem89 {
       num = num.replaceAll("VX", "V");
       num = num.replaceAll("LC", "L");
       num = num.replaceAll("DM", "M");
-      
+
       currentLength = num.length();
     }
     System.out.println(originalNum + " -> " + num);
