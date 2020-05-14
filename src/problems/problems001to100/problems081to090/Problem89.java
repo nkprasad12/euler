@@ -6,7 +6,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import utils.generators.Generators;
-import static java.util.Map.entry;
 
 public class Problem89 {
 
