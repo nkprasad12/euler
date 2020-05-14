@@ -1,6 +1,7 @@
 package problems.problems001to100.problems081to090;
 
 import java.lang.invoke.MethodHandles;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -9,21 +10,21 @@ import static java.util.Map.entry;
 
 public class Problem89 {
 
-  static Map<String, Integer> numeralMap = Map.ofEntries(
-      entry("I", 1),
-      entry("V", 5),
-      entry("X", 10),
-      entry("L", 50),
-      entry("C", 100),
-      entry("D", 500),
-      entry("M", 1000),
-      entry("IV", 4),
-      entry("IX", 9),
-      entry("XL", 40),
-      entry("XC", 90),
-      entry("CD", 400),
-      entry("CM", 900)
-  );
+  static Map<String, Integer> numeralMap = new HashMap<String, Integer>() {{
+    put("I", 1);
+    put("V", 5);
+    put("X", 10);
+    put("L", 50);
+    put("C", 100);
+    put("D", 500);
+    put("M", 1000);
+    put("IV", 4);
+    put("IX", 9);
+    put("XL", 40);
+    put("XC", 90);
+    put("CD", 400);
+    put("CM", 900);
+  }};
 
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
