@@ -10,6 +10,8 @@ public class Problem89 {
 
   static Map<String, Integer> numeralMap =
       new HashMap<String, Integer>() {
+        private static final long serialVersionUID = 1L;
+
         {
           put("I", 1);
           put("V", 5);
