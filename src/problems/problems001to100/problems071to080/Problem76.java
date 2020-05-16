@@ -18,7 +18,7 @@ public class Problem76 {
   */
   public static String solution() {
     long N = 100l;
-    return String.valueOf(numSums(N, N-1, new Long[(int) N + 1][(int) N]));
+    return String.valueOf(numSums(N, N - 1, new Long[(int) N + 1][(int) N]));
   }
 
   public static long numSums(long n, long k, Long[][] memo) {
