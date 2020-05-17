@@ -1,33 +1,13 @@
 package problems.problems001to100.problems081to090;
 
+import static utils.generators.Generators.fromTextFile;
+
 import java.lang.invoke.MethodHandles;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import utils.generators.Generators;
 
 public class Problem89 {
-
-  static Map<String, Integer> numeralMap =
-      new HashMap<String, Integer>() {
-        private static final long serialVersionUID = 1L;
-
-        {
-          put("I", 1);
-          put("V", 5);
-          put("X", 10);
-          put("L", 50);
-          put("C", 100);
-          put("D", 500);
-          put("M", 1000);
-          put("IV", 4);
-          put("IX", 9);
-          put("XL", 40);
-          put("XC", 90);
-          put("CD", 400);
-          put("CM", 900);
-        }
-      };
 
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
@@ -37,18 +17,14 @@ public class Problem89 {
   }
 
   public static String solution() {
-    String result =
-        Generators.fromTextFile("problem89.txt")
-            .map(roman -> roman.length() - optimalRomanLength(getNumberFromRomanNumeral(roman)))
-            .reduce(0, (sum, saved) -> sum + saved)
-            .toString();
-
-    return result;
+    return fromTextFile("problem89.txt")
+        .map(roman -> roman.length() - optimalRomanLength(getNumberFromRomanNumeral(roman)))
+        .reduce(0, (sum, saved) -> sum + saved)
+        .toString();
   }
 
   public static String getRomanNumeralFromNumber(int n) {
     LinkedHashMap<String, Integer> numeralCount = new LinkedHashMap<String, Integer>();
-
     int numeralAmount = 0;
 
     numeralAmount = n / 1000;
@@ -63,8 +39,8 @@ public class Problem89 {
     numeralCount.put("C", numeralAmount);
     n -= numeralAmount * 100;
 
-    CollapseVals(numeralCount, "C", 4, "D", 1, "CM");
-    CollapseVals(numeralCount, "C", 4, null, null, "CD");
+    collapseVals(numeralCount, "C", 4, "D", 1, "CM");
+    collapseVals(numeralCount, "C", 4, null, null, "CD");
 
     numeralAmount = n / 50;
     numeralCount.put("L", numeralAmount);
@@ -74,8 +50,8 @@ public class Problem89 {
     numeralCount.put("X", numeralAmount);
     n -= numeralAmount * 10;
 
-    CollapseVals(numeralCount, "X", 4, "L", 1, "XC");
-    CollapseVals(numeralCount, "X", 4, null, null, "XL");
+    collapseVals(numeralCount, "X", 4, "L", 1, "XC");
+    collapseVals(numeralCount, "X", 4, null, null, "XL");
 
     numeralAmount = n / 5;
     numeralCount.put("V", numeralAmount);
@@ -85,8 +61,8 @@ public class Problem89 {
     numeralCount.put("I", numeralAmount);
     n -= numeralAmount;
 
-    CollapseVals(numeralCount, "I", 4, "V", 1, "IX");
-    CollapseVals(numeralCount, "I", 4, null, null, "IV");
+    collapseVals(numeralCount, "I", 4, "V", 1, "IX");
+    collapseVals(numeralCount, "I", 4, null, null, "IV");
 
     String strResult = "";
     for (Map.Entry<String, Integer> val : numeralCount.entrySet()) {
@@ -98,7 +74,7 @@ public class Problem89 {
     return strResult;
   }
 
-  public static void CollapseVals(
+  public static void collapseVals(
       LinkedHashMap<String, Integer> values,
       String val1,
       Integer count1,
@@ -121,7 +97,6 @@ public class Problem89 {
 
   public static int getNumberFromRomanNumeral(String numeral) {
     int number = 0;
-
     char[] numerals = numeral.toCharArray();
 
     int i = 0;
@@ -147,18 +122,14 @@ public class Problem89 {
 
   static Integer valueOfPair(char c1, char c2) {
     Integer value = numeralMap.getOrDefault("" + c1 + c2, null);
-
     return value;
   }
 
   static int value(char c) {
-
     Integer value = numeralMap.getOrDefault("" + c, null);
-
     if (value == null) {
       throw new RuntimeException("Invalid Roman numeral");
     }
-
     return value;
   }
 
@@ -243,4 +214,25 @@ public class Problem89 {
     System.out.println(originalNum + " -> " + num);
     return num;
   }
+
+  static Map<String, Integer> numeralMap =
+      new HashMap<String, Integer>() {
+        private static final long serialVersionUID = 1L;
+
+        {
+          put("I", 1);
+          put("V", 5);
+          put("X", 10);
+          put("L", 50);
+          put("C", 100);
+          put("D", 500);
+          put("M", 1000);
+          put("IV", 4);
+          put("IX", 9);
+          put("XL", 40);
+          put("XC", 90);
+          put("CD", 400);
+          put("CM", 900);
+        }
+      };
 }
