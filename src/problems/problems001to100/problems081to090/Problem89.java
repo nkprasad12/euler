@@ -39,10 +39,7 @@ public class Problem89 {
   public static String solution() {
     String result =
         Generators.fromTextFile("problem89.txt")
-            .map(
-                roman ->
-                    roman.length()
-                        - getRomanNumeralFromNumber(getNumberFromRomanNumeral(roman)).length())
+            .map(roman -> roman.length() - optimalRomanLength(getNumberFromRomanNumeral(roman)))
             .reduce(0, (sum, saved) -> sum + saved)
             .toString();
 
@@ -163,6 +160,38 @@ public class Problem89 {
     }
 
     return value;
+  }
+
+  static int optimalRomanLength(int n) {
+    int length = n / 1000;
+    n -= length * 1000;
+    while (n > 0) {
+      length += optimalLength(n % 10);
+      n /= 10;
+    }
+    return length;
+  }
+
+  static int optimalLength(int d) {
+    if (d == 0) {
+      return 0;
+    }
+    // IX or equivalent
+    if (d == 9) {
+      return 2;
+    }
+    // IV or equivalent
+    if (d == 4) {
+      return 2;
+    }
+    int extra = 0;
+    if (d >= 5) {
+      // If d >= 5, add a V or equivalent
+      extra = 1;
+      d -= 5;
+    }
+    // Add some Is for the leftover, or equivalent
+    return d + extra;
   }
 
   static String reduce(String num) {
