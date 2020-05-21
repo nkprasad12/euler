@@ -3,7 +3,6 @@ package problems.problems001to100.problems091to100;
 import static utils.numbers.BigNumber.fromLong;
 
 import java.lang.invoke.MethodHandles;
-
 import utils.numbers.BigNumber;
 import utils.numbers.NumericUtils;
 
@@ -29,9 +28,9 @@ public class Problem100 {
 
     BigNumber p = fromLong(1);
     BigNumber q = fromLong(1);
-    for(int i = 0; i < 32; i++) {
+    for (int i = 0; i < 32; i++) {
       if (i % 2 != 0) {
-        System.out.println(p + " " + q);      
+        System.out.println(p + " " + q);
       }
       BigNumber tmp = p.addTo(q);
       p = tmp.addTo(q);
@@ -39,7 +38,7 @@ public class Problem100 {
     }
 
     // k = 886731088897
-    // r = sqrt((886731088897^2 - 1) / 8) = 313506783024 
+    // r = sqrt((886731088897^2 - 1) / 8) = 313506783024
     // b = (1 + 2r + k) / 2 = 756872327473
 
     /*double r2 = Math.sqrt(2);
@@ -50,7 +49,7 @@ public class Problem100 {
         for (long b = minB; b < maxB; b++) {
             long num = b*(b-1);
             long denom = n*(n-1);
-            
+
             if (denom % num == 0 && denom / num == 2) {
                 ans = b;
                 break;
@@ -66,11 +65,10 @@ public class Problem100 {
   }
 }
 
-
 /*
   b = [(1 + 2r) + sqrt(1 + 8r^2)] / 2
 
-  So - when is sqrt(1 + 8r^2) an integer? 
+  So - when is sqrt(1 + 8r^2) an integer?
   Let 1 + 8r^2 = k^2
 
   b = (1 + 2r + k) / 2
@@ -86,7 +84,7 @@ public class Problem100 {
 
  When is sqrt(1 + 2(n^2 - n)) an integer?
   1 + 2(n^2 - n) = k^2 = (1 + 2z)^2 = 1 + 4z + 4z^2
-        n(n - 1) = 2z(z + 1)   
+        n(n - 1) = 2z(z + 1)
   2(n^2 -n) = k^2 - 1
 
   k=29 when n=21
