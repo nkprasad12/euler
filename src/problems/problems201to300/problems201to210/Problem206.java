@@ -1,7 +1,6 @@
 package problems.problems201to300.problems201to210;
 
 import java.lang.invoke.MethodHandles;
-
 import utils.numbers.BigNumber;
 
 public class Problem206 {
@@ -37,12 +36,12 @@ public class Problem206 {
       }
       if (num.digits().get(2 * i) != expected) {
         return false;
-      } 
+      }
     }
     return true;
   }
 
-  //  last digit of n is 0 
+  //  last digit of n is 0
   //  what number squares to 1_2_3_4_5_6_7_8_9
   // 0 -> 0
   // 1 -> 1
@@ -55,8 +54,7 @@ public class Problem206 {
   // 8 -> 4
   // 9 -> 1
 
-  // 
-
+  //
 
   // s = 1_2_3_4_5_6_7_8_900
   // n = _....30 or _.....70
