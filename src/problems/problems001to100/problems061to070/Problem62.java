@@ -93,7 +93,7 @@ public class Problem62 {
     }
     current.count++;
     return current;
-  } 
+  }
 
   private static final class Node {
 
