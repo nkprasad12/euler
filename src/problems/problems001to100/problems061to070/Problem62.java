@@ -7,7 +7,7 @@ public class Problem62 {
   public static void main(String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
     long startTime = System.nanoTime();
-    System.out.println(solution());
+    System.out.println(wayFasterSolution());
     System.out.println(((System.nanoTime() - startTime) / 1000000) + " ms");
   }
 
@@ -61,5 +61,50 @@ public class Problem62 {
       }
     }
     return true;
+  }
+
+  private static String wayFasterSolution() {
+    Node root = new Node(-1);
+    Node latestLeaf = root;
+    long n = 1;
+    while (latestLeaf.count != 5) {
+      long n3 = n * n * n;
+      latestLeaf = addToTree(root, n3);
+      n++;
+    }
+    return Long.toString(latestLeaf.originalCube);
+  }
+
+  private static Node addToTree(Node root, long cube) {
+    long x = cube;
+    int[] digits = new int[10];
+    while (x > 0) {
+      digits[(int) (x % 10)]++;
+      x /= 10;
+    }
+    Node current = root;
+    for (int d = 0; d < 10; d++) {
+      for (int j = 0; j < digits[d]; j++) {
+        if (current.children[d] == null) {
+          current.children[d] = new Node(cube);
+        }
+        current = current.children[d];
+      }
+    }
+    current.count++;
+    return current;
+  }
+
+  private static final class Node {
+
+    private final long originalCube;
+    private final Node[] children;
+    private int count;
+
+    private Node(long originalCube) {
+      this.originalCube = originalCube;
+      this.children = new Node[10];
+      this.count = 0;
+    }
   }
 }
