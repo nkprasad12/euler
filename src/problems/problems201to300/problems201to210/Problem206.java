@@ -18,7 +18,7 @@ public class Problem206 {
       if (isValidSolution(n)) {
         break;
       }
-      // Since the square ends with 3_0, the root end in either 30 or 70
+      // Since the square ends with 9_0, the root end in either 30 or 70
       if (n % 100 == 30) {
         n += 40;
       } else {
