@@ -1,73 +1,78 @@
 package problems.problems001to100.problems071to080;
 
 import java.lang.invoke.MethodHandles;
-import java.util.HashSet;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Problem74 {
 
-  public static void main(String[] args) {
+  public static void main(final String[] args) {
     System.out.println(MethodHandles.lookup().lookupClass());
-    long startTime = System.nanoTime();
+    final long startTime = System.nanoTime();
     System.out.println(solution());
     System.out.println(((System.nanoTime() - startTime) / 1000000) + " ms");
   }
 
-  public static String solution() {
-    int[] memo = new int[fac(9) * 6 + 1];
-    int[] lengths = new int[fac(9) * 6 + 1];
-    int result = 0;
+  private static String solution() {
+    HashMap<Integer, Integer> currentLevel = new HashMap<>();
     for (int i = 0; i < 1000000; i++) {
-      HashSet<Integer> chain = new HashSet<>();
-      int next = i;
-      int nonRepeatingTerms = 0;
-      while (!chain.contains(next)) {
-        if (lengths[next] == (60 - nonRepeatingTerms)) {
-          System.out.println(i + " " + nonRepeatingTerms + " " + next);
-        }
-        nonRepeatingTerms++;
-        chain.add(next);
-        if (memo[next] == 0) {
-          memo[next] = next(next);
-        }
-        next = memo[next];
+      int next = nextInChain(i);
+      if (loopLength(i) == -1) {
+        Integer k = currentLevel.get(next);
+        currentLevel.put(next, k == null ? 1 : k + 1);
       }
-      lengths[i] = nonRepeatingTerms;
-      if (nonRepeatingTerms == 60) {
-        result++;
+    }
+
+    int result = 0;
+    HashMap<Integer, Integer> nextLevel = new HashMap<>();
+    for (int chainLen = 3; chainLen <= 60; chainLen++) {
+      for (final Map.Entry<Integer, Integer> entry : currentLevel.entrySet()) {
+        final int next = nextInChain(entry.getKey());
+        final int loopSize = loopLength(next);
+        if (loopSize != -1) {
+          if (chainLen + loopSize == 60) {
+            result += entry.getValue();
+          }
+          continue;
+        }
+        final Integer k = nextLevel.get(next);
+        nextLevel.put(next, entry.getValue() + (k == null ? 0 : k));
       }
+      currentLevel = nextLevel;
+      nextLevel = new HashMap<>();
     }
     return Integer.toString(result);
   }
 
-  // private static final void sol() {
-  //   int result = 0;
-  //   Node[] nodes = new Node[1000000];
-  //   for (int i = 0; i < 1000000; i++) {
-  //     if (nodes[i] != null) {
-  //       if (nodes[i].length == 60) {
-  //         result++;
-  //       }
-  //       continue;
-  //     }
-  //     nodes[i] = new Node(i);
+  private static int loopLength(final int n) {
+    if (n == 145) {
+      return 0;
+    }
+    if (n == 169) {
+      return 2;
+    }
+    if (n == 363601) {
+      return 2;
+    }
+    if (n == 1454) {
+      return 2;
+    }
+    if (n == 871) {
+      return 1;
+    }
+    if (n == 45361) {
+      return 1;
+    }
+    if (n == 872) {
+      return 1;
+    }
+    if (n == 45362) {
+      return 1;
+    }
+    return -1;
+  }
 
-  //   }
-  //   System.out.println(result);
-  // }
-
-  // private static final class Node {
-
-  //   final int value;
-  //   Node next = null;
-  //   int length;
-
-  //   private Node(int value) {
-  //     this.value = value;
-  //     this.length = -1;
-  //   }
-  // }
-
-  private static final int next(int number) {
+  private static final int nextInChain(int number) {
     int result = 0;
     while (number > 0) {
       result += fac(number % 10);
@@ -76,7 +81,7 @@ public class Problem74 {
     return result;
   }
 
-  private static final int fac(int digit) {
+  private static final int fac(final int digit) {
     switch (digit) {
       case 0:
         return 1;
