@@ -3,7 +3,6 @@ package problems.problems001to100.problems081to090;
 import static utils.generators.base.tuples.Tuples.pair;
 
 import java.lang.invoke.MethodHandles;
-
 import utils.generators.base.tuples.Tuples.Pair;
 
 public class Problem85 {
@@ -19,14 +18,14 @@ public class Problem85 {
     long closestToTwoMillion = 2000000;
     long area = 0;
     for (int m = 1; m < 1415; m++) {
-        for (int n = m; n < 1415; n++) {
-          long numSolutions = numRectangles(m, n);
-          long diff = 2000000 - numSolutions;
-          if (Math.abs(diff) < closestToTwoMillion) {
-              closestToTwoMillion = Math.abs(diff);
-              area = m*n;
-          }
+      for (int n = m; n < 1415; n++) {
+        long numSolutions = numRectangles(m, n);
+        long diff = 2000000 - numSolutions;
+        if (Math.abs(diff) < closestToTwoMillion) {
+          closestToTwoMillion = Math.abs(diff);
+          area = m * n;
         }
+      }
     }
     return Long.toString(area);
   }
@@ -46,19 +45,19 @@ public class Problem85 {
   public static String solution() {
     int target = 2000000;
     int closest = target;
-    int areaOfClosest = 0;    
-    for (int n = 1; n < target; n++){
+    int areaOfClosest = 0;
+    for (int n = 1; n < target; n++) {
       Pair<Integer, Integer> diffAndArea = closestDiffAndGridArea(target, n);
       if (diffAndArea == null) {
         break;
       }
-      if (diffAndArea.first() < closest){
-          closest = diffAndArea.first();
-          areaOfClosest = diffAndArea.second();
-          System.out.println(diffAndArea + ", n = " + n);
+      if (diffAndArea.first() < closest) {
+        closest = diffAndArea.first();
+        areaOfClosest = diffAndArea.second();
+        System.out.println(diffAndArea + ", n = " + n);
       }
-   }    
-   return Integer.toString(areaOfClosest);
+    }
+    return Integer.toString(areaOfClosest);
   }
 
   static Pair<Integer, Integer> closestDiffAndGridArea(int L, int M) {
@@ -76,4 +75,4 @@ public class Problem85 {
   static long numRectangles(int M, int N) {
     return M * (M + 1) * N * (N + 1) / 4;
   }
-} 
+}
