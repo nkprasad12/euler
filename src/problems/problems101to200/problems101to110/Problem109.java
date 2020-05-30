@@ -23,6 +23,7 @@ public class Problem109 {
   static int[] doubles = new int[21];
   static int[] triples = new int[20];
   static int[] allValues = new int[62];
+
   static {
     for (int i = 1; i <= 20; i++) {
       singles[i - 1] = i;
