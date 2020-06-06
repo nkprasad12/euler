@@ -34,6 +34,4 @@ public final class Graphs {
 
     return minimumSet;
   }
-
-
 }
