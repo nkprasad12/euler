@@ -45,7 +45,7 @@ public class Problem700 {
     BigInteger p = valueOf(mod);
     for (long maybeEulerCoin = start; maybeEulerCoin > 0; maybeEulerCoin--) {
       long idx = bInv.multiply(valueOf(maybeEulerCoin)).mod(p).longValue();
-      idxForValues.put(idx, maybeEulerCoin); 
+      idxForValues.put(idx, maybeEulerCoin);
     }
 
     for (Map.Entry<Long, Long> entry : idxForValues.entrySet()) {
