@@ -1,5 +1,6 @@
 package utils.numbers;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 
 public final class NumericUtils {
@@ -79,6 +80,21 @@ public final class NumericUtils {
     } else {
       return (powerModN(base, exponent - 1, mod) * base) % mod;
     }
+  }
+
+  public static BigInteger powerModN(BigInteger base, long exponent, BigInteger mod) {
+    if (exponent == 0) {
+      return BigInteger.ONE;
+    } else if (exponent % 2 == 0) {
+      BigInteger halfPow = powerModN(base, exponent / 2, mod);
+      return halfPow.multiply(halfPow).mod(mod);
+    } else {
+      return powerModN(base, exponent - 1, mod).multiply(base).mod(mod);
+    }
+  }
+
+  public static long powerModNCheating(long base, long exponent, long mod) {
+    return powerModN(BigInteger.valueOf(base), exponent, BigInteger.valueOf(mod)).longValue();
   }
 
   public static long gcd(long a, long b) {
