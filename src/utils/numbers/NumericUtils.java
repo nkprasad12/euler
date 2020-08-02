@@ -124,4 +124,14 @@ public final class NumericUtils {
     }
     return true;
   }
+
+  public static int sign(double d) {
+    if (d > 0) {
+      return 1;
+    } else if (d < 0) {
+      return -1;
+    } else {
+      return 0;
+    }
+  }
 }
