@@ -11,6 +11,13 @@ public final class Vector {
     this.vector = vector;
   }
 
+  public Vector(double... components) {
+    vector = new ArrayList<>();
+    for (double d : components) {
+      vector.add(d);
+    }
+  }
+
   public Vector scale(Double k) {
     ArrayList<Double> result = new ArrayList<Double>(vector.size());
     for (int i = 0; i < vector.size(); i++) {
