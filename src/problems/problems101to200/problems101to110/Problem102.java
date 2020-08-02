@@ -17,8 +17,12 @@ public class Problem102 {
   }
 
   public static String solution() {
-    return Generators.fromTextFile("problem102.txt", "\n").map(str -> str.split(","))
-        .filter(points -> containsOrigin(points)).reducing(0, (ct, next) -> ct + 1).lastValue().toString();
+    return Generators.fromTextFile("problem102.txt", "\n")
+        .map(str -> str.split(","))
+        .filter(points -> containsOrigin(points))
+        .reducing(0, (ct, next) -> ct + 1)
+        .lastValue()
+        .toString();
   }
 
   static boolean containsOrigin(String[] points) {
