@@ -3,13 +3,12 @@ package utils.linalg;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public final class Vector {
 
   private final List<Double> vector;
 
   public Vector(List<Double> vector) {
-     this.vector = vector;
+    this.vector = vector;
   }
 
   public Vector scale(Double k) {
