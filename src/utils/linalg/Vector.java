@@ -11,7 +11,7 @@ public final class Vector {
     this.vector = vector;
   }
 
-  public Vector(double ... components) {
+  public Vector(double... components) {
     vector = new ArrayList<>();
     for (double d : components) {
       vector.add(d);
