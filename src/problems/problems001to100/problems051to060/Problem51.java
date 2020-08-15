@@ -1,15 +1,9 @@
 package problems.problems001to100.problems051to060;
 
 import java.lang.invoke.MethodHandles;
-import java.util.List;
-
-import utils.numbers.NumericUtils;
-import utils.primes.Primes;
-
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.lang.Character;
+import java.util.List;
+import utils.primes.Primes;
 
 public class Problem51 {
 
@@ -71,45 +65,44 @@ public class Problem51 {
   }
 
   private static List<boolean[]> masksForNumber(long prime) {
-    
+
     List<boolean[]> result = new ArrayList<boolean[]>();
     List<List<Integer>> digitPositions = new ArrayList<List<Integer>>();
     String primeStr = String.valueOf(prime);
 
     for (int i = 0; i <= 9; i++) {
-        List<Integer> positions = new ArrayList<Integer>();
-        for (int j = 0; j < primeStr.length(); j++) {
-            char c = primeStr.charAt(j);
-            String number=String.valueOf(i);
-            if (c == number.charAt(0)) {
-                positions.add(j);
-            }
+      List<Integer> positions = new ArrayList<Integer>();
+      for (int j = 0; j < primeStr.length(); j++) {
+        char c = primeStr.charAt(j);
+        String number = String.valueOf(i);
+        if (c == number.charAt(0)) {
+          positions.add(j);
         }
-        digitPositions.add(positions);
+      }
+      digitPositions.add(positions);
     }
 
     for (List<Integer> positions : digitPositions) {
-        int n = positions.size();
+      int n = positions.size();
 
-        if (n == 0) {
-            continue;
+      if (n == 0) {
+        continue;
+      }
+
+      for (int k = 1; k < Math.pow(2, n); k++) {
+        String binary = Integer.toBinaryString(k);
+        while (binary.length() < n) {
+          binary = "0" + binary;
         }
+        boolean[] newMask = new boolean[primeStr.length()];
 
-        for (int k = 1; k < Math.pow(2, n); k++) {
-            String binary = Integer.toBinaryString(k);
-            while (binary.length() < n) {
-              binary = "0" + binary;
-            }
-            boolean[] newMask = new boolean[primeStr.length()];
-
-            for (int i = 0; i < n; i++) {
-                newMask[positions.get(i)] = binary.charAt(i) == '1';
-            }
-            result.add(newMask);
+        for (int i = 0; i < n; i++) {
+          newMask[positions.get(i)] = binary.charAt(i) == '1';
         }
+        result.add(newMask);
+      }
     }
-    
+
     return result;
   }
-
 }
