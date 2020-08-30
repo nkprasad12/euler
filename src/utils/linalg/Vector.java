@@ -57,11 +57,11 @@ public final class Vector {
     return component(i);
   }
 
-  @Override 
+  @Override
   public String toString() {
     String result = "(" + vector[0];
     for (int i = 1; i < vector.length; i++) {
-       result += ", " + vector[i];
+      result += ", " + vector[i];
     }
     return result + ")";
   }

@@ -1,7 +1,6 @@
 package problems.problems101to200.problems141to150;
 
 import java.lang.invoke.MethodHandles;
-
 import utils.linalg.Vector;
 
 public class Problem144 {
@@ -70,7 +69,7 @@ public class Problem144 {
 
     double x_p = (negB + root) / denom;
     double x_m = (negB - root) / denom;
-  
+
     double x_new = Math.abs(x_p - x0) > Math.abs(x_m - x0) ? x_p : x_m;
     double[] result = {x_new, m * x_new + b};
 
