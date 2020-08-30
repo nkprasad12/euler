@@ -1,65 +1,68 @@
 package utils.linalg;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public final class Vector {
 
-  private final List<Double> vector;
-
-  public Vector(List<Double> vector) {
-    this.vector = vector;
-  }
+  private final double[] vector;
 
   public Vector(double... components) {
-    vector = new ArrayList<>();
-    for (double d : components) {
-      vector.add(d);
-    }
+    this.vector = components;
   }
 
-  public Vector scale(Double k) {
-    ArrayList<Double> result = new ArrayList<Double>(vector.size());
-    for (int i = 0; i < vector.size(); i++) {
-      result.add(k * this.vector.get(i));
+  public Vector scale(double k) {
+    double[] result = new double[vector.length];
+    for (int i = 0; i < vector.length; i++) {
+      result[i] = k * vector[i];
     }
     return new Vector(result);
   }
 
   public Vector plus(Vector other) {
-    if (this.vector.size() != other.vector.size()) {
+    if (this.vector.length != other.vector.length) {
       throw new RuntimeException("Vectors of different sizes");
     }
-    ArrayList<Double> result = new ArrayList<Double>(vector.size());
-    for (int i = 0; i < vector.size(); i++) {
-      result.add(this.vector.get(i) + other.vector.get(i));
+    double[] result = new double[vector.length];
+    for (int i = 0; i < vector.length; i++) {
+      result[i] = this.vector[i] + other.vector[i];
     }
     return new Vector(result);
   }
 
   public Vector minus(Vector other) {
-    if (this.vector.size() != other.vector.size()) {
+    if (this.vector.length != other.vector.length) {
       throw new RuntimeException("Vectors of different sizes");
     }
-    ArrayList<Double> result = new ArrayList<Double>(vector.size());
-    for (int i = 0; i < vector.size(); i++) {
-      result.add(this.vector.get(i) - other.vector.get(i));
+    double[] result = new double[vector.length];
+    for (int i = 0; i < vector.length; i++) {
+      result[i] = this.vector[i] - other.vector[i];
     }
     return new Vector(result);
   }
 
-  public Double dot(Vector other) {
-    if (this.vector.size() != other.vector.size()) {
+  public double dot(Vector other) {
+    if (this.vector.length != other.vector.length) {
       throw new RuntimeException("Vectors of different sizes");
     }
-    Double result = 0d;
-    for (int i = 0; i < vector.size(); i++) {
-      result += (this.vector.get(i) * other.vector.get(i));
+    double result = 0d;
+    for (int i = 0; i < vector.length; i++) {
+      result += (this.vector[i] * other.vector[i]);
     }
     return result;
   }
 
   public Double component(int i) {
-    return vector.get(i);
+    return vector[i];
+  }
+
+  public Double c(int i) {
+    return component(i);
+  }
+
+  @Override 
+  public String toString() {
+    String result = "(" + vector[0];
+    for (int i = 1; i < vector.length; i++) {
+       result += ", " + vector[i];
+    }
+    return result + ")";
   }
 }
