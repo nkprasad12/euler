@@ -1,3 +1,5 @@
 {
-  "editor.detectIndentation": false
+"editor.detectIndentation": false,
+"python.linting.pylintEnabled": true,
+"python.linting.enabled": true
 }
