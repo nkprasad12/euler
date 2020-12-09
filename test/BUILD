@@ -1,4 +1,4 @@
-load("@rules_java//java:defs.bzl", "java_library", "java_test")
+load("@rules_java//java:defs.bzl", "java_library")
 load("//test:generate_tests.bzl", "generate_targets_for_tests_in_subdirectories")
 
 generate_targets_for_tests_in_subdirectories()

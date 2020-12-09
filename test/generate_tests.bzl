@@ -1,3 +1,5 @@
+load("@rules_java//java:defs.bzl", "java_test")
+
 def generate_targets_for_tests_in_subdirectories():
     """Generates test targets for all tests in subdirectories."""
     srcs = native.glob(["**/*Test.java"])
@@ -5,7 +7,7 @@ def generate_targets_for_tests_in_subdirectories():
         # Changes foo/bar/BazTest.java to foo.bar.BazTest
         test_class = src[:-5].replace("/", ".")
         test_name = test_class.split(".")[-1]
-        native.java_test(
+        java_test(
             name = test_name,
             test_class = test_class,
             srcs = [src],
