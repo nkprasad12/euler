@@ -22,7 +22,7 @@ public class Problem420 {
      * (c(a + d), d^2 + bc)
      *
      * For any such matrix B with det(B) > 0, there is a pair matrix C such that C^2 = B^2,
-     * and det(C) = - det(C) < 0; C =
+     * and det(C) = - det(B) < 0; C =
      * 1 / m (a^2 - det(B) + bc, b(a + d))
      *       (c(a + d), d^2 - det(B) + bc)
      *
